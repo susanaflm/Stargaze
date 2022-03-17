@@ -24,9 +24,167 @@ namespace Stargaze.Input
         {
             asset = InputActionAsset.FromJson(@"{
     ""name"": ""InputActions"",
-    ""maps"": [],
-    ""controlSchemes"": []
+    ""maps"": [
+        {
+            ""name"": ""Player"",
+            ""id"": ""21c530fc-a68d-4f19-93b8-80368fcf85a1"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""d7e30dcb-eed1-440d-82f0-767a11bbfa03"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Look"",
+                    ""type"": ""Value"",
+                    ""id"": ""6ca6126c-19ac-44ff-99af-5873f93c9f3a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""WASD Keys"",
+                    ""id"": ""40690f44-6394-4b50-89b3-1ed04b720d8a"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""96608b31-e76a-46a0-becd-0ff0dc90b417"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""f5ef2946-76ca-478b-86ce-3283c848876a"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""34924ad4-a2ef-4d25-a671-24251b781e23"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""5eb6eb32-beb2-4c14-9c16-bf17892e5003"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a6345215-51ef-4be9-9d18-3ff5a15e91a3"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""74b7220d-89a0-4648-aa4e-2cd967fc7ea6"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18bcb55d-fda5-45ef-978d-8e8aa682d4f7"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bd1e0a4e-f6dc-4aad-8b8a-78ad992dc2f1"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        }
+    ],
+    ""controlSchemes"": [
+        {
+            ""name"": ""Keyboard & Mouse"",
+            ""bindingGroup"": ""Keyboard & Mouse"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                },
+                {
+                    ""devicePath"": ""<Mouse>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Gamepad"",
+            ""bindingGroup"": ""Gamepad"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Gamepad>"",
+                    ""isOptional"": false,
+                    ""isOR"": false
+                }
+            ]
+        }
+    ]
 }");
+            // Player
+            m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+            m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
+            m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -81,6 +239,70 @@ namespace Stargaze.Input
         public int FindBinding(InputBinding bindingMask, out InputAction action)
         {
             return asset.FindBinding(bindingMask, out action);
+        }
+
+        // Player
+        private readonly InputActionMap m_Player;
+        private IPlayerActions m_PlayerActionsCallbackInterface;
+        private readonly InputAction m_Player_Movement;
+        private readonly InputAction m_Player_Look;
+        public struct PlayerActions
+        {
+            private @InputActions m_Wrapper;
+            public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Movement => m_Wrapper.m_Player_Movement;
+            public InputAction @Look => m_Wrapper.m_Player_Look;
+            public InputActionMap Get() { return m_Wrapper.m_Player; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+            public void SetCallbacks(IPlayerActions instance)
+            {
+                if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+                {
+                    @Movement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                    @Movement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                    @Movement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMovement;
+                    @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                    @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                    @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                }
+                m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Movement.started += instance.OnMovement;
+                    @Movement.performed += instance.OnMovement;
+                    @Movement.canceled += instance.OnMovement;
+                    @Look.started += instance.OnLook;
+                    @Look.performed += instance.OnLook;
+                    @Look.canceled += instance.OnLook;
+                }
+            }
+        }
+        public PlayerActions @Player => new PlayerActions(this);
+        private int m_KeyboardMouseSchemeIndex = -1;
+        public InputControlScheme KeyboardMouseScheme
+        {
+            get
+            {
+                if (m_KeyboardMouseSchemeIndex == -1) m_KeyboardMouseSchemeIndex = asset.FindControlSchemeIndex("Keyboard & Mouse");
+                return asset.controlSchemes[m_KeyboardMouseSchemeIndex];
+            }
+        }
+        private int m_GamepadSchemeIndex = -1;
+        public InputControlScheme GamepadScheme
+        {
+            get
+            {
+                if (m_GamepadSchemeIndex == -1) m_GamepadSchemeIndex = asset.FindControlSchemeIndex("Gamepad");
+                return asset.controlSchemes[m_GamepadSchemeIndex];
+            }
+        }
+        public interface IPlayerActions
+        {
+            void OnMovement(InputAction.CallbackContext context);
+            void OnLook(InputAction.CallbackContext context);
         }
     }
 }

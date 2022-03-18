@@ -14,9 +14,10 @@ namespace Stargaze.Tools.CustomEditors.Player
         private SerializedProperty _verticalRotationLowerBound;
         private SerializedProperty _verticalRotationUpperBound;
 
-        private float _verticalRotationLowerBoundValue;
-        private float _verticalRotationUpperBoundValue;
-        
+        private SerializedProperty _groundCheckCenter;
+        private SerializedProperty _groundCheckRadius;
+        private SerializedProperty _groundCheckLayer;
+
         private void OnEnable()
         {
             _movementSpeed = serializedObject.FindProperty("movementSpeed");
@@ -25,12 +26,16 @@ namespace Stargaze.Tools.CustomEditors.Player
             _rotationSpeed = serializedObject.FindProperty("rotationSpeed");
             _verticalRotationLowerBound = serializedObject.FindProperty("verticalRotationLowerBound");
             _verticalRotationUpperBound = serializedObject.FindProperty("verticalRotationUpperBound");
+
+            _groundCheckCenter = serializedObject.FindProperty("groundCheckCenter");
+            _groundCheckRadius = serializedObject.FindProperty("groundCheckRadius");
+            _groundCheckLayer = serializedObject.FindProperty("groundCheckLayer");
         }
 
         public override void OnInspectorGUI()
         {
-            _verticalRotationLowerBoundValue = _verticalRotationLowerBound.floatValue;
-            _verticalRotationUpperBoundValue = _verticalRotationUpperBound.floatValue;
+            float verticalRotationLowerBoundValue = _verticalRotationLowerBound.floatValue;
+            float verticalRotationUpperBoundValue = _verticalRotationUpperBound.floatValue;
             
             using (new EditorGUI.DisabledScope(true))
                 EditorGUILayout.PropertyField(serializedObject.FindProperty("m_Script"), true);
@@ -40,16 +45,20 @@ namespace Stargaze.Tools.CustomEditors.Player
             EditorGUILayout.PropertyField(_camera);
             EditorGUILayout.PropertyField(_rotationSpeed);
             
-            EditorGUILayout.LabelField($"Vertical Rotation Bounds: [{_verticalRotationLowerBoundValue:F2}, {_verticalRotationUpperBoundValue:F2}]");
+            EditorGUILayout.LabelField($"Vertical Rotation Bounds: [{verticalRotationLowerBoundValue:F2}, {verticalRotationUpperBoundValue:F2}]");
             EditorGUILayout.MinMaxSlider(
-                ref _verticalRotationLowerBoundValue, 
-                ref _verticalRotationUpperBoundValue, 
+                ref verticalRotationLowerBoundValue, 
+                ref verticalRotationUpperBoundValue, 
                 -90, 
                 90
             );
 
-            _verticalRotationLowerBound.floatValue = _verticalRotationLowerBoundValue;
-            _verticalRotationUpperBound.floatValue = _verticalRotationUpperBoundValue;
+            _verticalRotationLowerBound.floatValue = verticalRotationLowerBoundValue;
+            _verticalRotationUpperBound.floatValue = verticalRotationUpperBoundValue;
+
+            EditorGUILayout.PropertyField(_groundCheckCenter);
+            EditorGUILayout.PropertyField(_groundCheckRadius);
+            EditorGUILayout.PropertyField(_groundCheckLayer);
 
             serializedObject.ApplyModifiedProperties();
         }

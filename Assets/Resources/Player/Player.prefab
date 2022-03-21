@@ -157,7 +157,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.06089, y: 1}
+    m_SensorSize: {x: 0.7866473, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 7399808359976636698}
   - component: {fileID: 4139647170239020420}
   - component: {fileID: 4429757468115212229}
+  - component: {fileID: -8304033169833888439}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -247,7 +248,7 @@ MonoBehaviour:
   movementSpeed: 5
   jumpHeight: 1
   camera: {fileID: 119786899}
-  rotationSpeed: 4
+  rotationSpeed: 35
   lookDownLimit: 60
   lookUpLimit: 90
   groundCheckCenter: {x: 0, y: 0.165, z: 0}
@@ -255,6 +256,25 @@ MonoBehaviour:
   groundCheckLayer:
     serializedVersion: 2
     m_Bits: 55
+--- !u!114 &-8304033169833888439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399808359976636700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38492658b09175d489319850c8af467a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactionData: {fileID: 11400000, guid: a5a5f7ce268b3964599fe0ae5a161035, type: 2}
+  rayDistance: 3
+  raySphereRadius: 0.15
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  _playerCamera: {fileID: 0}
 --- !u!1001 &7399808359717528236
 PrefabInstance:
   m_ObjectHideFlags: 0

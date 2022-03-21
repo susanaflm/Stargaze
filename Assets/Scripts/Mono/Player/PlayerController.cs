@@ -21,6 +21,8 @@ namespace Stargaze.Mono.Player
 
         private Vector3 _verticalVelocity;
 
+        private bool _isPlayerInteracting = false;
+
         [Header("Movement")]
         [SerializeField] private float movementSpeed = 1f;
 
@@ -37,6 +39,12 @@ namespace Stargaze.Mono.Player
         [SerializeField] private Vector3 groundCheckCenter;
         [SerializeField] private float groundCheckRadius;
         [SerializeField] private LayerMask groundCheckLayer;
+        
+        public bool IsPlayerInteracting
+        {
+            get => _isPlayerInteracting;
+            set => _isPlayerInteracting = value;
+        }
 
         private void Awake()
         {
@@ -58,8 +66,11 @@ namespace Stargaze.Mono.Player
 
         private void Update()
         {
+            if (_isPlayerInteracting)
+                return;
+
             GroundCheck();
-            
+
             HandleMovement();
             
             HandleRotation();

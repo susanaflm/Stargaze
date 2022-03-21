@@ -10,6 +10,10 @@ namespace Stargaze.Mono.Player
         
         public Action Jump { get; set; }
         
+        public Action Interact { get; set; }
+
+        public Action ExitInteraction { get; set; }
+
         public Vector2 Movement { get; private set; }
         
         public Vector2 Look { get; private set; }
@@ -19,6 +23,8 @@ namespace Stargaze.Mono.Player
             _actions = new InputActions();
 
             _actions.Player.Jump.performed += _ => Jump?.Invoke();
+            _actions.Player.Interact.performed += _ => Interact?.Invoke();
+            _actions.Player.ExitInteraction.performed += _ => ExitInteraction?.Invoke();
         }
 
         private void Update()

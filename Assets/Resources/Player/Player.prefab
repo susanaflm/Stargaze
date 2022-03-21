@@ -157,7 +157,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0678809, y: 1}
+    m_SensorSize: {x: 2.06089, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -215,8 +215,8 @@ CharacterController:
   serializedVersion: 2
   m_Height: 1.8
   m_Radius: 0.2
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_SlopeLimit: 35
+  m_StepOffset: 0.25
   m_SkinWidth: 0.02
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0}
@@ -244,11 +244,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f861e1d81f7ac4b8c49acd55628bd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 3
+  movementSpeed: 5
+  jumpHeight: 1
   camera: {fileID: 119786899}
   rotationSpeed: 4
-  verticalRotationLowerBound: -90
-  verticalRotationUpperBound: 60
+  lookDownLimit: 60
+  lookUpLimit: 90
   groundCheckCenter: {x: 0, y: 0.165, z: 0}
   groundCheckRadius: 0.19
   groundCheckLayer:

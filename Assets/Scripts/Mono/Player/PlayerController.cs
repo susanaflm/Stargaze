@@ -23,12 +23,15 @@ namespace Stargaze.Mono.Player
 
         [Header("Movement")]
         [SerializeField] private float movementSpeed = 1f;
+
+        [Header("Jumping")]
+        [SerializeField] private float jumpHeight = 1f;
         
         [Header("Looking")]
         [SerializeField] private new Transform camera;
         [SerializeField] private float rotationSpeed = 1f;
-        [SerializeField] private float verticalRotationLowerBound = -90;
-        [SerializeField] private float verticalRotationUpperBound = 90;
+        [SerializeField] [Range(0f, 90f)] private float lookDownLimit = 90;
+        [SerializeField] [Range(0f, 90f)] private float lookUpLimit = 90;
 
         [Header("Ground Check")]
         [SerializeField] private Vector3 groundCheckCenter;
@@ -49,6 +52,8 @@ namespace Stargaze.Mono.Player
                 // TODO: Is it worth creating a function for this?
                 _verticalVelocity = Vector3.zero;
             };
+
+            _input.Jump += Jump;
         }
 
         private void Update()
@@ -90,6 +95,12 @@ namespace Stargaze.Mono.Player
             _characterController.Move(_verticalVelocity * Time.deltaTime);
         }
 
+        private void Jump()
+        {
+            if (_isGrounded)
+                _verticalVelocity += transform.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y);
+        }
+
         private void HandleRotation()
         {
             Vector2 lookInput = _input.Look;
@@ -99,8 +110,8 @@ namespace Stargaze.Mono.Player
 
             _verticalRotation = Mathf.Clamp(
                 _verticalRotation, 
-                verticalRotationLowerBound, 
-                verticalRotationUpperBound
+                -lookUpLimit,
+                lookDownLimit
             );
             
             transform.localRotation = Quaternion.Euler(0f, _horizontalRotation, 0f);

@@ -8,6 +8,8 @@ namespace Stargaze.Mono.Player
     {
         private InputActions _actions;
         
+        public Action Jump { get; set; }
+        
         public Vector2 Movement { get; private set; }
         
         public Vector2 Look { get; private set; }
@@ -15,6 +17,8 @@ namespace Stargaze.Mono.Player
         private void Awake()
         {
             _actions = new InputActions();
+
+            _actions.Player.Jump.performed += _ => Jump?.Invoke();
         }
 
         private void Update()

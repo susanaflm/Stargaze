@@ -39,6 +39,8 @@ namespace Stargaze.Mono.Player
         [SerializeField] private Vector3 groundCheckCenter;
         [SerializeField] private float groundCheckRadius;
         [SerializeField] private LayerMask groundCheckLayer;
+
+        public Vector2 AnimationDir { get; private set; }
         
         public bool IsPlayerInteracting
         {
@@ -104,6 +106,9 @@ namespace Stargaze.Mono.Player
                 _verticalVelocity += Physics.gravity * Time.deltaTime;
 
             _characterController.Move(_verticalVelocity * Time.deltaTime);
+
+            // TODO: This will make the character animate even when we is walking against a wall. Do we want to fix this?
+            AnimationDir = movementInput;
         }
 
         private void Jump()

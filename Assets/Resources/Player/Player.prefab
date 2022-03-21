@@ -157,7 +157,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.7866473, y: 1}
+    m_SensorSize: {x: 2.06089, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 4139647170239020420}
   - component: {fileID: 4429757468115212229}
   - component: {fileID: -8304033169833888439}
+  - component: {fileID: 6639225953265203610}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -275,6 +276,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   _playerCamera: {fileID: 0}
+--- !u!114 &6639225953265203610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399808359976636700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d3f744e49ab4597a3a7d17209db5233, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7399808359717528236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -646,6 +659,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 2dee2f074a3c81a47b570724ede043a1,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e587ec427d0c0c9408fecabf4aab1b9c, type: 2}
     - target: {fileID: 6240733294840144465, guid: 2dee2f074a3c81a47b570724ede043a1,
         type: 3}
       propertyPath: m_Layer

@@ -15951,6 +15951,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8304033169833888439, guid: bd749a81be07df543b26aa72e33cc6a3,
+        type: 3}
+      propertyPath: _playerCamera
+      value: 
+      objectReference: {fileID: 961739752}
+    - target: {fileID: 119786900, guid: bd749a81be07df543b26aa72e33cc6a3, type: 3}
+      propertyPath: m_Lens.m_SensorSize.x
+      value: 2.06089
+      objectReference: {fileID: 0}
     - target: {fileID: 7399808359976636699, guid: bd749a81be07df543b26aa72e33cc6a3,
         type: 3}
       propertyPath: m_RootOrder

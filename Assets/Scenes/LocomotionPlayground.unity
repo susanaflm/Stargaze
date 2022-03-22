@@ -15958,7 +15958,12 @@ PrefabInstance:
       objectReference: {fileID: 961739752}
     - target: {fileID: 119786900, guid: bd749a81be07df543b26aa72e33cc6a3, type: 3}
       propertyPath: m_Lens.m_SensorSize.x
-      value: 2.06089
+      value: 1.3333334
+      objectReference: {fileID: 0}
+    - target: {fileID: 6639225953265203610, guid: bd749a81be07df543b26aa72e33cc6a3,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7399808359976636699, guid: bd749a81be07df543b26aa72e33cc6a3,
         type: 3}
@@ -16019,6 +16024,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7669647408277544957, guid: bd749a81be07df543b26aa72e33cc6a3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bd749a81be07df543b26aa72e33cc6a3, type: 3}

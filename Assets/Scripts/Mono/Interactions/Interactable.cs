@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using Stargaze.Mono.Interactions;
 using UnityEngine;
 
-namespace Stargaze
+namespace Stargaze.Mono.Interactions
 {
     public class Interactable : MonoBehaviour , IInteractable
     {
         #region Variables
 
         [Header("Interactable Settings")]
-        private bool _isInteractable = true;
+        [SerializeField,Tooltip("Set if the Interactable will be something like a button or a lever")]
+        private bool isSwitchable;
         
-        [SerializeField] private bool isSwitchable;
+        protected bool isInteractable = true;
 
         #endregion
 
@@ -20,14 +18,14 @@ namespace Stargaze
         
         public bool Switchable => isSwitchable;
 
-        public bool IsInteractable => _isInteractable;
+        public bool IsInteractable => isInteractable;
 
         #endregion
 
 
         #region Methods
         
-        public void OnInteraction()
+        public virtual void OnInteraction()
         {
            Debug.Log($"Interacted with: {gameObject.name}");
         }

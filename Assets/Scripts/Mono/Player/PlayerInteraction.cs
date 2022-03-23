@@ -1,4 +1,5 @@
 using Stargaze.Mono.Interactions;
+using Stargaze.Mono.Interactions.Magnet;
 using UnityEngine;
 
 namespace Stargaze.Mono.Player
@@ -7,6 +8,7 @@ namespace Stargaze.Mono.Player
     {
         private PlayerInput _input;
         private PlayerController _controller;
+        private Camera _playerCamera;
 
         [Header("Data")]
         [SerializeField] private InteractionData interactionData;
@@ -16,12 +18,11 @@ namespace Stargaze.Mono.Player
         [SerializeField] private float raySphereRadius;
         [SerializeField] private LayerMask interactableLayer;
         
-        [SerializeField] private Camera _playerCamera;
         
         private void Awake()
         {
             _input = GetComponent<PlayerInput>();
-
+            _playerCamera = Camera.main;
             _controller = GetComponent<PlayerController>();
         }
         
@@ -69,20 +70,34 @@ namespace Stargaze.Mono.Player
 
         private void Interact()
         {
+            if (_controller.IsPlayerInteracting)
+                return;
+            
             if (interactionData.IsEmpty())
                 return;
             
-            _controller.IsPlayerInteracting = true;
-
             if (!interactionData.Interactable.IsInteractable)
                 return;
 
+            if (!interactionData.Interactable.Switchable)
+            {
+                _controller.IsPlayerInteracting = true;
+            }
+            
             interactionData.Interact();
         }
 
         private void ExitInteraction()
         {
+            if (!_controller.IsPlayerInteracting) return;
+
+            if (interactionData.Interactable is MagnetInteraction)
+            {
+                MagnetInteraction.Restore?.Invoke();
+            }
+            
             _controller.IsPlayerInteracting = false;
+            
         }
     }
 }

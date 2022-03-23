@@ -253,6 +253,45 @@ namespace Stargaze.Input
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Magnet"",
+            ""id"": ""8dd0bd03-d059-4abc-a7fc-a43f7d409140"",
+            ""actions"": [
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""44ad56f2-1466-4ec1-9580-29f111eb4205"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""22bb71b7-deeb-4cca-91f9-15c243c7e6a5"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1bb082bb-da0d-4c9e-82e9-8d6f2a36902e"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -292,6 +331,9 @@ namespace Stargaze.Input
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
             m_Player_ExitInteraction = m_Player.FindAction("ExitInteraction", throwIfNotFound: true);
+            // Magnet
+            m_Magnet = asset.FindActionMap("Magnet", throwIfNotFound: true);
+            m_Magnet_Movement = m_Magnet.FindAction("Movement", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -412,6 +454,39 @@ namespace Stargaze.Input
             }
         }
         public PlayerActions @Player => new PlayerActions(this);
+
+        // Magnet
+        private readonly InputActionMap m_Magnet;
+        private IMagnetActions m_MagnetActionsCallbackInterface;
+        private readonly InputAction m_Magnet_Movement;
+        public struct MagnetActions
+        {
+            private @InputActions m_Wrapper;
+            public MagnetActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Movement => m_Wrapper.m_Magnet_Movement;
+            public InputActionMap Get() { return m_Wrapper.m_Magnet; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(MagnetActions set) { return set.Get(); }
+            public void SetCallbacks(IMagnetActions instance)
+            {
+                if (m_Wrapper.m_MagnetActionsCallbackInterface != null)
+                {
+                    @Movement.started -= m_Wrapper.m_MagnetActionsCallbackInterface.OnMovement;
+                    @Movement.performed -= m_Wrapper.m_MagnetActionsCallbackInterface.OnMovement;
+                    @Movement.canceled -= m_Wrapper.m_MagnetActionsCallbackInterface.OnMovement;
+                }
+                m_Wrapper.m_MagnetActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Movement.started += instance.OnMovement;
+                    @Movement.performed += instance.OnMovement;
+                    @Movement.canceled += instance.OnMovement;
+                }
+            }
+        }
+        public MagnetActions @Magnet => new MagnetActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -437,6 +512,10 @@ namespace Stargaze.Input
             void OnJump(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
             void OnExitInteraction(InputAction.CallbackContext context);
+        }
+        public interface IMagnetActions
+        {
+            void OnMovement(InputAction.CallbackContext context);
         }
     }
 }

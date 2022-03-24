@@ -1,11 +1,12 @@
 using System;
+using Mirror;
 using UnityEngine;
 
 namespace Stargaze.Mono.Player
 {
     [RequireComponent(typeof(PlayerInput))]
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : NetworkBehaviour
     {
         public Action OnLand;
         
@@ -57,6 +58,12 @@ namespace Stargaze.Mono.Player
 
         private void Start()
         {
+            if (!isLocalPlayer)
+                _characterController.enabled = false;
+        }
+
+        public override void OnStartLocalPlayer()
+        {
             OnLand += () =>
             {
                 // TODO: Is it worth creating a function for this?
@@ -80,6 +87,9 @@ namespace Stargaze.Mono.Player
 
         private void GroundCheck()
         {
+            if (!isLocalPlayer)
+                return;
+            
             _wasGrounded = _isGrounded;
             
             // TODO: Is a sphere cast method better?
@@ -95,6 +105,9 @@ namespace Stargaze.Mono.Player
 
         private void HandleMovement()
         {
+            if (!isLocalPlayer)
+                return;
+            
             Vector2 movementInput = _input.Movement;
 
             Vector3 dir = transform.forward * movementInput.y + transform.right * movementInput.x;
@@ -113,12 +126,18 @@ namespace Stargaze.Mono.Player
 
         private void Jump()
         {
+            if (!isLocalPlayer)
+                return;
+            
             if (_isGrounded)
                 _verticalVelocity += transform.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y);
         }
 
         private void HandleRotation()
         {
+            if (!isLocalPlayer)
+                return;
+            
             Vector2 lookInput = _input.Look;
 
             _horizontalRotation += lookInput.x * rotationSpeed * Time.deltaTime;

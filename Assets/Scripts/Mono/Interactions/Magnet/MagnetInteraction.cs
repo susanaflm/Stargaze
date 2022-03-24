@@ -17,11 +17,8 @@ namespace Stargaze.Mono.Interactions.Magnet
         [Header("Iman Panel Settings")]
         [SerializeField] private Transform lowerLeftCorner;
         [SerializeField] private Transform upperRightCorner;
-        [SerializeField] private Transform cameraPos;
         [Space]
-        [Header("Camera Settings")]
-        [SerializeField] private CinemachineVirtualCamera playerCamera;
-        [SerializeField] private Transform defaultCameraTransform;
+        [SerializeField] private CinemachineVirtualCamera puzzleCamera;
         [Space]
         [SerializeField] private GameObject magnetPrefab;
         
@@ -31,6 +28,7 @@ namespace Stargaze.Mono.Interactions.Magnet
             //isInteractable = false;
             Restore += RestoreCamera;
             _panelPos = transform.position;
+            puzzleCamera.gameObject.SetActive(false);
         }
 
         private void Update()
@@ -48,17 +46,14 @@ namespace Stargaze.Mono.Interactions.Magnet
         {
             base.OnInteraction();
 
-            playerCamera.transform.DOMove(cameraPos.position, 0.5f);
-            playerCamera.transform.DORotate(cameraPos.rotation.eulerAngles, 0.5f);
-            
+            puzzleCamera.gameObject.SetActive(true);
             _magnet = Instantiate(magnetPrefab, _panelPos + new Vector3(0,0,-transform.lossyScale.z / 2), Quaternion.identity);
             _magnet.GetComponent<MagnetController>().SetBoundaries(upperRightCorner.position, lowerLeftCorner.position);
         }
 
         private void RestoreCamera()
         {
-            playerCamera.transform.DOMove(defaultCameraTransform.position, 0.5f);
-            //playerCamera.transform.DORotate(defaultCameraTransform.rotation.eulerAngles, 0.5f);
+            puzzleCamera.gameObject.SetActive(false);
             _magnet.GetComponent<MagnetController>().DestroyMagnet();
         }
     }

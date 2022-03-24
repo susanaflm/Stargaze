@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -12,7 +14,7 @@ namespace Stargaze.Mono.Interactions.Magnet
         private Vector3 _lastPosition;
 
         [SerializeField] private float magnetSpeed;
-
+        
         private void Awake()
         {
             _input = GetComponent<MagnetInput>();
@@ -46,5 +48,6 @@ namespace Stargaze.Mono.Interactions.Magnet
         {
             Destroy(gameObject);
         }
+        
     }
 }

@@ -14,7 +14,7 @@ namespace Stargaze.Mono.Interactions.Magnet
 
         private GameObject _magnet;
         
-        [Header("Iman Panel Settings")]
+        [Header("Magnet Panel Settings"),Tooltip("Defines the area that the magnet can slide on")]
         [SerializeField] private Transform lowerLeftCorner;
         [SerializeField] private Transform upperRightCorner;
         [Space]

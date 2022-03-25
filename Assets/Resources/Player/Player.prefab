@@ -157,7 +157,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.775974, y: 1}
+    m_SensorSize: {x: 2.06089, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -337,7 +337,7 @@ MonoBehaviour:
   syncInterval: 0.1
   movementSpeed: 5
   jumpHeight: 1
-  camera: {fileID: 119786899}
+  camera: {fileID: 119786900}
   rotationSpeed: 10
   lookDownLimit: 60
   lookUpLimit: 90

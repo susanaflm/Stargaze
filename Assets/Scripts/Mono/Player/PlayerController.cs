@@ -1,5 +1,7 @@
 using System;
+using Cinemachine;
 using Mirror;
+using Steamworks;
 using UnityEngine;
 
 namespace Stargaze.Mono.Player
@@ -31,7 +33,7 @@ namespace Stargaze.Mono.Player
         [SerializeField] private float jumpHeight = 1f;
         
         [Header("Looking")]
-        [SerializeField] private new Transform camera;
+        [SerializeField] private new CinemachineVirtualCamera camera;
         [SerializeField] private float rotationSpeed = 1f;
         [SerializeField] [Range(0f, 90f)] private float lookDownLimit = 90;
         [SerializeField] [Range(0f, 90f)] private float lookUpLimit = 90;
@@ -59,7 +61,10 @@ namespace Stargaze.Mono.Player
         private void Start()
         {
             if (!isLocalPlayer)
+            {
+                camera.enabled = false;
                 _characterController.enabled = false;
+            }
         }
 
         public override void OnStartLocalPlayer()
@@ -150,7 +155,7 @@ namespace Stargaze.Mono.Player
             );
             
             transform.localRotation = Quaternion.Euler(0f, _horizontalRotation, 0f);
-            camera.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
+            camera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
         }
 
         private void OnDrawGizmosSelected()

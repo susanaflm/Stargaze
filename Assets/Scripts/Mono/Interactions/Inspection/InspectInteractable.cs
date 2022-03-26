@@ -42,5 +42,10 @@ namespace Stargaze.Mono.Interactions.Inspection
             interactionUI.SetActive(false);
             Destroy(_inspectObject);
         }
+
+        private void OnDestroy()
+        {
+            Restore -= RestoreUI;
+        }
     }
 }

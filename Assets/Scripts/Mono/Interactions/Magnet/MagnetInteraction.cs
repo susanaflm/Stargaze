@@ -56,5 +56,10 @@ namespace Stargaze.Mono.Interactions.Magnet
             puzzleCamera.gameObject.SetActive(false);
             _magnet.GetComponent<MagnetController>().DestroyMagnet();
         }
+
+        private void OnDestroy()
+        {
+            Restore -= RestoreCamera;
+        }
     }
 }

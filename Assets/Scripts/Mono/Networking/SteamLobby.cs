@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Mirror;
 using NaughtyAttributes;
 using Steamworks;
+using Steamworks.Data;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -23,17 +23,6 @@ namespace Stargaze.Mono.Networking
         
         private NetworkManager _networkManager;
 
-        private List<CSteamID> _lobbyList;
-
-        protected Callback<LobbyCreated_t> LobbyCreated;
-        protected Callback<GameLobbyJoinRequested_t> GameLobbyJoinRequested;
-        protected Callback<LobbyEnter_t> LobbyEnter;
-
-        protected Callback<LobbyMatchList_t> GetLobbyList;
-
-        public Action OnLobbyListUpdated;
-        public ReadOnlyCollection<CSteamID> LobbyList => _lobbyList.AsReadOnly();
-
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -43,94 +32,73 @@ namespace Stargaze.Mono.Networking
             
             _networkManager = GetComponent<NetworkManager>();
 
-            _lobbyList = new List<CSteamID>();
-            
-            LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
-            GameLobbyJoinRequested = Callback<GameLobbyJoinRequested_t>.Create(OnGameLobbyJoinRequested);
-            LobbyEnter = Callback<LobbyEnter_t>.Create(OnLobbyEnter);
-            
-            GetLobbyList = Callback<LobbyMatchList_t>.Create(OnGetLobbyList);
+            SteamMatchmaking.OnLobbyCreated += OnLobbyCreated;
+            SteamFriends.OnGameLobbyJoinRequested += OnGameLobbyJoinRequested;
+            SteamMatchmaking.OnLobbyEntered += OnLobbyEntered;
         }
 
         [Button]
-        public void HostLobby()
+        public async void HostFriendOnlyLobby()
         {
-            //SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, _networkManager.maxConnections);
-            SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypePublic, _networkManager.maxConnections);
-        }
+            Lobby? lobbyRequest = await SteamMatchmaking.CreateLobbyAsync(_networkManager.maxConnections);
 
-        public void RequestLobbyList()
-        {
-            _lobbyList.Clear();
-            
-            // TODO: Maybe add filter to lobby list
-            SteamMatchmaking.RequestLobbyList();
+            if (lobbyRequest.HasValue)
+            {
+                lobbyRequest.Value.SetFriendsOnly();
+                lobbyRequest.Value.SetJoinable(true);
+            }
         }
         
-        private void OnLobbyCreated(LobbyCreated_t callback)
+        [Button]
+        public async void HostPublicLobby()
         {
-            EResult result = callback.m_eResult;
-            
-            if (result != EResult.k_EResultOK)
+            Lobby? lobbyRequest = await SteamMatchmaking.CreateLobbyAsync(_networkManager.maxConnections);
+
+            if (lobbyRequest.HasValue)
             {
-                Debug.LogError($"Lobby creation failed with error: {result}");
+                lobbyRequest.Value.SetPublic();
+                lobbyRequest.Value.SetJoinable(true);
+            }
+        }
+
+        public async Task<Lobby[]> GetLobbyList()
+        {
+            //SteamMatchmaking.LobbyList.WithKeyValue(LobbyDataKeys.LobbyValidationCheck.ToString(), "Stargaze");
+            
+            return await SteamMatchmaking.LobbyList.RequestAsync();
+        }
+        
+        private void OnLobbyCreated(Result result, Lobby lobby)
+        {
+            if (result != Result.OK)
+            {
+                Debug.Log($"Lobby creation failed with error: {result}");
                 return;
             }
             
             Debug.Log("Lobby created with success!");
-            
+
             _networkManager.StartHost();
 
-            CSteamID lobbyID = new CSteamID(callback.m_ulSteamIDLobby);
-
-            SteamMatchmaking.SetLobbyData(
-                lobbyID,
-                LobbyDataKeys.HostAddress.ToString(),
-                SteamUser.GetSteamID().ToString()
-            );
-
-            SteamMatchmaking.SetLobbyData(
-                lobbyID,
-                LobbyDataKeys.LobbyName.ToString(),
-                $"{SteamFriends.GetPersonaName()}'s Lobby"
-            );
-
-            SteamMatchmaking.SetLobbyData(
-                lobbyID,
-                LobbyDataKeys.LobbyValidationCheck.ToString(),
-                Random.Range(1, 100).ToString()
-            );
+            lobby.SetData(LobbyDataKeys.HostAddress.ToString(), SteamClient.SteamId.ToString());
+            lobby.SetData(LobbyDataKeys.LobbyName.ToString(), $"{SteamClient.Name}'s Lobby");
+            lobby.SetData(LobbyDataKeys.LobbyValidationCheck.ToString(), "Stargaze");
         }
 
-        private void OnGameLobbyJoinRequested(GameLobbyJoinRequested_t callback)
+        private void OnGameLobbyJoinRequested(Lobby lobby, SteamId id)
         {
-            Debug.Log($"Join lobby request by '{callback.m_steamIDFriend}'");
-            SteamMatchmaking.JoinLobby(callback.m_steamIDLobby);
+            SteamMatchmaking.JoinLobbyAsync(lobby.Id);
         }
 
-        private void OnLobbyEnter(LobbyEnter_t callback)
+        private void OnLobbyEntered(Lobby lobby)
         {
             if (NetworkServer.active)
                 return;
 
-            string hostAddress = SteamMatchmaking.GetLobbyData(
-                new CSteamID(callback.m_ulSteamIDLobby),
-                LobbyDataKeys.HostAddress.ToString()
-            );
+            string hostAddress = lobby.GetData(LobbyDataKeys.HostAddress.ToString());
 
             _networkManager.networkAddress = hostAddress;
             _networkManager.StartClient();
-        }
-
-        private void OnGetLobbyList(LobbyMatchList_t callback)
-        {
-            for (int i = 0; i < callback.m_nLobbiesMatching; i++)
-            {
-                CSteamID lobbyID = SteamMatchmaking.GetLobbyByIndex(i);
-                _lobbyList.Add(lobbyID);
-            }
-            
-            OnLobbyListUpdated?.Invoke();
         }
     }
 }

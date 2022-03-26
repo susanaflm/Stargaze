@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using Steamworks;
+﻿using Steamworks;
+using Steamworks.Data;
 using UnityEngine;
 
 namespace Stargaze.Mono.Networking
@@ -11,27 +10,24 @@ namespace Stargaze.Mono.Networking
         
         private bool _showLobbyListWindow = false;
 
-        private Rect _lobbyListWindowRect = new Rect(20, 20, 500, 400);
+        private Rect _lobbyListWindowRect = new Rect(10, 90, 500, 400);
 
-        private List<CSteamID> _lobbyList;
-
-        private void Awake()
-        {
-            _lobbyList = new List<CSteamID>();
-        }
+        private Lobby[] _lobbyList;
 
         private void Start()
         {
             _steamLobby = SteamLobby.Instance;
-            _steamLobby.OnLobbyListUpdated += UpdateLobbyList;
         }
 
         private void OnGUI()
         {
             GUILayout.BeginArea(new Rect(10, 10, 200, 200));
             
-            if (GUILayout.Button("Host Lobby"))
-                SteamLobby.Instance.HostLobby();
+            if (GUILayout.Button("Host Friends Only Lobby"))
+                SteamLobby.Instance.HostFriendOnlyLobby();
+            
+            if (GUILayout.Button("Host Public Lobby"))
+                SteamLobby.Instance.HostPublicLobby();
 
             if (GUILayout.Button("Lobby List"))
                 _showLobbyListWindow = !_showLobbyListWindow;
@@ -47,11 +43,17 @@ namespace Stargaze.Mono.Networking
             GUI.DragWindow(new Rect(0, 0, 10000, 20));
 
             if (GUILayout.Button("Refresh"))
-                _steamLobby.RequestLobbyList();
+                RefreshLobbyList();
+
+            if (_lobbyList == null)
+                return;
             
-            foreach (CSteamID steamID in _lobbyList)
+            foreach (Lobby lobby in _lobbyList)
             {
-                string name = SteamMatchmaking.GetLobbyData(steamID, LobbyDataKeys.LobbyName.ToString());
+                if (string.IsNullOrEmpty(lobby.GetData(LobbyDataKeys.LobbyValidationCheck.ToString())))
+                    continue;
+                
+                string name = lobby.GetData(LobbyDataKeys.LobbyName.ToString());
                 
                 GUILayout.BeginHorizontal();
                 
@@ -59,29 +61,16 @@ namespace Stargaze.Mono.Networking
 
                 if (GUILayout.Button("Join"))
                 {
-                    SteamMatchmaking.JoinLobby(steamID);
+                    SteamMatchmaking.JoinLobbyAsync(lobby.Id);
                 }
                 
                 GUILayout.EndHorizontal();
             }
         }
-
-        private void UpdateLobbyList()
+        
+        private async void RefreshLobbyList()
         {
-            _lobbyList.Clear();
-
-            foreach (CSteamID id in _steamLobby.LobbyList)
-            {
-                if (string.IsNullOrEmpty(SteamMatchmaking.GetLobbyData(id, LobbyDataKeys.LobbyValidationCheck.ToString())))
-                    continue;
-                    
-                _lobbyList.Add(id);
-            }
-        }
-
-        private void OnDestroy()
-        {
-            _steamLobby.OnLobbyListUpdated -= UpdateLobbyList;
+            _lobbyList = await _steamLobby.GetLobbyList();
         }
     }
 }

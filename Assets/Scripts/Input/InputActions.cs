@@ -292,6 +292,34 @@ namespace Stargaze.Input
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Inspect"",
+            ""id"": ""d58e49eb-b2f0-4277-b152-23a82af1c718"",
+            ""actions"": [
+                {
+                    ""name"": ""Turn"",
+                    ""type"": ""Button"",
+                    ""id"": ""8569be69-90a4-4eed-b9f9-d6446f530f66"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""56b78d1e-9ff4-46ef-bd6b-92e58f74d1f4"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Turn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -334,6 +362,9 @@ namespace Stargaze.Input
             // Magnet
             m_Magnet = asset.FindActionMap("Magnet", throwIfNotFound: true);
             m_Magnet_Movement = m_Magnet.FindAction("Movement", throwIfNotFound: true);
+            // Inspect
+            m_Inspect = asset.FindActionMap("Inspect", throwIfNotFound: true);
+            m_Inspect_Turn = m_Inspect.FindAction("Turn", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -487,6 +518,39 @@ namespace Stargaze.Input
             }
         }
         public MagnetActions @Magnet => new MagnetActions(this);
+
+        // Inspect
+        private readonly InputActionMap m_Inspect;
+        private IInspectActions m_InspectActionsCallbackInterface;
+        private readonly InputAction m_Inspect_Turn;
+        public struct InspectActions
+        {
+            private @InputActions m_Wrapper;
+            public InspectActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Turn => m_Wrapper.m_Inspect_Turn;
+            public InputActionMap Get() { return m_Wrapper.m_Inspect; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(InspectActions set) { return set.Get(); }
+            public void SetCallbacks(IInspectActions instance)
+            {
+                if (m_Wrapper.m_InspectActionsCallbackInterface != null)
+                {
+                    @Turn.started -= m_Wrapper.m_InspectActionsCallbackInterface.OnTurn;
+                    @Turn.performed -= m_Wrapper.m_InspectActionsCallbackInterface.OnTurn;
+                    @Turn.canceled -= m_Wrapper.m_InspectActionsCallbackInterface.OnTurn;
+                }
+                m_Wrapper.m_InspectActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Turn.started += instance.OnTurn;
+                    @Turn.performed += instance.OnTurn;
+                    @Turn.canceled += instance.OnTurn;
+                }
+            }
+        }
+        public InspectActions @Inspect => new InspectActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -516,6 +580,10 @@ namespace Stargaze.Input
         public interface IMagnetActions
         {
             void OnMovement(InputAction.CallbackContext context);
+        }
+        public interface IInspectActions
+        {
+            void OnTurn(InputAction.CallbackContext context);
         }
     }
 }

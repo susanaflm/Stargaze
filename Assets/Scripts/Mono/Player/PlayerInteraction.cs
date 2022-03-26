@@ -1,4 +1,5 @@
 using Stargaze.Mono.Interactions;
+using Stargaze.Mono.Interactions.Inspection;
 using Stargaze.Mono.Interactions.Magnet;
 using UnityEngine;
 
@@ -80,10 +81,8 @@ namespace Stargaze.Mono.Player
                 return;
 
             if (!interactionData.Interactable.Switchable)
-            {
                 _controller.IsPlayerInteracting = true;
-            }
-            
+
             interactionData.Interact();
         }
 
@@ -91,11 +90,16 @@ namespace Stargaze.Mono.Player
         {
             if (!_controller.IsPlayerInteracting) return;
 
-            if (interactionData.Interactable is MagnetInteraction)
+            switch (interactionData.Interactable)
             {
-                MagnetInteraction.Restore?.Invoke();
+                case MagnetInteraction:
+                    MagnetInteraction.Restore?.Invoke();
+                    break;
+                case InspectInteractable:
+                    InspectInteractable.Restore?.Invoke();
+                    break;
             }
-            
+
             _controller.IsPlayerInteracting = false;
             
         }

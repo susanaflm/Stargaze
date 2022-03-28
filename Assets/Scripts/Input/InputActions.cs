@@ -320,6 +320,34 @@ namespace Stargaze.Input
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Coms"",
+            ""id"": ""30c3ca6f-eaf2-4f85-a398-57f53aa5ab82"",
+            ""actions"": [
+                {
+                    ""name"": ""PushToTalk"",
+                    ""type"": ""Button"",
+                    ""id"": ""ae333375-239c-4eb2-a2d3-464897e2a406"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""36b309b5-2ade-4f66-b111-0ca4b4af9191"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""PushToTalk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -365,6 +393,9 @@ namespace Stargaze.Input
             // Inspect
             m_Inspect = asset.FindActionMap("Inspect", throwIfNotFound: true);
             m_Inspect_Turn = m_Inspect.FindAction("Turn", throwIfNotFound: true);
+            // Coms
+            m_Coms = asset.FindActionMap("Coms", throwIfNotFound: true);
+            m_Coms_PushToTalk = m_Coms.FindAction("PushToTalk", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -551,6 +582,39 @@ namespace Stargaze.Input
             }
         }
         public InspectActions @Inspect => new InspectActions(this);
+
+        // Coms
+        private readonly InputActionMap m_Coms;
+        private IComsActions m_ComsActionsCallbackInterface;
+        private readonly InputAction m_Coms_PushToTalk;
+        public struct ComsActions
+        {
+            private @InputActions m_Wrapper;
+            public ComsActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @PushToTalk => m_Wrapper.m_Coms_PushToTalk;
+            public InputActionMap Get() { return m_Wrapper.m_Coms; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(ComsActions set) { return set.Get(); }
+            public void SetCallbacks(IComsActions instance)
+            {
+                if (m_Wrapper.m_ComsActionsCallbackInterface != null)
+                {
+                    @PushToTalk.started -= m_Wrapper.m_ComsActionsCallbackInterface.OnPushToTalk;
+                    @PushToTalk.performed -= m_Wrapper.m_ComsActionsCallbackInterface.OnPushToTalk;
+                    @PushToTalk.canceled -= m_Wrapper.m_ComsActionsCallbackInterface.OnPushToTalk;
+                }
+                m_Wrapper.m_ComsActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @PushToTalk.started += instance.OnPushToTalk;
+                    @PushToTalk.performed += instance.OnPushToTalk;
+                    @PushToTalk.canceled += instance.OnPushToTalk;
+                }
+            }
+        }
+        public ComsActions @Coms => new ComsActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -584,6 +648,10 @@ namespace Stargaze.Input
         public interface IInspectActions
         {
             void OnTurn(InputAction.CallbackContext context);
+        }
+        public interface IComsActions
+        {
+            void OnPushToTalk(InputAction.CallbackContext context);
         }
     }
 }

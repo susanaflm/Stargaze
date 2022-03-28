@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 1861148820}
   - component: {fileID: 1861148819}
   - component: {fileID: 1861148822}
+  - component: {fileID: 1861148823}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -188,7 +189,7 @@ MonoBehaviour:
   autoStartServerBuild: 1
   serverTickRate: 30
   offlineScene: 
-  onlineScene: Assets/Scenes/NetcodePlayground.unity
+  onlineScene: 
   transport: {fileID: 1861148819}
   networkAddress: localhost
   maxConnections: 2
@@ -227,3 +228,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offsetX: 0
   offsetY: -30
+--- !u!114 &1861148823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861148818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12b2e2566b445e5994edfe9035aada6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appID: 480

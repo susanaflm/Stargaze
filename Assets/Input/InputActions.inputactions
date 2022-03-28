@@ -296,6 +296,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Coms",
+            "id": "30c3ca6f-eaf2-4f85-a398-57f53aa5ab82",
+            "actions": [
+                {
+                    "name": "PushToTalk",
+                    "type": "Button",
+                    "id": "ae333375-239c-4eb2-a2d3-464897e2a406",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "36b309b5-2ade-4f66-b111-0ca4b4af9191",
+                    "path": "<Keyboard>/v",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "PushToTalk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

@@ -1,6 +1,4 @@
 using System;
-using Unity.Mathematics;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 namespace Stargaze.Mono.Interactions.Inspection
@@ -28,10 +26,9 @@ namespace Stargaze.Mono.Interactions.Inspection
 
             interactionUI.SetActive(true);
             
-            _inspectObject = Instantiate(gameObject, Vector3.zero, quaternion.identity);
+            _inspectObject = Instantiate(gameObject, Vector3.zero, Quaternion.identity);
             _inspectObject.AddComponent<InspectionTurn>();
             _inspectObject.layer = LayerMask.NameToLayer("UI");
-
         }
 
         private void RestoreUI()

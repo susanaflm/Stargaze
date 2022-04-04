@@ -50,6 +50,9 @@ namespace Stargaze.Mono.Player
             {
                 Interactable interactable = hit.transform.GetComponent<Interactable>();
 
+                if (interactable == null)
+                    interactable = hit.transform.GetComponentInParent<Interactable>();
+
                 if (interactable != null)
                 {
                     if (interactionData.IsEmpty())
@@ -66,7 +69,9 @@ namespace Stargaze.Mono.Player
                 interactionData.ResetInteractable();
             }
             
+#if DEBUG
             Debug.DrawRay(ray.origin, ray.direction * rayDistance, hitSomething ? Color.green : Color.red );
+#endif
         }
 
         private void Interact()

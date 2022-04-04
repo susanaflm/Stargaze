@@ -15,7 +15,7 @@ namespace Stargaze.Mono.Interactions
 
         public void Interact()
         {
-            _interactable.OnInteraction();
+            _interactable.OnInteractionStart();
             ResetInteractable();
         }
 

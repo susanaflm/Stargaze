@@ -8,9 +8,9 @@ namespace Stargaze.Mono.Interactions.Lever
     {
         [SerializeField] private List<Door.Door> attachedDoors = new();
         
-        public override void OnInteraction()
+        public override void OnInteractionStart()
         {
-            base.OnInteraction();
+            base.OnInteractionStart();
             
             ToggleDoorState();
         }

@@ -42,9 +42,9 @@ namespace Stargaze.Mono.Interactions.Magnet
              */
         }
 
-        public override void OnInteraction()
+        public override void OnInteractionStart()
         {
-            base.OnInteraction();
+            base.OnInteractionStart();
 
             puzzleCamera.gameObject.SetActive(true);
             _magnet = Instantiate(magnetPrefab, _panelPos + new Vector3(0,0,-transform.lossyScale.z / 2), Quaternion.identity);

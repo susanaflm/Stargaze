@@ -25,9 +25,14 @@ namespace Stargaze.Mono.Interactions
 
         #region Methods
         
-        public virtual void OnInteraction()
+        public virtual void OnInteractionStart()
         {
-           Debug.Log($"Interacted with: {gameObject.name}");
+           Debug.Log($"Started interaction with: {name}");
+        }
+
+        public virtual void OnInteractionEnd()
+        {
+            Debug.Log($"Ended interaction with: {name}");
         }
 
         #endregion

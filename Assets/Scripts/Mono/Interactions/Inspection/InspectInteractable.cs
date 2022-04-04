@@ -17,9 +17,9 @@ namespace Stargaze.Mono.Interactions.Inspection
             Restore += RestoreUI;
         }
 
-        public override void OnInteraction()
+        public override void OnInteractionStart()
         {
-            base.OnInteraction();
+            base.OnInteractionStart();
             
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;

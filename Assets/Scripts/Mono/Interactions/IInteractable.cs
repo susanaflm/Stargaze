@@ -6,6 +6,6 @@ namespace Stargaze.Mono.Interactions
         
         bool IsInteractable { get; }
 
-        void OnInteraction();
+        void OnInteractionStart();
     }
 }

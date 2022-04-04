@@ -94,7 +94,7 @@ namespace Stargaze.Mono.Player
         private void ExitInteraction()
         {
             if (!_controller.IsPlayerInteracting) return;
-
+            
             switch (interactionData.Interactable)
             {
                 case MagnetInteraction:
@@ -104,6 +104,8 @@ namespace Stargaze.Mono.Player
                     InspectInteractable.Restore?.Invoke();
                     break;
             }
+            
+            interactionData.Interactable.OnInteractionEnd();
 
             _controller.IsPlayerInteracting = false;
             

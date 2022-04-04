@@ -14,6 +14,7 @@ namespace Stargaze.Tools
         private bool _createMaterialsFolder = true;
         private bool _createAnimationsFolder = false;
         private bool _createSoundsFolder = false;
+        private bool _createSpritesFolder = false;
         
         [MenuItem("Tools/Custom/Create Resource Folder")]
         [MenuItem("Assets/Create/Resource Folder", false, 21)]
@@ -73,6 +74,13 @@ namespace Stargaze.Tools
             if (GUILayout.Button("Add Sounds Folder")) AddSoundsFolder();
             GUILayout.EndHorizontal();
             
+            GUILayout.Space(2f);
+            
+            GUILayout.BeginHorizontal();
+            _createSoundsFolder = GUILayout.Toggle(_createSoundsFolder, "Sprites");
+            if (GUILayout.Button("Add Sprites Folder")) AddSpritesFolder();
+            GUILayout.EndHorizontal();
+            
             GUILayout.Space(15f);
 
             if (GUILayout.Button("Create", GUILayout.Height(25f)))
@@ -109,6 +117,9 @@ namespace Stargaze.Tools
             
             if (_createSoundsFolder)
                 AssetDatabase.CreateFolder($"{basePath}/{_folderName}", "Sounds");
+            
+            if (_createSpritesFolder)
+                AssetDatabase.CreateFolder($"{basePath}/{_folderName}", "Sprites");
         }
 
         private void AddModelsFolder()
@@ -148,6 +159,14 @@ namespace Stargaze.Tools
             if (ProjectFolderHelper.GetOpenFolderDirectory(out string path))
             {
                 AssetDatabase.CreateFolder($"{path}", "Sounds");
+            }
+        }
+        
+        private void AddSpritesFolder()
+        {
+            if (ProjectFolderHelper.GetOpenFolderDirectory(out string path))
+            {
+                AssetDatabase.CreateFolder($"{path}", "Sprites");
             }
         }
     }

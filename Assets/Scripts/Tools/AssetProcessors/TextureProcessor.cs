@@ -14,9 +14,15 @@ namespace Stargaze.Tools.AssetProcessors
 
             if (importer.importSettingsMissing)
             {
-                if (importer.assetPath.ToUpper().Contains("NORMAL"))
+                string pathToUpper = importer.assetPath.ToUpper();
+                
+                if (pathToUpper.Contains("NORMAL"))
                 {
                     importer.textureType = TextureImporterType.NormalMap;
+                }
+                else if (pathToUpper.Contains("SPRITE"))
+                {
+                    importer.textureType = TextureImporterType.Sprite;
                 }
             }
         }

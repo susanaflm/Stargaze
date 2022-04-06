@@ -7,32 +7,38 @@ namespace Stargaze.Mono.Puzzle
     {
         public static PuzzleManager Instance;
 
-        private bool doesPlayerHaveMagnet = false;
-        private int keycardAccessLevel = 0;
+        private bool _doesPlayerHaveMagnet = false;
+        private int _keycardAccessLevel = 0;
 
         private void Awake()
         {
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+            
             Instance = this;
         }
         
         public int GetKeycardAccessLevel()
         {
-            return keycardAccessLevel;
+            return _keycardAccessLevel;
         }
 
         public void SetCurrentKeycardAccesslevel(int kcAccess)
         {
-            keycardAccessLevel = kcAccess;
+            _keycardAccessLevel = kcAccess;
         }
 
         public void GetMagnet()
         {
-            doesPlayerHaveMagnet = true;
+            _doesPlayerHaveMagnet = true;
         }
 
         public bool DoesPlayerHaveMagnet()
         {
-            return doesPlayerHaveMagnet;
+            return _doesPlayerHaveMagnet;
         }
     }
 }

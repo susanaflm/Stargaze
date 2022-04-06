@@ -6,10 +6,10 @@ namespace Stargaze.Mono.Interactions.Keycard
 {
     public class KeycardPickup : Interactable
     {
-        [Dropdown("accessLevels")]
+        [Dropdown("_accessLevels")]
         [SerializeField] private int accessLevel;
 
-        private int[] accessLevels = new int[] {1, 2};
+        private int[] _accessLevels = new int[] {1, 2, 3};
 
         public override void OnInteractionStart()
         {

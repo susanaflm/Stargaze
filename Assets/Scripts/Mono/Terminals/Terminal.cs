@@ -1,6 +1,6 @@
-﻿using System;
-using Stargaze.Mono.Interactions;
+﻿using Stargaze.Mono.Interactions;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace Stargaze.Mono.Terminals
 {
@@ -11,7 +11,14 @@ namespace Stargaze.Mono.Terminals
         [Header("Terminal Settings")]
         [SerializeField] private Camera terminalCamera;
         [SerializeField] private GameObject display;
-        [SerializeField] private GameObject cursor;
+
+        [Header("Screens")]
+        [SerializeField] private GameObject loginScreen;
+        [SerializeField] private GameObject contentScreen;
+        
+        [Space]
+        
+        [SerializeField] private GameObject focusOnInteract;
 
         private void Awake()
         {
@@ -24,17 +31,23 @@ namespace Stargaze.Mono.Terminals
 
         private void Start()
         {
-            cursor.SetActive(false);
+            loginScreen.SetActive(true);
+            contentScreen.SetActive(false);
         }
 
         public override void OnInteractionStart()
         {
-            cursor.SetActive(true);
+            loginScreen.SetActive(false);
+            contentScreen.SetActive(true);
+            
+            if (focusOnInteract != null)
+                EventSystem.current.SetSelectedGameObject(focusOnInteract);
         }
 
         public override void OnInteractionEnd()
         {
-            cursor.SetActive(false);
+            contentScreen.SetActive(false);
+            loginScreen.SetActive(true);
         }
     }
 }

@@ -6,16 +6,9 @@ namespace Stargaze.Mono.Interactions.Inspection
     public class InspectInteractable : Interactable
     {
 
-        public static Action Restore;
-
         [SerializeField] private GameObject interactionUI;
 
         private GameObject _inspectObject;
-        
-        private void Start()
-        {
-            Restore += RestoreUI;
-        }
 
         public override void OnInteractionStart()
         {
@@ -31,6 +24,13 @@ namespace Stargaze.Mono.Interactions.Inspection
             _inspectObject.layer = LayerMask.NameToLayer("UI");
         }
 
+        public override void OnInteractionEnd()
+        {
+            base.OnInteractionEnd();
+            
+            RestoreUI();
+        }
+
         private void RestoreUI()
         {
             Cursor.visible = false;
@@ -38,11 +38,6 @@ namespace Stargaze.Mono.Interactions.Inspection
             
             interactionUI.SetActive(false);
             Destroy(_inspectObject);
-        }
-
-        private void OnDestroy()
-        {
-            Restore -= RestoreUI;
         }
     }
 }

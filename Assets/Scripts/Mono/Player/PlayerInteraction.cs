@@ -17,9 +17,8 @@ namespace Stargaze.Mono.Player
         [Space] [Header("Ray Settings")]
         [SerializeField] private float rayDistance;
         [SerializeField] private float raySphereRadius;
-        [SerializeField] private LayerMask interactableLayer;
-        
-        
+
+
         private void Awake()
         {
             _input = GetComponent<PlayerInput>();
@@ -44,7 +43,7 @@ namespace Stargaze.Mono.Player
             var camTransform = _playerCamera.transform;
             Ray ray = new Ray(camTransform.position, camTransform.forward);
 
-            bool hitSomething = Physics.SphereCast(ray, raySphereRadius, out hit, rayDistance, interactableLayer);
+            bool hitSomething = Physics.SphereCast(ray, raySphereRadius, out hit, rayDistance);
 
             if (hitSomething)
             {
@@ -81,9 +80,16 @@ namespace Stargaze.Mono.Player
             
             if (interactionData.IsEmpty())
                 return;
-            
+
             if (!interactionData.Interactable.IsInteractable)
+            {
+                if (interactionData.Interactable is MagnetInteraction)
+                {
+                    ShowUI();
+                }
+                
                 return;
+            }
 
             if (!interactionData.Interactable.Switchable)
                 _controller.IsPlayerInteracting = true;
@@ -95,20 +101,17 @@ namespace Stargaze.Mono.Player
         {
             if (!_controller.IsPlayerInteracting) return;
             
-            switch (interactionData.Interactable)
-            {
-                case MagnetInteraction:
-                    MagnetInteraction.Restore?.Invoke();
-                    break;
-                case InspectInteractable:
-                    InspectInteractable.Restore?.Invoke();
-                    break;
-            }
-            
             interactionData.Interactable.OnInteractionEnd();
 
             _controller.IsPlayerInteracting = false;
-            
+        }
+        
+        //TODO: Until the player gets the magnet, The Magnet Interaction will display a message that the user cannot interact with it
+        private void ShowUI()
+        {
+#if DEBUG
+            Debug.Log("Alô! Não tens o íman!");
+#endif
         }
     }
 }

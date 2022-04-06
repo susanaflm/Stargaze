@@ -1,6 +1,7 @@
 using System;
 using Cinemachine;
 using DG.Tweening;
+using Stargaze.Mono.Puzzle;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -8,8 +9,6 @@ namespace Stargaze.Mono.Interactions.Magnet
 {
     public class MagnetInteraction : Interactable
     {
-        public static Action Restore;
-        
         private Vector3 _panelPos;
 
         private GameObject _magnet;
@@ -25,23 +24,24 @@ namespace Stargaze.Mono.Interactions.Magnet
 
         private void Start()
         {
-            //isInteractable = false;
-            Restore += RestoreCamera;
+            isInteractable = false;
             _panelPos = transform.position;
             puzzleCamera.gameObject.SetActive(false);
         }
 
         private void Update()
         {
-            //TODO: Check Player Inventory for Iman object, prob not on update
-            /*
-                if (//Check for iman)
-                {
-                    _isInteractable = true
-                }
-             */
+            //TODO: Don't like this
+            isInteractable = PuzzleManager.Instance.DoesPlayerHaveMagnet();
         }
 
+        /*
+        private void SetInteractableOn()
+        {
+            isInteractable = true;
+        }
+        */
+        
         public override void OnInteractionStart()
         {
             base.OnInteractionStart();
@@ -51,15 +51,17 @@ namespace Stargaze.Mono.Interactions.Magnet
             _magnet.GetComponent<MagnetController>().SetBoundaries(upperRightCorner.position, lowerLeftCorner.position);
         }
 
+        public override void OnInteractionEnd()
+        {
+            base.OnInteractionEnd();
+            
+            RestoreCamera();
+        }
+
         private void RestoreCamera()
         {
             puzzleCamera.gameObject.SetActive(false);
             _magnet.GetComponent<MagnetController>().DestroyMagnet();
-        }
-
-        private void OnDestroy()
-        {
-            Restore -= RestoreCamera;
         }
     }
 }

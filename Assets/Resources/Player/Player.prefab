@@ -476,6 +476,7 @@ MonoBehaviour:
   groundCheckLayer:
     serializedVersion: 2
     m_Bits: 55
+  slidingSpeed: 5
 --- !u!114 &-8304033169833888439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,9 +492,6 @@ MonoBehaviour:
   interactionData: {fileID: 11400000, guid: a5a5f7ce268b3964599fe0ae5a161035, type: 2}
   rayDistance: 3
   raySphereRadius: 0.15
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!114 &6639225953265203610
 MonoBehaviour:
   m_ObjectHideFlags: 0

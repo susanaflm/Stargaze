@@ -1,7 +1,6 @@
 using System;
 using Cinemachine;
 using Mirror;
-using Steamworks;
 using UnityEngine;
 
 namespace Stargaze.Mono.Player
@@ -21,10 +20,13 @@ namespace Stargaze.Mono.Player
 
         private bool _isGrounded;
         private bool _wasGrounded;
+        private bool _isSliding;
 
         private Vector3 _verticalVelocity;
 
         private bool _isPlayerInteracting = false;
+
+        private RaycastHit _groundContactPointHit;
 
         [Header("Movement")]
         [SerializeField] private float movementSpeed = 1f;
@@ -42,6 +44,9 @@ namespace Stargaze.Mono.Player
         [SerializeField] private Vector3 groundCheckCenter;
         [SerializeField] private float groundCheckRadius;
         [SerializeField] private LayerMask groundCheckLayer;
+
+        [Header("Slope Sliding")]
+        [SerializeField] private float slidingSpeed;
 
         public Vector2 AnimationDir { get; private set; }
         
@@ -85,6 +90,8 @@ namespace Stargaze.Mono.Player
 
             GroundCheck();
 
+            HandleSliding();
+
             HandleMovement();
             
             HandleRotation();
@@ -97,15 +104,46 @@ namespace Stargaze.Mono.Player
             
             _wasGrounded = _isGrounded;
             
-            // TODO: Is a sphere cast method better?
             _isGrounded = Physics.CheckSphere(
                 transform.position + groundCheckCenter,
                 groundCheckRadius,
                 groundCheckLayer
             );
-            
+
             if (!_wasGrounded && _isGrounded)
                 OnLand?.Invoke();
+        }
+
+        private void HandleSliding()
+        {
+            if (!_isGrounded)
+                return;
+            
+            bool hit = Physics.Raycast(
+                transform.position + groundCheckCenter, 
+                -transform.up, 
+                out _groundContactPointHit
+            );
+            
+            if (!hit)
+                return;
+
+            Vector3 normal = _groundContactPointHit.normal;
+
+            float slopeAngle = Vector3.Angle(normal, transform.up);
+            
+            if (slopeAngle <= _characterController.slopeLimit)
+            {
+                _isSliding = false;
+                return;
+            }
+
+            _isSliding = true;
+
+            Vector3 tangent = Vector3.Cross(normal, transform.up);
+            Vector3 binormal = Vector3.Cross(normal, tangent);
+
+            _characterController.Move(binormal * slidingSpeed * Time.deltaTime);
         }
 
         private void HandleMovement()
@@ -134,7 +172,7 @@ namespace Stargaze.Mono.Player
             if (!isLocalPlayer)
                 return;
             
-            if (_isGrounded)
+            if (_isGrounded && !_isSliding)
                 _verticalVelocity += transform.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y);
         }
 
@@ -162,6 +200,20 @@ namespace Stargaze.Mono.Player
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position + groundCheckCenter, groundCheckRadius);
+
+            if (_isGrounded)
+            {
+                // Contact point
+                Gizmos.color = Color.green;
+                Gizmos.DrawWireSphere(_groundContactPointHit.point, 0.05f);
+                
+                // Contact point normal
+                Gizmos.color = Color.magenta;
+                Gizmos.DrawLine(
+                    _groundContactPointHit.point,
+                    _groundContactPointHit.point + _groundContactPointHit.normal * 0.25f 
+                );
+            }
         }
     }
 }

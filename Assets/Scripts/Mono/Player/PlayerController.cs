@@ -23,6 +23,8 @@ namespace Stargaze.Mono.Player
         private bool _isSliding;
 
         private Vector3 _verticalVelocity;
+        private Vector3 _strafeVelocity;
+        private Vector3 _slidingVelocity;
 
         private bool _isPlayerInteracting = false;
 
@@ -85,16 +87,28 @@ namespace Stargaze.Mono.Player
 
         private void Update()
         {
-            if (_isPlayerInteracting)
+            if (!isLocalPlayer || _isPlayerInteracting)
                 return;
+            
+            GroundedControl();
+        }
 
+        private void GroundedControl()
+        {
             GroundCheck();
 
-            HandleSliding();
+            CalculateSlidingVelocity();
 
-            HandleMovement();
+            CalculateStrafeVelocity();
+            
+            CalculateVerticalVelocity();
             
             HandleRotation();
+        }
+
+        public void ZeroGControl()
+        {
+            throw new NotImplementedException();
         }
 
         private void GroundCheck()
@@ -114,8 +128,11 @@ namespace Stargaze.Mono.Player
                 OnLand?.Invoke();
         }
 
-        private void HandleSliding()
+        private void CalculateSlidingVelocity()
         {
+            if (!isLocalPlayer)
+                return;
+            
             if (!_isGrounded)
                 return;
             
@@ -143,10 +160,11 @@ namespace Stargaze.Mono.Player
             Vector3 tangent = Vector3.Cross(normal, transform.up);
             Vector3 binormal = Vector3.Cross(normal, tangent);
 
+            _slidingVelocity = binormal * slidingSpeed * Time.deltaTime;
             _characterController.Move(binormal * slidingSpeed * Time.deltaTime);
         }
 
-        private void HandleMovement()
+        private void CalculateStrafeVelocity()
         {
             if (!isLocalPlayer)
                 return;
@@ -158,15 +176,18 @@ namespace Stargaze.Mono.Player
 
             _characterController.Move(dir * (movementSpeed * Time.deltaTime));
 
-            if (!_isGrounded)
-                _verticalVelocity += Physics.gravity * Time.deltaTime;
-
-            _characterController.Move(_verticalVelocity * Time.deltaTime);
-
             // TODO: This will make the character animate even when we is walking against a wall. Do we want to fix this?
             AnimationDir = movementInput;
         }
 
+        private void CalculateVerticalVelocity()
+        {
+            if (!_isGrounded)
+                _verticalVelocity += Physics.gravity * Time.deltaTime;
+
+            _characterController.Move(_verticalVelocity * Time.deltaTime);
+        }
+        
         private void Jump()
         {
             if (!isLocalPlayer)
@@ -200,7 +221,7 @@ namespace Stargaze.Mono.Player
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawWireSphere(transform.position + groundCheckCenter, groundCheckRadius);
-
+            
             if (_isGrounded)
             {
                 // Contact point

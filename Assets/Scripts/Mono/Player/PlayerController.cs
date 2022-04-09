@@ -26,12 +26,18 @@ namespace Stargaze.Mono.Player
         private Vector3 _strafeVelocity;
         private Vector3 _slidingVelocity;
 
+        private Vector3 _desiredVelocity;
+        private Vector3 _velocity;
+
         private bool _isPlayerInteracting = false;
 
         private RaycastHit _groundContactPointHit;
 
         [Header("Movement")]
-        [SerializeField] private float movementSpeed = 1f;
+        [SerializeField] private float strafeSpeed = 1f;
+        [SerializeField] private float strafeDampingTime = 0.25f;
+        [SerializeField] private float slideSpeed;
+        [SerializeField] private float slideDampingTime = 0.5f;
 
         [Header("Jumping")]
         [SerializeField] private float jumpHeight = 1f;
@@ -46,9 +52,6 @@ namespace Stargaze.Mono.Player
         [SerializeField] private Vector3 groundCheckCenter;
         [SerializeField] private float groundCheckRadius;
         [SerializeField] private LayerMask groundCheckLayer;
-
-        [Header("Slope Sliding")]
-        [SerializeField] private float slidingSpeed;
 
         public Vector2 AnimationDir { get; private set; }
         
@@ -95,6 +98,9 @@ namespace Stargaze.Mono.Player
 
         private void GroundedControl()
         {
+            if (!isLocalPlayer)
+                return;
+            
             GroundCheck();
 
             CalculateSlidingVelocity();
@@ -104,6 +110,8 @@ namespace Stargaze.Mono.Player
             CalculateVerticalVelocity();
             
             HandleRotation();
+
+            _characterController.Move((_strafeVelocity + _slidingVelocity + _verticalVelocity) * Time.deltaTime);
         }
 
         public void ZeroGControl()
@@ -113,9 +121,6 @@ namespace Stargaze.Mono.Player
 
         private void GroundCheck()
         {
-            if (!isLocalPlayer)
-                return;
-            
             _wasGrounded = _isGrounded;
             
             _isGrounded = Physics.CheckSphere(
@@ -130,15 +135,12 @@ namespace Stargaze.Mono.Player
 
         private void CalculateSlidingVelocity()
         {
-            if (!isLocalPlayer)
-                return;
-            
             if (!_isGrounded)
                 return;
             
             bool hit = Physics.Raycast(
-                transform.position + groundCheckCenter, 
-                -transform.up, 
+                transform.position + groundCheckCenter,
+                -transform.up,
                 out _groundContactPointHit
             );
             
@@ -152,6 +154,7 @@ namespace Stargaze.Mono.Player
             if (slopeAngle <= _characterController.slopeLimit)
             {
                 _isSliding = false;
+                _slidingVelocity = Vector3.zero;
                 return;
             }
 
@@ -159,22 +162,38 @@ namespace Stargaze.Mono.Player
 
             Vector3 tangent = Vector3.Cross(normal, transform.up);
             Vector3 binormal = Vector3.Cross(normal, tangent);
-
-            _slidingVelocity = binormal * slidingSpeed * Time.deltaTime;
-            _characterController.Move(binormal * slidingSpeed * Time.deltaTime);
+            
+            Vector3 targetVelocity = binormal * slideSpeed;
+            Vector3.SmoothDamp(
+                transform.position,
+                transform.position + targetVelocity,
+                ref _slidingVelocity,
+                slideDampingTime,
+                slideSpeed
+            );
         }
 
         private void CalculateStrafeVelocity()
         {
-            if (!isLocalPlayer)
+            if (_isSliding)
+            {
+                _strafeVelocity = Vector3.zero;
                 return;
+            }
             
             Vector2 movementInput = _input.Movement;
 
             Vector3 dir = transform.forward * movementInput.y + transform.right * movementInput.x;
             dir.Normalize();
 
-            _characterController.Move(dir * (movementSpeed * Time.deltaTime));
+            Vector3 targetVelocity = dir * strafeSpeed;
+            Vector3.SmoothDamp(
+                transform.position,
+                transform.position + targetVelocity,
+                ref _strafeVelocity,
+                strafeDampingTime,
+                strafeSpeed
+            );
 
             // TODO: This will make the character animate even when we is walking against a wall. Do we want to fix this?
             AnimationDir = movementInput;
@@ -182,10 +201,10 @@ namespace Stargaze.Mono.Player
 
         private void CalculateVerticalVelocity()
         {
-            if (!_isGrounded)
-                _verticalVelocity += Physics.gravity * Time.deltaTime;
-
-            _characterController.Move(_verticalVelocity * Time.deltaTime);
+            if (_isGrounded)
+                return;
+                
+            _verticalVelocity += Physics.gravity * Time.deltaTime;
         }
         
         private void Jump()
@@ -199,9 +218,6 @@ namespace Stargaze.Mono.Player
 
         private void HandleRotation()
         {
-            if (!isLocalPlayer)
-                return;
-            
             Vector2 lookInput = _input.Look;
 
             _horizontalRotation += lookInput.x * rotationSpeed * Time.deltaTime;

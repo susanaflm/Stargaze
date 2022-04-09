@@ -465,8 +465,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  movementSpeed: 5
-  jumpHeight: 1
+  strafeSpeed: 5
+  strafeDampingTime: 0.25
+  slideSpeed: 5
+  slideDampingTime: 0.75
+  jumpHeight: 0.5
   camera: {fileID: 119786900}
   rotationSpeed: 10
   lookDownLimit: 60
@@ -476,7 +479,6 @@ MonoBehaviour:
   groundCheckLayer:
     serializedVersion: 2
     m_Bits: 55
-  slidingSpeed: 5
 --- !u!114 &-8304033169833888439
 MonoBehaviour:
   m_ObjectHideFlags: 0

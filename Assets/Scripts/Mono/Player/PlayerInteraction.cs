@@ -41,8 +41,9 @@ namespace Stargaze.Mono.Player
         {
             RaycastHit hit;
             var camTransform = _playerCamera.transform;
+            Ray ray = new Ray(camTransform.position, camTransform.forward);
 
-            bool hitSomething = Physics.Raycast(camTransform.position, camTransform.forward, out hit, rayDistance);
+            bool hitSomething = Physics.Raycast(ray, out hit, rayDistance);
 
             if (hitSomething)
             {

@@ -16,10 +16,10 @@ namespace Stargaze.Mono.Interactions.GravityPanel
         {
             base.OnInteractionStart();
             
-            //TODO:Animate Button
+            //TODO: Animate Button
             
-            //If the gravity is already deactivated the player can still click on the button but they don't work
-            if (PuzzleManager.Instance.WasGravityDeactivated)
+            //If the gravity puzzle is completed the player will no longer be able to interact with the gravity
+            if (PuzzleManager.Instance.GravityPuzzleStatus)
             {
                 return;
             }

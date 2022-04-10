@@ -10,9 +10,19 @@ namespace Stargaze.Mono.Puzzle
         private int _keycardAccessLevel = 0;
         
         private bool _doesPlayerHaveMagnet = false;
-        private bool _wasGravityDeactivated = false;
+        
+        private bool _gravityStatus = true;
+        private bool _isGravityPuzzleComplete = false;
 
-        public bool WasGravityDeactivated => _wasGravityDeactivated;
+        /// <summary>
+        /// If true the puzzle was completed
+        /// </summary>
+        public bool GravityPuzzleStatus => _isGravityPuzzleComplete; 
+        
+        /// <summary>
+        /// Varaible so the player can't interact with doors and progress the game without gravity
+        /// </summary>
+        public bool GravityStatus => _gravityStatus;
 
         private void Awake()
         {
@@ -42,7 +52,13 @@ namespace Stargaze.Mono.Puzzle
 
         public void DeactivateGravity()
         {
-            _wasGravityDeactivated = true;
+            _gravityStatus = false;
+        }
+        
+        public void ActivateGravity()
+        {
+            _gravityStatus = true;
+            _isGravityPuzzleComplete = true;
         }
 
         public bool DoesPlayerHaveMagnet() => _doesPlayerHaveMagnet;

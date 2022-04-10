@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using Stargaze.ScriptableObjects.Materials;
 using UnityEngine;
 
 namespace Stargaze.Mono.Puzzle
@@ -13,6 +15,8 @@ namespace Stargaze.Mono.Puzzle
         
         private bool _gravityStatus = true;
         private bool _isGravityPuzzleComplete = false;
+
+        private List<ResourceMaterial> _gatheredMaterials = new();
 
         /// <summary>
         /// If true the puzzle was completed
@@ -59,6 +63,21 @@ namespace Stargaze.Mono.Puzzle
         {
             _gravityStatus = true;
             _isGravityPuzzleComplete = true;
+        }
+
+        public void AddMaterial(ResourceMaterial mat)
+        {
+            if (mat == null)
+                return;
+
+            if (_gatheredMaterials.Exists(r => r.Equals(mat)))
+                return;
+
+            _gatheredMaterials.Add(mat);
+
+#if DEBUG
+            Debug.Log($"Successfully added {mat.name}");   
+#endif
         }
 
         public bool DoesPlayerHaveMagnet() => _doesPlayerHaveMagnet;

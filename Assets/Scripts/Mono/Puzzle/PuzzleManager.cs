@@ -7,8 +7,12 @@ namespace Stargaze.Mono.Puzzle
     {
         public static PuzzleManager Instance;
 
-        private bool _doesPlayerHaveMagnet = false;
         private int _keycardAccessLevel = 0;
+        
+        private bool _doesPlayerHaveMagnet = false;
+        private bool _wasGravityDeactivated = false;
+
+        public bool WasGravityDeactivated => _wasGravityDeactivated;
 
         private void Awake()
         {
@@ -36,9 +40,11 @@ namespace Stargaze.Mono.Puzzle
             _doesPlayerHaveMagnet = true;
         }
 
-        public bool DoesPlayerHaveMagnet()
+        public void DeactivateGravity()
         {
-            return _doesPlayerHaveMagnet;
+            _wasGravityDeactivated = true;
         }
+
+        public bool DoesPlayerHaveMagnet() => _doesPlayerHaveMagnet;
     }
 }

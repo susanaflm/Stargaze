@@ -27,12 +27,12 @@ namespace Stargaze.Mono.Interactions
         
         public virtual void OnInteractionStart()
         {
-           Debug.Log($"Started interaction with: {name}");
+           
         }
 
         public virtual void OnInteractionEnd()
         {
-            Debug.Log($"Ended interaction with: {name}");
+            
         }
 
         #endregion

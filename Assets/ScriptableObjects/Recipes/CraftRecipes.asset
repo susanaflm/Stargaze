@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6435b21112ef6984caa67b35ce12a5cc, type: 3}
+  m_Name: CraftRecipes
+  m_EditorClassIdentifier: 
+  recipes:
+  - matA: {fileID: 11400000, guid: 0f8fd0786d148ff428a1b6669f97660f, type: 2}
+    matB: {fileID: 11400000, guid: d81b76512cd72c944a58a9708082e01c, type: 2}
+    result: {fileID: 11400000, guid: 9bc741707bd8798449f1243d2b218843, type: 2}
+  - matA: {fileID: 11400000, guid: f06e54bef9cfca549a8fc90b79f81b5f, type: 2}
+    matB: {fileID: 11400000, guid: 9026a72ced511fd4abf93f4ea6aaa9e1, type: 2}
+    result: {fileID: 11400000, guid: 50ec820c96881a24ba8b2724d13c9998, type: 2}
+  - matA: {fileID: 11400000, guid: 9bc741707bd8798449f1243d2b218843, type: 2}
+    matB: {fileID: 11400000, guid: 50ec820c96881a24ba8b2724d13c9998, type: 2}
+    result: {fileID: 11400000, guid: 07efff7c92b9d024b81077c8d9669c8e, type: 2}
+  - matA: {fileID: 11400000, guid: 07efff7c92b9d024b81077c8d9669c8e, type: 2}
+    matB: {fileID: 11400000, guid: ba40767f8ea51af41883dd4fa84c9f2e, type: 2}
+    result: {fileID: 11400000, guid: 1b0f6ba0319358e48aa301abf841b843, type: 2}
+  - matA: {fileID: 11400000, guid: 9026a72ced511fd4abf93f4ea6aaa9e1, type: 2}
+    matB: {fileID: 11400000, guid: d81b76512cd72c944a58a9708082e01c, type: 2}
+    result: {fileID: 11400000, guid: f4b42679e89973b489cdf0e84f8f6136, type: 2}

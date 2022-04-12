@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47fd9846d49b652468cb458638ce76c3, type: 3}
-  m_Name: Hydrogen
+  m_Name: PerchloricAcid
   m_EditorClassIdentifier: 
-  matImage: {fileID: 21300000, guid: fec93efd1624f6641bfa9c47ff35b052, type: 3}
+  matImage: {fileID: 21300000, guid: c0d76ebba2ebfc641aaef3253ef6c68d, type: 3}

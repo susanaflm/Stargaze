@@ -8,7 +8,7 @@ namespace Stargaze.Mono.Player
     public class PlayerInteraction : MonoBehaviour
     {
         private PlayerInput _input;
-        private PlayerController _controller;
+        private PlayerGroundController _controller;
         private Camera _playerCamera;
 
         [Header("Data")]
@@ -23,7 +23,7 @@ namespace Stargaze.Mono.Player
         {
             _input = GetComponent<PlayerInput>();
             _playerCamera = Camera.main;
-            _controller = GetComponent<PlayerController>();
+            _controller = GetComponent<PlayerGroundController>();
         }
         
         void Start()

@@ -20,7 +20,7 @@ namespace Stargaze.Mono.Player
 
         public Action ExitInteraction { get; set; }
 
-        public Vector2 Movement { get; private set; }
+        public Vector3 Strafe { get; private set; }
         
         public Vector2 Look { get; private set; }
 
@@ -54,7 +54,7 @@ namespace Stargaze.Mono.Player
             if (!isLocalPlayer)
                 return;
             
-            Movement = _actions.Player.Movement.ReadValue<Vector2>().normalized;
+            Strafe = _actions.Player.Strafe.ReadValue<Vector3>().normalized;
             Look = _actions.Player.Look.ReadValue<Vector2>();
         }
 

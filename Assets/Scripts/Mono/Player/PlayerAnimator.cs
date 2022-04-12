@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace Stargaze.Mono.Player
 {
-    [RequireComponent(typeof(PlayerController))]
+    [RequireComponent(typeof(PlayerGroundController))]
     public class PlayerAnimator : MonoBehaviour
     {
-        private PlayerController _playerController;
+        private PlayerGroundController _playerGroundController;
         
         private Animator _animator;
 
         private void Awake()
         {
-            _playerController = GetComponent<PlayerController>();
+            _playerGroundController = GetComponent<PlayerGroundController>();
             
             _animator = GetComponent<Animator>();
 
@@ -28,7 +28,7 @@ namespace Stargaze.Mono.Player
 
         private void Update()
         {
-            Vector2 dir = _playerController.AnimationDir;
+            Vector2 dir = _playerGroundController.AnimationDir;
             
             _animator.SetFloat("X_Dir", dir.x);
             _animator.SetFloat("Y_Dir", dir.y);

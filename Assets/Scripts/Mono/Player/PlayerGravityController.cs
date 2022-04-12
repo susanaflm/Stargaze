@@ -24,7 +24,7 @@ namespace Stargaze.Mono.Player
             if (PuzzleManager.Instance != null)
                 isGravityOn = PuzzleManager.Instance.GravityStatus;
             else
-                isGravityOn = false;
+                isGravityOn = true;
             
             _groundController.enabled = isGravityOn;
             _zeroGController.enabled = !isGravityOn;

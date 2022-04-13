@@ -7,9 +7,9 @@ namespace Stargaze.Mono.Player
 {
     [RequireComponent(typeof(PlayerInput))]
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerController : NetworkBehaviour
+    public class PlayerGroundController : NetworkBehaviour
     {
-        public Action OnLand;
+        private Action OnLand;
         
         private PlayerInput _input;
 
@@ -22,16 +22,16 @@ namespace Stargaze.Mono.Player
         private bool _wasGrounded;
         private bool _isSliding;
 
-        private Vector3 _verticalVelocity;
         private Vector3 _strafeVelocity;
+        private Vector3 _verticalVelocity;
         private Vector3 _slidingVelocity;
 
         private Vector3 _desiredVelocity;
         private Vector3 _velocity;
+        
+        private RaycastHit _groundContactPointHit;
 
         private bool _isPlayerInteracting = false;
-
-        private RaycastHit _groundContactPointHit;
 
         [Header("Movement")]
         [SerializeField] private float strafeSpeed = 1f;
@@ -93,14 +93,6 @@ namespace Stargaze.Mono.Player
             if (!isLocalPlayer || _isPlayerInteracting)
                 return;
             
-            GroundedControl();
-        }
-
-        private void GroundedControl()
-        {
-            if (!isLocalPlayer)
-                return;
-            
             GroundCheck();
 
             CalculateSlidingVelocity();
@@ -113,12 +105,7 @@ namespace Stargaze.Mono.Player
 
             _characterController.Move((_strafeVelocity + _slidingVelocity + _verticalVelocity) * Time.deltaTime);
         }
-
-        public void ZeroGControl()
-        {
-            throw new NotImplementedException();
-        }
-
+        
         private void GroundCheck()
         {
             _wasGrounded = _isGrounded;
@@ -181,9 +168,9 @@ namespace Stargaze.Mono.Player
                 return;
             }
             
-            Vector2 movementInput = _input.Movement;
+            Vector3 movementInput = _input.Strafe;
 
-            Vector3 dir = transform.forward * movementInput.y + transform.right * movementInput.x;
+            Vector3 dir = transform.forward * movementInput.z + transform.right * movementInput.x;
             dir.Normalize();
 
             Vector3 targetVelocity = dir * strafeSpeed;

@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47fd9846d49b652468cb458638ce76c3, type: 3}
   m_Name: Carbon
   m_EditorClassIdentifier: 
-  matPrefab: {fileID: 0}
-  material: 0
+  matImage: {fileID: 21300000, guid: b78e9aada4270ce4cadbd58f961804b9, type: 3}

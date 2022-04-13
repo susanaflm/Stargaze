@@ -28,6 +28,8 @@ namespace Stargaze.Mono.Puzzle
         /// </summary>
         public bool GravityStatus => _gravityStatus;
 
+        public List<ResourceMaterial> GatheredMaterials => _gatheredMaterials;
+
         private void Awake()
         {
             if (Instance != null && Instance != this)

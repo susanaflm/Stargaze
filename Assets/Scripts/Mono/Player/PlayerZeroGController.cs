@@ -1,4 +1,6 @@
-﻿using Cinemachine;
+﻿using System;
+using Cinemachine;
+using DG.Tweening;
 using Mirror;
 using UnityEngine;
 
@@ -20,6 +22,11 @@ namespace Stargaze.Mono.Player
         [Space]
         
         [SerializeField] private Transform centerOfMass;
+
+        [Space]
+        
+        [Tooltip("When the gravity turn of this velocity will be applied to the player.")]
+        [SerializeField] private Vector3 initialVelocity;
         
         [Space]
         
@@ -33,6 +40,11 @@ namespace Stargaze.Mono.Player
             _input = GetComponent<PlayerInput>();
             
             _characterController = GetComponent<CharacterController>();
+        }
+
+        private void OnEnable()
+        {
+            _strafeVelocity = initialVelocity;
         }
 
         private void Start()
@@ -56,8 +68,6 @@ namespace Stargaze.Mono.Player
 
         private void Strafe()
         {
-            _strafeVelocity = _characterController.velocity;
-            
             Vector3 input = _input.Strafe;
             Vector3 inputDir = transform.forward * input.z + transform.right * input.x + transform.up * input.y;
             
@@ -65,6 +75,8 @@ namespace Stargaze.Mono.Player
             _strafeVelocity += -dragCoefficient * _strafeVelocity * Time.deltaTime;
 
             _characterController.Move(_strafeVelocity * Time.deltaTime);
+            
+            _strafeVelocity = _characterController.velocity;
         }
 
         private void Rotation()
@@ -80,6 +92,11 @@ namespace Stargaze.Mono.Player
             transform.RotateAround(comPos, transform.up, lookInput.x * rotationSpeed * Time.deltaTime);
             transform.RotateAround(comPos, transform.right, -lookInput.y * rotationSpeed * Time.deltaTime);
             transform.RotateAround(comPos, transform.forward, _rollVelocity * Time.deltaTime);
+        }
+
+        public void ResetRotation()
+        {
+            transform.DORotate(Vector3.zero, 1f);
         }
     }
 }

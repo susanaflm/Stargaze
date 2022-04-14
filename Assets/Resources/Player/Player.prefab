@@ -543,6 +543,7 @@ MonoBehaviour:
   syncInterval: 0.1
   camera: {fileID: 119786900}
   centerOfMass: {fileID: 6085701019011315205}
+  initialVelocity: {x: 0, y: 0.25, z: 0}
   thrustForce: 5
   dragCoefficient: 0.5
   rotationSpeed: 10

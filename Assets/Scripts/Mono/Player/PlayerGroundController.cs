@@ -1,5 +1,6 @@
 using System;
 using Cinemachine;
+using DG.Tweening;
 using Mirror;
 using UnityEngine;
 
@@ -16,7 +17,6 @@ namespace Stargaze.Mono.Player
         private CharacterController _characterController;
 
         private float _verticalRotation;
-        private float _horizontalRotation;
 
         private bool _isGrounded;
         private bool _wasGrounded;
@@ -196,7 +196,7 @@ namespace Stargaze.Mono.Player
         
         private void Jump()
         {
-            if (!isLocalPlayer)
+            if (!isLocalPlayer || !enabled)
                 return;
             
             if (_isGrounded && !_isSliding)
@@ -207,7 +207,6 @@ namespace Stargaze.Mono.Player
         {
             Vector2 lookInput = _input.Look;
 
-            _horizontalRotation += lookInput.x * rotationSpeed * Time.deltaTime;
             _verticalRotation += -lookInput.y * rotationSpeed * Time.deltaTime;
 
             _verticalRotation = Mathf.Clamp(
@@ -216,8 +215,14 @@ namespace Stargaze.Mono.Player
                 lookDownLimit
             );
             
-            transform.localRotation = Quaternion.Euler(0f, _horizontalRotation, 0f);
+            transform.Rotate(transform.up, lookInput.x * rotationSpeed * Time.deltaTime);
             camera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
+        }
+
+        public void RecenterCamera()
+        {
+            camera.transform.DOLocalRotate(Vector3.zero, 0.5f);
+            _verticalRotation = 0f;
         }
 
         private void OnDrawGizmosSelected()

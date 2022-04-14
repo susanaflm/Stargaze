@@ -34,8 +34,21 @@ namespace Stargaze.Mono.Player
 
         private void UpdateGravityStatus(bool isGravityOn)
         {
+            if (isGravityOn)
+            {
+                _zeroGController.ResetRotation();
+            }
+            else
+            {
+                _groundController.RecenterCamera();
+            }
+            
             _groundController.enabled = isGravityOn;
             _zeroGController.enabled = !isGravityOn;
         }
+
+#if UNITY_EDITOR
+        public void SetGravity(bool isGravityOn) => UpdateGravityStatus(isGravityOn);
+#endif
     }
 }

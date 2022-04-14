@@ -24,6 +24,15 @@
                     "initialStateCheck": true
                 },
                 {
+                    "name": "Roll",
+                    "type": "Value",
+                    "id": "91289bbb-83e1-42d7-bc97-4bb79b1700f3",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "3e65cb31-32d6-44a4-9924-293509c96799",
@@ -69,7 +78,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "Strafe",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -80,7 +89,7 @@
                     "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "Strafe",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -91,7 +100,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "Strafe",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -102,7 +111,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "Strafe",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -113,7 +122,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "Strafe",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -124,7 +133,7 @@
                     "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard & Mouse",
                     "action": "Strafe",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -348,6 +357,72 @@
                     "action": "ExitInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "Keyboard",
+                    "id": "64b89918-19c1-4360-8959-7a05439fea6b",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "7b7bf586-be6e-40ac-b9ca-4b96d981257b",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "1b0814ed-e64c-47d4-b5a1-b602030bf810",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard & Mouse",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Gamepad",
+                    "id": "04954c0c-d187-4c79-a7ad-2fec9853456c",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Roll",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "cbd89ec4-24dc-4c5d-8929-1373d356086e",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "436d40d7-b135-4a63-a8b7-e51dcf853341",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Roll",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

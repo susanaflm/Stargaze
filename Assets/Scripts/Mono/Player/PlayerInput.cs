@@ -23,6 +23,8 @@ namespace Stargaze.Mono.Player
         public Vector3 Strafe { get; private set; }
         
         public Vector2 Look { get; private set; }
+        
+        public float Roll { get; private set; }
 
         private void Awake()
         {
@@ -56,6 +58,7 @@ namespace Stargaze.Mono.Player
             
             Strafe = _actions.Player.Strafe.ReadValue<Vector3>().normalized;
             Look = _actions.Player.Look.ReadValue<Vector2>();
+            Roll = _actions.Player.Roll.ReadValue<float>();
         }
 
         private void OnEnable()

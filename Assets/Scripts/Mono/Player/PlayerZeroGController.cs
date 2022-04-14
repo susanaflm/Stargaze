@@ -12,14 +12,21 @@ namespace Stargaze.Mono.Player
         
         private CharacterController _characterController;
 
-        private Vector3 _velocity;
+        private Vector3 _strafeVelocity;
+        private float _rollVelocity;
         
         [SerializeField] private new CinemachineVirtualCamera camera;
+
+        [Space]
+        
+        [SerializeField] private Transform centerOfMass;
         
         [Space]
         
         [SerializeField] private float thrustForce = 1f;
         [SerializeField] private float dragCoefficient = 1f;
+        [SerializeField] private float rotationSpeed = 1f;
+        [SerializeField] private float rollSpeed = 1f;
 
         private void Awake()
         {
@@ -42,15 +49,37 @@ namespace Stargaze.Mono.Player
             if (!isLocalPlayer)
                 return;
 
-            _velocity = _characterController.velocity;
+            Strafe();
+            
+            Rotation();
+        }
+
+        private void Strafe()
+        {
+            _strafeVelocity = _characterController.velocity;
             
             Vector3 input = _input.Strafe;
             Vector3 inputDir = transform.forward * input.z + transform.right * input.x + transform.up * input.y;
             
-            _velocity += inputDir * thrustForce * Time.deltaTime;
-            _velocity += -dragCoefficient * _velocity * Time.deltaTime;
+            _strafeVelocity += inputDir * thrustForce * Time.deltaTime;
+            _strafeVelocity += -dragCoefficient * _strafeVelocity * Time.deltaTime;
 
-            _characterController.Move(_velocity * Time.deltaTime);
+            _characterController.Move(_strafeVelocity * Time.deltaTime);
+        }
+
+        private void Rotation()
+        {
+            Vector2 lookInput = _input.Look;
+            float rollInput = _input.Roll;
+
+            Vector3 comPos = centerOfMass.position;
+
+            _rollVelocity += rollInput * rollSpeed * Time.deltaTime;
+            _rollVelocity += -dragCoefficient * _rollVelocity * Time.deltaTime;
+            
+            transform.RotateAround(comPos, transform.up, lookInput.x * rotationSpeed * Time.deltaTime);
+            transform.RotateAround(comPos, transform.right, -lookInput.y * rotationSpeed * Time.deltaTime);
+            transform.RotateAround(comPos, transform.forward, _rollVelocity * Time.deltaTime);
         }
     }
 }

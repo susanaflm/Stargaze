@@ -48,6 +48,15 @@ namespace Stargaze.Input
                     ""initialStateCheck"": true
                 },
                 {
+                    ""name"": ""Roll"",
+                    ""type"": ""Value"",
+                    ""id"": ""91289bbb-83e1-42d7-bc97-4bb79b1700f3"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""3e65cb31-32d6-44a4-9924-293509c96799"",
@@ -93,7 +102,7 @@ namespace Stargaze.Input
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard & Mouse"",
                     ""action"": ""Strafe"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -104,7 +113,7 @@ namespace Stargaze.Input
                     ""path"": ""<Keyboard>/ctrl"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard & Mouse"",
                     ""action"": ""Strafe"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -115,7 +124,7 @@ namespace Stargaze.Input
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard & Mouse"",
                     ""action"": ""Strafe"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -126,7 +135,7 @@ namespace Stargaze.Input
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard & Mouse"",
                     ""action"": ""Strafe"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -137,7 +146,7 @@ namespace Stargaze.Input
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard & Mouse"",
                     ""action"": ""Strafe"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -148,7 +157,7 @@ namespace Stargaze.Input
                     ""path"": ""<Keyboard>/s"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard & Mouse"",
                     ""action"": ""Strafe"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -372,6 +381,72 @@ namespace Stargaze.Input
                     ""action"": ""ExitInteraction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""64b89918-19c1-4360-8959-7a05439fea6b"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Roll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""7b7bf586-be6e-40ac-b9ca-4b96d981257b"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""1b0814ed-e64c-47d4-b5a1-b602030bf810"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""04954c0c-d187-4c79-a7ad-2fec9853456c"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Roll"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""cbd89ec4-24dc-4c5d-8929-1373d356086e"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""436d40d7-b135-4a63-a8b7-e51dcf853341"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Roll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -575,6 +650,7 @@ namespace Stargaze.Input
             m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
             m_Player_Strafe = m_Player.FindAction("Strafe", throwIfNotFound: true);
             m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
+            m_Player_Roll = m_Player.FindAction("Roll", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
             m_Player_ExitInteraction = m_Player.FindAction("ExitInteraction", throwIfNotFound: true);
@@ -652,6 +728,7 @@ namespace Stargaze.Input
         private IPlayerActions m_PlayerActionsCallbackInterface;
         private readonly InputAction m_Player_Strafe;
         private readonly InputAction m_Player_Look;
+        private readonly InputAction m_Player_Roll;
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Interact;
         private readonly InputAction m_Player_ExitInteraction;
@@ -661,6 +738,7 @@ namespace Stargaze.Input
             public PlayerActions(@InputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Strafe => m_Wrapper.m_Player_Strafe;
             public InputAction @Look => m_Wrapper.m_Player_Look;
+            public InputAction @Roll => m_Wrapper.m_Player_Roll;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Interact => m_Wrapper.m_Player_Interact;
             public InputAction @ExitInteraction => m_Wrapper.m_Player_ExitInteraction;
@@ -679,6 +757,9 @@ namespace Stargaze.Input
                     @Look.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                     @Look.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
                     @Look.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLook;
+                    @Roll.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoll;
+                    @Roll.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoll;
+                    @Roll.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRoll;
                     @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                     @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                     @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
@@ -698,6 +779,9 @@ namespace Stargaze.Input
                     @Look.started += instance.OnLook;
                     @Look.performed += instance.OnLook;
                     @Look.canceled += instance.OnLook;
+                    @Roll.started += instance.OnRoll;
+                    @Roll.performed += instance.OnRoll;
+                    @Roll.canceled += instance.OnRoll;
                     @Jump.started += instance.OnJump;
                     @Jump.performed += instance.OnJump;
                     @Jump.canceled += instance.OnJump;
@@ -873,6 +957,7 @@ namespace Stargaze.Input
         {
             void OnStrafe(InputAction.CallbackContext context);
             void OnLook(InputAction.CallbackContext context);
+            void OnRoll(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
             void OnInteract(InputAction.CallbackContext context);
             void OnExitInteraction(InputAction.CallbackContext context);

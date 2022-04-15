@@ -17,7 +17,7 @@
 
 ## Requirements
 
-- Unity 2021.2.17f1
+- Unity [2021.3.0f1](unityhub://2021.3.0f1/6eacc8284459)
 
 ## Project Structure
 

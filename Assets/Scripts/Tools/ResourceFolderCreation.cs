@@ -77,7 +77,7 @@ namespace Stargaze.Tools
             GUILayout.Space(2f);
             
             GUILayout.BeginHorizontal();
-            _createSoundsFolder = GUILayout.Toggle(_createSoundsFolder, "Sprites");
+            _createSpritesFolder = GUILayout.Toggle(_createSpritesFolder, "Sprites");
             if (GUILayout.Button("Add Sprites Folder")) AddSpritesFolder();
             GUILayout.EndHorizontal();
             

@@ -1,6 +1,7 @@
 using System;
 using Mirror;
 using Stargaze.Input;
+using Stargaze.Mono.UI.RadioFrequencyPanel;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,7 +36,13 @@ namespace Stargaze.Mono.Player
             _actions.Player.ExitInteraction.performed += _ => ExitInteraction?.Invoke();
             
 #if DEBUG
-            _debugToggleAction.performed += _ => enabled = !enabled;
+            _debugToggleAction.performed += _ =>
+            {
+                if (enabled)
+                    Disable();
+                else
+                    Enable();
+            };
 #endif
         }
 
@@ -44,6 +51,8 @@ namespace Stargaze.Mono.Player
 #if DEBUG
             _debugToggleAction.Enable();
 #endif
+
+            RegisterCallbacks();
             
             _actions.Enable();
             
@@ -61,10 +70,43 @@ namespace Stargaze.Mono.Player
             Roll = _actions.Player.Roll.ReadValue<float>();
         }
 
+        private void RegisterCallbacks()
+        {
+            RadioFrequencyPanel.OnRadioFrequencyPanelShow += Disable;
+            RadioFrequencyPanel.OnRadioFrequencyPanelHide += Enable;
+        }
+        
+        private void UnregisterCallbacks()
+        {
+            RadioFrequencyPanel.OnRadioFrequencyPanelShow -= Disable;
+            RadioFrequencyPanel.OnRadioFrequencyPanelHide -= Enable;
+        }
+
+        private void Disable()
+        {
+            enabled = false;
+            
+            ResetInputValues();
+        }
+
+        private void Enable()
+        {
+            enabled = true;
+        }
+
+        private void ResetInputValues()
+        {
+            Strafe = Vector3.zero;
+            Look = Vector2.zero;
+            Roll = 0f;
+        }
+
         private void OnEnable()
         {
             if (!isLocalPlayer)
                 return;
+            
+            RegisterCallbacks();
             
             _actions.Enable();
             
@@ -81,6 +123,11 @@ namespace Stargaze.Mono.Player
             
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
+        }
+
+        private void OnDestroy()
+        {
+            UnregisterCallbacks();
         }
     }
 }

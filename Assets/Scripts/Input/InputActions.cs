@@ -550,18 +550,9 @@ namespace Stargaze.Input
             ""id"": ""7d6d65cf-2073-4046-95a0-7c039661bee1"",
             ""actions"": [
                 {
-                    ""name"": ""Virtual Cursor Delta"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""5573a905-3d0b-45c9-b8b4-c010280332bf"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Virtual Cursor Click"",
+                    ""name"": ""ShowRadioFrequencyPanel"",
                     ""type"": ""Button"",
-                    ""id"": ""36fc4bc7-25b4-46d9-9f94-499963f48637"",
+                    ""id"": ""5c9fa901-4b7c-4db7-bd2c-c07c93a059c9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -571,45 +562,12 @@ namespace Stargaze.Input
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""498cd97b-7eef-4294-8b0f-6dae0d14aab3"",
-                    ""path"": ""<Mouse>/delta"",
+                    ""id"": ""bf589cf6-0dc2-4cae-a04b-89f6173003b5"",
+                    ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Virtual Cursor Delta"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""60985ccb-afe5-4dd9-8cf0-9312a627fc8c"",
-                    ""path"": ""<Gamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Virtual Cursor Delta"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8d8236ad-0f36-4527-abe2-0ca8fdf59571"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Virtual Cursor Click"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""02538f99-9e09-46b7-a88c-687668a6564c"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Virtual Cursor Click"",
+                    ""action"": ""ShowRadioFrequencyPanel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -665,8 +623,7 @@ namespace Stargaze.Input
             m_Coms_PushToTalk = m_Coms.FindAction("PushToTalk", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-            m_UI_VirtualCursorDelta = m_UI.FindAction("Virtual Cursor Delta", throwIfNotFound: true);
-            m_UI_VirtualCursorClick = m_UI.FindAction("Virtual Cursor Click", throwIfNotFound: true);
+            m_UI_ShowRadioFrequencyPanel = m_UI.FindAction("ShowRadioFrequencyPanel", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -898,14 +855,12 @@ namespace Stargaze.Input
         // UI
         private readonly InputActionMap m_UI;
         private IUIActions m_UIActionsCallbackInterface;
-        private readonly InputAction m_UI_VirtualCursorDelta;
-        private readonly InputAction m_UI_VirtualCursorClick;
+        private readonly InputAction m_UI_ShowRadioFrequencyPanel;
         public struct UIActions
         {
             private @InputActions m_Wrapper;
             public UIActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-            public InputAction @VirtualCursorDelta => m_Wrapper.m_UI_VirtualCursorDelta;
-            public InputAction @VirtualCursorClick => m_Wrapper.m_UI_VirtualCursorClick;
+            public InputAction @ShowRadioFrequencyPanel => m_Wrapper.m_UI_ShowRadioFrequencyPanel;
             public InputActionMap Get() { return m_Wrapper.m_UI; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -915,22 +870,16 @@ namespace Stargaze.Input
             {
                 if (m_Wrapper.m_UIActionsCallbackInterface != null)
                 {
-                    @VirtualCursorDelta.started -= m_Wrapper.m_UIActionsCallbackInterface.OnVirtualCursorDelta;
-                    @VirtualCursorDelta.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnVirtualCursorDelta;
-                    @VirtualCursorDelta.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnVirtualCursorDelta;
-                    @VirtualCursorClick.started -= m_Wrapper.m_UIActionsCallbackInterface.OnVirtualCursorClick;
-                    @VirtualCursorClick.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnVirtualCursorClick;
-                    @VirtualCursorClick.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnVirtualCursorClick;
+                    @ShowRadioFrequencyPanel.started -= m_Wrapper.m_UIActionsCallbackInterface.OnShowRadioFrequencyPanel;
+                    @ShowRadioFrequencyPanel.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnShowRadioFrequencyPanel;
+                    @ShowRadioFrequencyPanel.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnShowRadioFrequencyPanel;
                 }
                 m_Wrapper.m_UIActionsCallbackInterface = instance;
                 if (instance != null)
                 {
-                    @VirtualCursorDelta.started += instance.OnVirtualCursorDelta;
-                    @VirtualCursorDelta.performed += instance.OnVirtualCursorDelta;
-                    @VirtualCursorDelta.canceled += instance.OnVirtualCursorDelta;
-                    @VirtualCursorClick.started += instance.OnVirtualCursorClick;
-                    @VirtualCursorClick.performed += instance.OnVirtualCursorClick;
-                    @VirtualCursorClick.canceled += instance.OnVirtualCursorClick;
+                    @ShowRadioFrequencyPanel.started += instance.OnShowRadioFrequencyPanel;
+                    @ShowRadioFrequencyPanel.performed += instance.OnShowRadioFrequencyPanel;
+                    @ShowRadioFrequencyPanel.canceled += instance.OnShowRadioFrequencyPanel;
                 }
             }
         }
@@ -976,8 +925,7 @@ namespace Stargaze.Input
         }
         public interface IUIActions
         {
-            void OnVirtualCursorDelta(InputAction.CallbackContext context);
-            void OnVirtualCursorClick(InputAction.CallbackContext context);
+            void OnShowRadioFrequencyPanel(InputAction.CallbackContext context);
         }
     }
 }

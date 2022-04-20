@@ -2,6 +2,7 @@
 using System.IO;
 using Mirror;
 using Stargaze.Input;
+using Stargaze.ScriptableObjects.Coms;
 using Steamworks;
 using UnityEngine;
 
@@ -10,10 +11,16 @@ namespace Stargaze.Mono.Player
     [RequireComponent(typeof(PlayerInput))]
     public class PlayerComs : NetworkBehaviour
     {
+        public static ushort Frequency; 
+        
         private const ushort VoiceDataBufferSize = 20480;
         
         private InputActions _actions;
 
+        [SerializeReference] private ComsSettings comsSettings;
+        
+        [Space]
+        
         [SerializeField] private AudioSource audioSource;
 
         public override void OnStartLocalPlayer()
@@ -35,6 +42,8 @@ namespace Stargaze.Mono.Player
             {
                 Debug.LogError("Missing reference to 'Audio Source' in Player Coms");
             }
+
+            Frequency = comsSettings.StartingFrequency;
         }
 
         private void Update()
@@ -48,19 +57,21 @@ namespace Stargaze.Mono.Player
                 Stream stream = new MemoryStream(buffer);
                 int bytesWritten = SteamUser.ReadVoiceData(stream);
                 
-                CmdSendVoiceData(buffer, bytesWritten);
+                CmdSendVoiceData(buffer, bytesWritten, Frequency);
             }
         }
 
         [Command]
-        private void CmdSendVoiceData(byte[] voiceBuffer, int size) // TODO: Pass radio channel?
+        private void CmdSendVoiceData(byte[] voiceBuffer, int size, ushort frequency)
         {
+            if (frequency != comsSettings.EmergencyFrequency)
+                return;
+            
             RpcReceiveVoiceData(voiceBuffer, size);
         }
 
         [ClientRpc(includeOwner = false)]
-        //[ClientRpc]
-        private void RpcReceiveVoiceData(byte[] voiceBuffer, int size)// TODO: Pass radio channel?
+        private void RpcReceiveVoiceData(byte[] voiceBuffer, int size)
         {
             Stream compressedStream = new MemoryStream(voiceBuffer);
             

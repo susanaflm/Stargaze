@@ -589,6 +589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  comsSettings: {fileID: 11400000, guid: 75852c145b672064b9effb6b5f507912, type: 2}
   audioSource: {fileID: 8397292007357836399}
 --- !u!1001 &7399808359717528236
 PrefabInstance:

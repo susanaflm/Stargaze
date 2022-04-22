@@ -3,14 +3,22 @@ using UnityEngine;
 
 namespace Stargaze.Mono.Interactions.Magnet
 {
-    public class MagnetPickup : Interactable
+    public class MagnetPickup : MonoBehaviour, IInteractable
     {
-        public override void OnInteractionStart()
+        private bool _isInteractable = true;
+
+        [SerializeField] private bool switchable;
+        
+        public bool Switchable => switchable;
+
+        public bool IsInteractable => _isInteractable;
+        
+        public void OnInteractionStart()
         {
-            base.OnInteractionStart();
-            
             PuzzleManager.Instance.GetMagnet();
             Destroy(gameObject);
         }
+        
+        public void OnInteractionEnd() { }
     }
 }

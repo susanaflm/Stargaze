@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace Stargaze.Mono.Terminals
 {
-    public class Terminal : Interactable
+    public class Terminal : MonoBehaviour, IInteractable
     {
         private RenderTexture _renderTexture;
         
@@ -20,6 +20,10 @@ namespace Stargaze.Mono.Terminals
         
         [SerializeField] private GameObject focusOnInteract;
 
+
+        public bool Switchable => false;
+        public bool IsInteractable => true;
+        
         private void Awake()
         {
             _renderTexture = new RenderTexture(1280, 720, 16);
@@ -35,7 +39,7 @@ namespace Stargaze.Mono.Terminals
             contentScreen.SetActive(false);
         }
 
-        public override void OnInteractionStart()
+        public void OnInteractionStart()
         {
             loginScreen.SetActive(false);
             contentScreen.SetActive(true);
@@ -44,7 +48,7 @@ namespace Stargaze.Mono.Terminals
                 EventSystem.current.SetSelectedGameObject(focusOnInteract);
         }
 
-        public override void OnInteractionEnd()
+        public void OnInteractionEnd()
         {
             contentScreen.SetActive(false);
             loginScreen.SetActive(true);

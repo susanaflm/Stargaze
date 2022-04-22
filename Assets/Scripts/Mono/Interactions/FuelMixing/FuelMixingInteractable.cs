@@ -4,26 +4,30 @@ using UnityEngine;
 
 namespace Stargaze.Mono.Interactions.FuelMixing
 {
-    public class FuelMixingInteractable : Interactable
+    public class FuelMixingInteractable : MonoBehaviour, IInteractable
     {
         public delegate void OnInteraction();
 
         public static OnInteraction FillUI;
         
+        private bool _isInteractable = true;
+
+        [SerializeField] private bool switchable;
+        
         [SerializeField] private GameObject fuelMixingUI;
         
-        public override void OnInteractionStart()
+        public bool Switchable => switchable;
+
+        public bool IsInteractable => _isInteractable;
+        
+        public void OnInteractionStart()
         {
-            base.OnInteractionStart();
-            
             fuelMixingUI.SetActive(true);
             FillUI?.Invoke();
         }
 
-        public override void OnInteractionEnd()
+        public void OnInteractionEnd()
         {
-            base.OnInteractionEnd();
-            
             fuelMixingUI.SetActive(false);
         }
     }

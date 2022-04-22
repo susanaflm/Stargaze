@@ -5,9 +5,9 @@ namespace Stargaze.Mono.Interactions
     [CreateAssetMenu(fileName = "InteractionData", menuName = "InteractionSystem/InteractionData")]
     public class InteractionData : ScriptableObject
     {
-        private Interactable _interactable;
+        private IInteractable _interactable;
 
-        public Interactable Interactable
+        public IInteractable Interactable
         {
             get => _interactable;
             set => _interactable = value;
@@ -19,7 +19,7 @@ namespace Stargaze.Mono.Interactions
             ResetInteractable();
         }
 
-        public bool IsSameInteractable(Interactable otherInteractable)
+        public bool IsSameInteractable(IInteractable otherInteractable)
         {
             return _interactable == otherInteractable;
         }

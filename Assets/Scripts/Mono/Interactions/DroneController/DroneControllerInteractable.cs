@@ -2,21 +2,25 @@ using UnityEngine;
 
 namespace Stargaze.Mono.Interactions.DroneController
 {
-    public class DroneControllerInteractable : Interactable
+    public class DroneControllerInteractable : MonoBehaviour, IInteractable
     {
-        [SerializeField] private GameObject droneControllerUI;
+        private bool _isInteractable = true;
+
+        [SerializeField] private bool switchable;
         
-        public override void OnInteractionStart()
+        [SerializeField] private GameObject droneControllerUI;
+
+        public bool Switchable => switchable;
+
+        public bool IsInteractable => _isInteractable;
+
+        public void OnInteractionStart()
         {
-            base.OnInteractionStart();
-            
             droneControllerUI.SetActive(true);
         }
 
-        public override void OnInteractionEnd()
+        public void OnInteractionEnd()
         {
-            base.OnInteractionEnd();
-            
             droneControllerUI.SetActive(false);
         }
     }

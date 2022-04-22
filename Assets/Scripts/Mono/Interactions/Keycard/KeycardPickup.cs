@@ -4,19 +4,27 @@ using UnityEngine;
 
 namespace Stargaze.Mono.Interactions.Keycard
 {
-    public class KeycardPickup : Interactable
+    public class KeycardPickup : MonoBehaviour, IInteractable
     {
+        private bool _isInteractable = true;
+
+        [SerializeField] private bool switchable;
+        
         [Dropdown("_accessLevels")]
         [SerializeField] private int accessLevel;
 
         private int[] _accessLevels = new int[] {1, 2, 3};
+        
+        public bool Switchable => switchable;
 
-        public override void OnInteractionStart()
+        public bool IsInteractable => _isInteractable;
+
+        public void OnInteractionStart()
         {
-            base.OnInteractionStart();
-            
             PuzzleManager.Instance.SetCurrentKeycardAccesslevel(accessLevel);
             Destroy(gameObject);
         }
+
+        public void OnInteractionEnd() { }
     }
 }

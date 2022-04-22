@@ -4,16 +4,24 @@ using UnityEngine;
 
 namespace Stargaze.Mono.Interactions.Lever
 {
-    public class LeverInteractable : Interactable
+    public class LeverInteractable : MonoBehaviour, IInteractable
     {
+        private bool _isInteractable = true;
+
+        [SerializeField] private bool switchable;
+        
         [SerializeField] private List<Door.Door> attachedDoors = new();
         
-        public override void OnInteractionStart()
+        public bool Switchable => switchable;
+
+        public bool IsInteractable => _isInteractable;
+        
+        public void OnInteractionStart()
         {
-            base.OnInteractionStart();
-            
             ToggleDoorState();
         }
+
+        public void OnInteractionEnd() { }
 
         private void ToggleDoorState()
         {

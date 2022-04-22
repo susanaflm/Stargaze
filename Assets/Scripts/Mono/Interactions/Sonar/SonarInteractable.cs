@@ -2,21 +2,25 @@ using UnityEngine;
 
 namespace Stargaze.Mono.Interactions.Sonar
 {
-    public class SonarInteractable : Interactable
+    public class SonarInteractable : MonoBehaviour, IInteractable
     {
+        private bool _isInteractable = true;
+
+        [SerializeField] private bool switchable;
+        
         [SerializeField] private GameObject sonarUI;
         
-        public override void OnInteractionStart()
+        public bool Switchable => switchable;
+
+        public bool IsInteractable => _isInteractable;
+        
+        public void OnInteractionStart()
         {
-            base.OnInteractionStart();
-            
             sonarUI.SetActive(true);
         }
 
-        public override void OnInteractionEnd()
+        public void OnInteractionEnd()
         {
-            base.OnInteractionEnd();
-            
             sonarUI.SetActive(false);
         }
     }

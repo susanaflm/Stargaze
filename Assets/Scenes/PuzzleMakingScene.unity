@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1d6c7a8d2ffa24284a741f5730e54c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwitchable: 1
+  switchable: 1
   attachedDoors:
   - {fileID: 1426991466}
   - {fileID: 92648705}
@@ -844,7 +844,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23615770aabc8bf4492886a87a5251ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwitchable: 0
+  switchable: 0
   interactionUI: {fileID: 179705272}
 --- !u!1 &733693397
 GameObject:
@@ -2306,7 +2306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11e8c1b1a59cb3f4eb9be632b300b7ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwitchable: 0
+  switchable: 0
   lowerLeftCorner: {fileID: 1183301134}
   upperRightCorner: {fileID: 2069877592}
   puzzleCamera: {fileID: 1279849288}
@@ -2821,7 +2821,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5420c6ca1c2213940ac78f04b5d5958d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwitchable: 0
+  switchable: 0
   fuelMixingUI: {fileID: 733693397}
 --- !u!136 &1619559131
 CapsuleCollider:
@@ -3081,7 +3081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a1bada5f92a5b34da97d4ed1950ff08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwitchable: 0
+  switchable: 0
   puzzleCamera: {fileID: 853399156}
 --- !u!4 &1740772790 stripped
 Transform:
@@ -3425,6 +3425,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6503142483567659056, guid: c4e601224ba538e4d974974640634179,
+        type: 3}
+      propertyPath: switchable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3179776205199965170, guid: c4e601224ba538e4d974974640634179,
         type: 3}
       propertyPath: m_Name
@@ -3578,6 +3583,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2650353724398128670, guid: c4d16d531d1f0fe4ca9a6d2eb1c8ced9,
+        type: 3}
+      propertyPath: switchable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2650353724580090819, guid: c4d16d531d1f0fe4ca9a6d2eb1c8ced9,
         type: 3}
       propertyPath: m_Name
@@ -3643,6 +3653,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2650353725050022752, guid: c4d16d531d1f0fe4ca9a6d2eb1c8ced9,
+        type: 3}
+      propertyPath: switchable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2650353725050022758, guid: c4d16d531d1f0fe4ca9a6d2eb1c8ced9,
         type: 3}
       propertyPath: m_Layer
@@ -3653,25 +3668,55 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2650353725095935875, guid: c4d16d531d1f0fe4ca9a6d2eb1c8ced9,
+        type: 3}
+      propertyPath: switchable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2650353725237238632, guid: c4d16d531d1f0fe4ca9a6d2eb1c8ced9,
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2650353725237238634, guid: c4d16d531d1f0fe4ca9a6d2eb1c8ced9,
+        type: 3}
+      propertyPath: switchable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2650353725569941081, guid: c4d16d531d1f0fe4ca9a6d2eb1c8ced9,
         type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2650353725569941083, guid: c4d16d531d1f0fe4ca9a6d2eb1c8ced9,
+        type: 3}
+      propertyPath: switchable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2650353725718318019, guid: c4d16d531d1f0fe4ca9a6d2eb1c8ced9,
         type: 3}
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2650353725718318029, guid: c4d16d531d1f0fe4ca9a6d2eb1c8ced9,
+        type: 3}
+      propertyPath: switchable
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2650353725804535301, guid: c4d16d531d1f0fe4ca9a6d2eb1c8ced9,
         type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2650353725804535303, guid: c4d16d531d1f0fe4ca9a6d2eb1c8ced9,
+        type: 3}
+      propertyPath: switchable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2650353725931900761, guid: c4d16d531d1f0fe4ca9a6d2eb1c8ced9,
+        type: 3}
+      propertyPath: switchable
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2650353725931900767, guid: c4d16d531d1f0fe4ca9a6d2eb1c8ced9,
         type: 3}
@@ -3746,6 +3791,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Keycard
+      objectReference: {fileID: 0}
+    - target: {fileID: 8787367711206183270, guid: fe81cba11cf15264eb96827652785213,
+        type: 3}
+      propertyPath: switchable
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe81cba11cf15264eb96827652785213, type: 3}

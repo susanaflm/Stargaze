@@ -4,18 +4,24 @@ using UnityEngine.UI;
 
 namespace Stargaze.Mono.Interactions.GravityPanel
 {
-    public class GravityPanelButton : Interactable
+    public class GravityPanelButton : MonoBehaviour, IInteractable
     {
         public delegate void ButtonPressed(char buttonInput);
 
         public static ButtonPressed SendButtonInput;
         
-        [SerializeField] private char buttonInput;
+        private bool _isInteractable = true;
 
-        public override void OnInteractionStart()
+        [SerializeField] private bool switchable;
+        
+        [SerializeField] private char buttonInput;
+        
+        public bool Switchable => switchable;
+
+        public bool IsInteractable => _isInteractable;
+
+        public void OnInteractionStart()
         {
-            base.OnInteractionStart();
-            
             //TODO: Animate Button
             
             //If the gravity puzzle is completed the player will no longer be able to interact with the gravity
@@ -26,5 +32,7 @@ namespace Stargaze.Mono.Interactions.GravityPanel
             
             SendButtonInput?.Invoke(buttonInput);
         }
+
+        public void OnInteractionEnd() { }
     }
 }

@@ -47,10 +47,10 @@ namespace Stargaze.Mono.Player
 
             if (hitSomething)
             {
-                Interactable interactable = hit.transform.GetComponent<Interactable>();
+                IInteractable interactable = hit.transform.GetComponent<IInteractable>();
 
                 if (interactable == null)
-                    interactable = hit.transform.GetComponentInParent<Interactable>();
+                    interactable = hit.transform.GetComponentInParent<IInteractable>();
 
                 if (interactable != null)
                 {

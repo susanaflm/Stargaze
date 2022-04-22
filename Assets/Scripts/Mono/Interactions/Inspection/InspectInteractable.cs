@@ -3,17 +3,22 @@ using UnityEngine;
 
 namespace Stargaze.Mono.Interactions.Inspection
 {
-    public class InspectInteractable : Interactable
+    public class InspectInteractable : MonoBehaviour, IInteractable
     {
-
-        [SerializeField] private GameObject interactionUI;
-
+        private bool _isInteractable = true;
+        
         private GameObject _inspectObject;
 
-        public override void OnInteractionStart()
+        [SerializeField] private bool switchable;
+
+        [SerializeField] private GameObject interactionUI;
+        
+        public bool Switchable => switchable;
+
+        public bool IsInteractable => _isInteractable;
+
+        public void OnInteractionStart()
         {
-            base.OnInteractionStart();
-            
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 
@@ -24,10 +29,8 @@ namespace Stargaze.Mono.Interactions.Inspection
             _inspectObject.layer = LayerMask.NameToLayer("UI");
         }
 
-        public override void OnInteractionEnd()
+        public void OnInteractionEnd()
         {
-            base.OnInteractionEnd();
-            
             RestoreUI();
         }
 

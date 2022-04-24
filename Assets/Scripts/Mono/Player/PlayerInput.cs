@@ -12,7 +12,7 @@ namespace Stargaze.Mono.Player
         private InputActions _actions;
         
 #if DEBUG
-        private InputAction _debugToggleAction = new (binding: "<Keyboard>/f12");
+        private InputAction _debugToggleAction = new (binding: "<Keyboard>/f11");
 #endif
         
         public Action Jump { get; set; }

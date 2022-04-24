@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
 namespace Stargaze.Mono.Interactions.Magnet
 {
-    public class Magnet : MonoBehaviour
+    public class Magnet : NetworkBehaviour
     {
         private List<Rigidbody> _magneticStuff = new();
         private SphereCollider _sphereCollider;
@@ -14,19 +15,26 @@ namespace Stargaze.Mono.Interactions.Magnet
         [SerializeField] private float magnetStrength;
         [SerializeField] private Transform attractionPoint;
 
-        private void Start()
+        public override void OnStartServer()
         {
             _sphereCollider = GetComponent<SphereCollider>();
         }
 
         private void FixedUpdate()
         {
+            AttractItems();
+        }
+
+        [ServerCallback]
+        private void AttractItems()
+        {
             foreach (var magneticItem in _magneticStuff)
             {
-                magneticItem.AddForce((attractionPoint.position - magneticItem.position) * magnetStrength * Time.fixedDeltaTime) ;
+                magneticItem.AddForce((attractionPoint.position - magneticItem.position) * (magnetStrength * Time.fixedDeltaTime));
             }
         }
-        
+
+        [ServerCallback]
         private void OnTriggerEnter(Collider other)
         {
             if (other.CompareTag("Magnetic"))
@@ -35,6 +43,7 @@ namespace Stargaze.Mono.Interactions.Magnet
             }
         }
 
+        [ServerCallback]
         private void OnTriggerExit(Collider other)
         {
             if (other.CompareTag("Magnetic"))

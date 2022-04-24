@@ -1,16 +1,18 @@
 using System;
 using System.Collections.Generic;
+using Mirror;
 using Stargaze.ScriptableObjects.Materials;
 using UnityEngine;
 
 namespace Stargaze.Mono.Puzzle
 {
-    public class PuzzleManager : MonoBehaviour
+    public class PuzzleManager : NetworkBehaviour
     {
         public static PuzzleManager Instance;
 
         private int _keycardAccessLevel = 0;
         
+        [SyncVar]
         private bool _doesPlayerHaveMagnet = false;
         
         private bool _gravityStatus = true;
@@ -51,6 +53,7 @@ namespace Stargaze.Mono.Puzzle
             _keycardAccessLevel = kcAccess;
         }
 
+        [Server]
         public void GetMagnet()
         {
             _doesPlayerHaveMagnet = true;

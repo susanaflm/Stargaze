@@ -59,7 +59,8 @@ namespace Stargaze.Mono.Interactions.Magnet
         [Command(requiresAuthority = false)]
         private void CmdCreateMagnet(NetworkConnectionToClient sender = null)
         {
-            _magnet = Instantiate(magnetPrefab, _panelPos + new Vector3(0,0,-transform.lossyScale.z / 2), Quaternion.identity);
+            var planeTransform = transform;
+            _magnet = Instantiate(magnetPrefab, _panelPos, planeTransform.rotation);
             _magnet.GetComponent<MagnetController>().SetBoundaries(upperRightCorner.position, lowerLeftCorner.position);
             
             NetworkServer.Spawn(_magnet, sender);

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Stargaze.Mono.Interactions.DroneController
@@ -13,6 +14,11 @@ namespace Stargaze.Mono.Interactions.DroneController
         public bool Switchable => switchable;
 
         public bool IsInteractable => _isInteractable;
+
+        private void Start()
+        {
+            droneControllerUI.SetActive(false);
+        }
 
         public void OnInteractionStart()
         {

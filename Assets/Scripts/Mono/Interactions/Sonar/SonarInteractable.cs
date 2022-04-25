@@ -14,6 +14,11 @@ namespace Stargaze.Mono.Interactions.Sonar
 
         public bool IsInteractable => _isInteractable;
         
+        private void Start()
+        {
+            sonarUI.SetActive(false);
+        }
+        
         public void OnInteractionStart()
         {
             sonarUI.SetActive(true);

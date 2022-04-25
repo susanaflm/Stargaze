@@ -227,7 +227,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1173943368}
         m_TargetAssemblyTypeName: Stargaze.Mono.Drone.Drone, Assembly-CSharp
-        m_MethodName: GoDown
+        m_MethodName: CmdGoDown
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1827,7 +1827,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1173943368}
         m_TargetAssemblyTypeName: Stargaze.Mono.Drone.Drone, Assembly-CSharp
-        m_MethodName: GoLeft
+        m_MethodName: CmdGoLeft
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1982,7 +1982,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1173943368}
         m_TargetAssemblyTypeName: Stargaze.Mono.Drone.Drone, Assembly-CSharp
-        m_MethodName: GoRight
+        m_MethodName: CmdGoRight
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2095,7 +2095,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1173943368}
         m_TargetAssemblyTypeName: Stargaze.Mono.Drone.Drone, Assembly-CSharp
-        m_MethodName: GoUp
+        m_MethodName: CmdGoUp
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

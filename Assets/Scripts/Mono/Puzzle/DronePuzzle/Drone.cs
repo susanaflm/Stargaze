@@ -1,14 +1,18 @@
 using System;
 using DG.Tweening;
+using Mirror;
 using UnityEngine;
 
 namespace Stargaze.Mono.Puzzle.DronePuzzle
 {
-    public class Drone : MonoBehaviour
+    public class Drone : NetworkBehaviour
     {
         [SerializeField] private float distanceToTravel;
         [SerializeField] private RectTransform parent;
 
+        [SyncVar(hook = nameof(OnPositionChanged))]
+        private Vector2 _position;
+        
         private float _width;
         private float _height;
 
@@ -24,52 +28,68 @@ namespace Stargaze.Mono.Puzzle.DronePuzzle
             _height = size.y;
         }
 
-        private void Update()
+        public override void OnStartServer()
         {
-            var position = _rectTransform.anchoredPosition;
-            var droneSize = _rectTransform.rect.size;
-
-            position.x = Mathf.Clamp(position.x, 0 + droneSize.x / 2, _width - droneSize.x / 2);
-            position.y = Mathf.Clamp(position.y, 0 + droneSize.y / 2, _height - droneSize.y / 2);
-
-            _rectTransform.anchoredPosition = position;
+            _position = _rectTransform.anchoredPosition;
         }
 
-        public void GoUp()
+        [Command(requiresAuthority = false)]
+        public void CmdGoUp()
         {
-            //_rectTransform.anchoredPosition += new Vector2(0, distanceToTravel);
-            var anchoredPosition = _rectTransform.anchoredPosition;
-            _rectTransform.anchoredPosition = Vector2.Lerp(anchoredPosition,
-                new Vector2(anchoredPosition.x, anchoredPosition.y + distanceToTravel),
-                0.5f);
+            _position = Vector2.Lerp(
+                _position,
+                new Vector2(_position.x, _position.y + distanceToTravel),
+                0.5f
+            );
+            
+            ClampPosition();
         }
         
-        public void GoDown()
+        [Command(requiresAuthority = false)]
+        public void CmdGoDown()
         {
-            //_rectTransform.anchoredPosition += new Vector2(0, -distanceToTravel);
-            var anchoredPosition = _rectTransform.anchoredPosition;
-            _rectTransform.anchoredPosition = Vector2.Lerp(anchoredPosition,
-                new Vector2(anchoredPosition.x, anchoredPosition.y - distanceToTravel),
-                0.5f);
+            _position = Vector2.Lerp(
+                _position,
+                new Vector2(_position.x, _position.y - distanceToTravel),
+                0.5f
+            );
+            
+            ClampPosition();
         }
         
-        public void GoLeft()
+        [Command(requiresAuthority = false)]
+        public void CmdGoLeft()
         {
-            //_rectTransform.anchoredPosition += new Vector2(-distanceToTravel, 0);
-            var anchoredPosition = _rectTransform.anchoredPosition;
-            _rectTransform.anchoredPosition = Vector2.Lerp(anchoredPosition,
-                new Vector2(anchoredPosition.x - distanceToTravel, anchoredPosition.y),
-                0.5f);
+            _position = Vector2.Lerp(
+                _position,
+                new Vector2(_position.x - distanceToTravel, _position.y),
+                0.5f
+            );
+            
+            ClampPosition();
         }
         
-        public void GoRight()
+        [Command(requiresAuthority = false)]
+        public void CmdGoRight()
         {
-            //_rectTransform.anchoredPosition += new Vector2(distanceToTravel, 0);
-            var anchoredPosition = _rectTransform.anchoredPosition;
-            _rectTransform.anchoredPosition = Vector2.Lerp(anchoredPosition,
-                new Vector2(anchoredPosition.x + distanceToTravel, anchoredPosition.y),
-                0.5f);
+            _position = Vector2.Lerp(
+                _position,
+                new Vector2(_position.x + distanceToTravel, _position.y),
+                0.5f
+            );
+            
+            ClampPosition();
         }
         
+        private void ClampPosition()
+        {
+            _position.x = Mathf.Clamp(_position.x, 0 + _width / 2, _width - _width / 2);
+            _position.y = Mathf.Clamp(_position.y, 0 + _width / 2, _height - _height / 2);
+        }
+
+        private void OnPositionChanged(Vector2 oldPosition, Vector2 newPosition)
+        {
+            _rectTransform.anchoredPosition = _position;
+        }
     }
 }

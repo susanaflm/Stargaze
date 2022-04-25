@@ -6,6 +6,8 @@ namespace Stargaze.Mono.Door
 {
     public class Door : MonoBehaviour
     {
+        private bool powerState = true;
+        
         [SerializeField] private bool isOpened;
 
         private void OpenDoor()
@@ -33,6 +35,12 @@ namespace Stargaze.Mono.Door
 
         public void ToggleDoor()
         {
+            if (!powerState)
+            {
+                Debug.Log("Can't open door! Turn Power On or activate gravity");
+                return;
+            }
+
             if (isOpened)
                 CloseDoor();
             else

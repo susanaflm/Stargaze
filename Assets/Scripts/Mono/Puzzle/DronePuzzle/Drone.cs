@@ -83,8 +83,10 @@ namespace Stargaze.Mono.Puzzle.DronePuzzle
         
         private void ClampPosition()
         {
-            _position.x = Mathf.Clamp(_position.x, 0 + _width / 2, _width - _width / 2);
-            _position.y = Mathf.Clamp(_position.y, 0 + _width / 2, _height - _height / 2);
+            Vector2 droneSize = _rectTransform.rect.size;
+            
+            _position.x = Mathf.Clamp(_position.x, 0 + droneSize.x / 2, _width - droneSize.x / 2);
+            _position.y = Mathf.Clamp(_position.y, 0 + droneSize.y / 2, _height - droneSize.y / 2);
         }
 
         private void OnPositionChanged(Vector2 oldPosition, Vector2 newPosition)

@@ -1,8 +1,9 @@
+using Mirror;
 using UnityEngine;
 
 namespace Stargaze.Mono.Interactions.Sonar
 {
-    public class SonarInteractable : MonoBehaviour, IInteractable
+    public class SonarInteractable : NetworkBehaviour, IInteractable
     {
         private bool _isInteractable = true;
 
@@ -14,7 +15,7 @@ namespace Stargaze.Mono.Interactions.Sonar
 
         public bool IsInteractable => _isInteractable;
         
-        private void Start()
+        public override void OnStartClient()
         {
             sonarUI.SetActive(false);
         }

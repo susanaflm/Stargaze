@@ -1,9 +1,10 @@
 using System;
+using Mirror;
 using UnityEngine;
 
 namespace Stargaze.Mono.Interactions.DroneController
 {
-    public class DroneControllerInteractable : MonoBehaviour, IInteractable
+    public class DroneControllerInteractable : NetworkBehaviour, IInteractable
     {
         private bool _isInteractable = true;
 
@@ -15,7 +16,7 @@ namespace Stargaze.Mono.Interactions.DroneController
 
         public bool IsInteractable => _isInteractable;
 
-        private void Start()
+        public override void OnStartClient()
         {
             droneControllerUI.SetActive(false);
         }

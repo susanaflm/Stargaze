@@ -52,6 +52,11 @@ namespace Stargaze.Mono.Player
                 if (interactable == null)
                     interactable = hit.transform.GetComponentInParent<IInteractable>();
 
+                if (interactable == null)
+                {
+                    interactionData.ResetInteractable();
+                }
+
                 if (interactable != null)
                 {
                     if (interactionData.IsEmpty())

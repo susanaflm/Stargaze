@@ -1,10 +1,11 @@
-﻿using Stargaze.Mono.Interactions;
+﻿using Mirror;
+using Stargaze.Mono.Interactions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace Stargaze.Mono.Terminals
 {
-    public class Terminal : MonoBehaviour, IInteractable
+    public class Terminal : NetworkBehaviour, IInteractable
     {
         private RenderTexture _renderTexture;
         

@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Mirror;
 using NaughtyAttributes;
+using Stargaze.Mono.Puzzle;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -8,9 +9,6 @@ namespace Stargaze.Mono.Door
 {
     public class Door : NetworkBehaviour
     {
-        [SyncVar]
-        private bool powerState = true;
-        
         [SyncVar]
         [SerializeField] private bool isOpened;
 
@@ -54,7 +52,7 @@ namespace Stargaze.Mono.Door
 
         public void ToggleDoor()
         {
-            if (!powerState)
+            if (!PuzzleManager.Instance.IsPowerOn())
             {
                 Debug.Log("Can't open door! Turn Power On or activate gravity");
                 return;

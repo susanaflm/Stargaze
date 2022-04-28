@@ -572,6 +572,237 @@ namespace Stargaze.Input
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Electrical"",
+            ""id"": ""e629817b-660e-4bae-8697-80eee1b7381a"",
+            ""actions"": [
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd04f69d-7d43-42cd-a919-8316a00bd1ab"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Navigate"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""3569210a-9414-4752-b7f5-8cd77598be4a"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""WireMovement"",
+                    ""type"": ""Value"",
+                    ""id"": ""c5844218-3c7c-4c78-ad95-95ba9af573b8"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""PlaceWire"",
+                    ""type"": ""Button"",
+                    ""id"": ""9f59be8a-df3e-499a-b697-bd4a38d898bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7a8dabd1-fb05-458d-954f-8a1770583110"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2fbfe898-26c8-4a8f-a733-f76a237325d5"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bbb34adb-5fef-48ef-a6aa-370b7d57cfe8"",
+                    ""path"": ""<Gamepad>/dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Gamepad"",
+                    ""id"": ""31160819-fe96-4313-863b-44e72334120d"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""cf01b223-200c-40ad-a275-80aa22678ea4"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""8de400ae-ca9d-4698-8d5b-5f2eab3d3599"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""5853d5c7-16e8-4745-98d5-b42debdcad19"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""1739b117-b322-4181-922b-389a53828349"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard"",
+                    ""id"": ""2b56e053-636d-4ba6-8eb1-2a59c2aaa7ad"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""d1ae8492-d444-4a07-8448-f3caee396b43"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""e7338633-b583-41b2-9cec-a47827373a99"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""0c2436c5-564b-45aa-b51d-f793527c2dde"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""d72b38bc-6fa7-410c-9e1a-9fb116ca8032"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Navigate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""654002fa-011b-426a-822b-40efe3243e84"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""WireMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""26b2572c-858e-4887-bf27-39af86036fb6"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""WireMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b31eb549-36a7-4bf4-9d71-5db39f836e5b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""PlaceWire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7fb7338e-14ae-4cef-8fe4-f000e7053adc"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""PlaceWire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -624,6 +855,12 @@ namespace Stargaze.Input
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_ShowRadioFrequencyPanel = m_UI.FindAction("ShowRadioFrequencyPanel", throwIfNotFound: true);
+            // Electrical
+            m_Electrical = asset.FindActionMap("Electrical", throwIfNotFound: true);
+            m_Electrical_Select = m_Electrical.FindAction("Select", throwIfNotFound: true);
+            m_Electrical_Navigate = m_Electrical.FindAction("Navigate", throwIfNotFound: true);
+            m_Electrical_WireMovement = m_Electrical.FindAction("WireMovement", throwIfNotFound: true);
+            m_Electrical_PlaceWire = m_Electrical.FindAction("PlaceWire", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -884,6 +1121,63 @@ namespace Stargaze.Input
             }
         }
         public UIActions @UI => new UIActions(this);
+
+        // Electrical
+        private readonly InputActionMap m_Electrical;
+        private IElectricalActions m_ElectricalActionsCallbackInterface;
+        private readonly InputAction m_Electrical_Select;
+        private readonly InputAction m_Electrical_Navigate;
+        private readonly InputAction m_Electrical_WireMovement;
+        private readonly InputAction m_Electrical_PlaceWire;
+        public struct ElectricalActions
+        {
+            private @InputActions m_Wrapper;
+            public ElectricalActions(@InputActions wrapper) { m_Wrapper = wrapper; }
+            public InputAction @Select => m_Wrapper.m_Electrical_Select;
+            public InputAction @Navigate => m_Wrapper.m_Electrical_Navigate;
+            public InputAction @WireMovement => m_Wrapper.m_Electrical_WireMovement;
+            public InputAction @PlaceWire => m_Wrapper.m_Electrical_PlaceWire;
+            public InputActionMap Get() { return m_Wrapper.m_Electrical; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(ElectricalActions set) { return set.Get(); }
+            public void SetCallbacks(IElectricalActions instance)
+            {
+                if (m_Wrapper.m_ElectricalActionsCallbackInterface != null)
+                {
+                    @Select.started -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnSelect;
+                    @Select.performed -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnSelect;
+                    @Select.canceled -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnSelect;
+                    @Navigate.started -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnNavigate;
+                    @Navigate.performed -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnNavigate;
+                    @Navigate.canceled -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnNavigate;
+                    @WireMovement.started -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnWireMovement;
+                    @WireMovement.performed -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnWireMovement;
+                    @WireMovement.canceled -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnWireMovement;
+                    @PlaceWire.started -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnPlaceWire;
+                    @PlaceWire.performed -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnPlaceWire;
+                    @PlaceWire.canceled -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnPlaceWire;
+                }
+                m_Wrapper.m_ElectricalActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @Select.started += instance.OnSelect;
+                    @Select.performed += instance.OnSelect;
+                    @Select.canceled += instance.OnSelect;
+                    @Navigate.started += instance.OnNavigate;
+                    @Navigate.performed += instance.OnNavigate;
+                    @Navigate.canceled += instance.OnNavigate;
+                    @WireMovement.started += instance.OnWireMovement;
+                    @WireMovement.performed += instance.OnWireMovement;
+                    @WireMovement.canceled += instance.OnWireMovement;
+                    @PlaceWire.started += instance.OnPlaceWire;
+                    @PlaceWire.performed += instance.OnPlaceWire;
+                    @PlaceWire.canceled += instance.OnPlaceWire;
+                }
+            }
+        }
+        public ElectricalActions @Electrical => new ElectricalActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         public InputControlScheme KeyboardMouseScheme
         {
@@ -926,6 +1220,13 @@ namespace Stargaze.Input
         public interface IUIActions
         {
             void OnShowRadioFrequencyPanel(InputAction.CallbackContext context);
+        }
+        public interface IElectricalActions
+        {
+            void OnSelect(InputAction.CallbackContext context);
+            void OnNavigate(InputAction.CallbackContext context);
+            void OnWireMovement(InputAction.CallbackContext context);
+            void OnPlaceWire(InputAction.CallbackContext context);
         }
     }
 }

@@ -16,6 +16,8 @@ namespace Stargaze.Mono.Puzzle
         private bool _doesPlayerHaveMagnet = false;
 
         private bool _doesPlayerHaveLockerKey = false;
+
+        private bool _isPowerOn = false;
         
         private bool _gravityStatus = true;
         private bool _isGravityPuzzleComplete = false;
@@ -66,6 +68,11 @@ namespace Stargaze.Mono.Puzzle
             _doesPlayerHaveLockerKey = true;
         }
 
+        public void ActivatePower()
+        {
+            _isPowerOn = true;
+        }
+
         public void DeactivateGravity()
         {
             _gravityStatus = false;
@@ -95,5 +102,7 @@ namespace Stargaze.Mono.Puzzle
         public bool DoesPlayerHaveMagnet() => _doesPlayerHaveMagnet;
 
         public bool DoesPlayerHaveLockerKey() => _doesPlayerHaveLockerKey;
+
+        public bool IsPowerOn() => _isPowerOn;
     }
 }

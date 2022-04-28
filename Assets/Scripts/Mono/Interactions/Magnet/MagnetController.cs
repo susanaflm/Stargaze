@@ -40,16 +40,7 @@ namespace Stargaze.Mono.Interactions.Magnet
         {
             var magnetTransform = transform;
             Vector3 pos  = magnetTransform.localPosition;
-            
-            /*
-            pos.x = Mathf.Clamp(pos.x + input.x * magnetSpeed * Time.smoothDeltaTime, _lowerLeftCorner.x,
-                _upperRightCorner.x);
-            pos.y = Mathf.Clamp(pos.y + input.y * magnetSpeed * Time.smoothDeltaTime, _lowerLeftCorner.y,
-                _upperRightCorner.y);
-            */
 
-            //TODO:Solution approximate values of x and z when dislocating the mouse in the horizontal axis
-            
             pos += magnetTransform.right * (input.x * magnetSpeed * Time.deltaTime);
             pos += magnetTransform.up * (input.y * magnetSpeed * Time.deltaTime);
 

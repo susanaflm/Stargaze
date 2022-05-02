@@ -21,7 +21,6 @@ namespace Stargaze.Mono.Terminals
         
         [SerializeField] private GameObject focusOnInteract;
 
-
         public bool Switchable => false;
         public bool IsInteractable => true;
         
@@ -32,13 +31,21 @@ namespace Stargaze.Mono.Terminals
             
             display.GetComponent<MeshRenderer>().material.SetTexture("_BaseMap", _renderTexture);
             display.GetComponent<MeshRenderer>().material.SetTexture("_EmissionMap", _renderTexture);
+            
+            TerminalAwake();
         }
+
+        protected virtual void TerminalAwake() { }
 
         private void Start()
         {
             loginScreen.SetActive(true);
             contentScreen.SetActive(false);
+            
+            TerminalStart();
         }
+        
+        protected virtual void TerminalStart() { }
 
         public void OnInteractionStart()
         {

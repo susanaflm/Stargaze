@@ -1,5 +1,3 @@
-using System;
-using Stargaze.Mono.Puzzle.DronePuzzle;
 using Stargaze.ScriptableObjects.Materials;
 using TMPro;
 using UnityEngine;

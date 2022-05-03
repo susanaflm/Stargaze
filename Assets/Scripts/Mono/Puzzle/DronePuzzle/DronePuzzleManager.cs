@@ -1,10 +1,21 @@
 ﻿using System;
 using Mirror;
 using Stargaze.Enums;
+using Stargaze.ScriptableObjects.Materials;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Stargaze.Mono.Puzzle.DronePuzzle
 {
+    [Serializable]
+    public struct ResourceMaterialEntry
+    {
+        public ResourceMaterial Material;
+
+        [HideInInspector]
+        public Vector2 Position;
+    }
+    
     public class DronePuzzleManager : NetworkBehaviour
     {
         public static DronePuzzleManager Instance;
@@ -12,9 +23,16 @@ namespace Stargaze.Mono.Puzzle.DronePuzzle
         [SyncVar(hook = nameof(DronePositionChangedCallback))]
         private Vector2 _dronePosition;
 
+        private SyncList<ResourceMaterialEntry> _materials = new();
+
+        [SerializeField] private ResourceMaterialEntry[] materialsToSpawn;
+
         public Action<Vector2> OnDronePositionChanged;
+        public Action OnMaterialListChanged;
 
         public Vector2 DronePosition => _dronePosition;
+
+        public SyncList<ResourceMaterialEntry> Materials => _materials;
 
         private void Awake()
         {
@@ -25,11 +43,24 @@ namespace Stargaze.Mono.Puzzle.DronePuzzle
             }
 
             Instance = this;
+
+            _materials.Callback += MaterialListChangedCallback;
         }
 
         public override void OnStartServer()
         {
             _dronePosition = Vector2.zero;
+
+            for (int i = 0; i < materialsToSpawn.Length; i++)
+            {
+                // TODO: Evaluate if this spawn position is good or not
+                materialsToSpawn[i].Position = new Vector2(
+                    Random.Range(-10, 11),
+                    Random.Range(-10, 11)
+                );
+            }
+            
+            _materials.AddRange(materialsToSpawn);
         }
 
         [Server]
@@ -54,6 +85,11 @@ namespace Stargaze.Mono.Puzzle.DronePuzzle
         private void DronePositionChangedCallback(Vector2 oldPosition, Vector2 newPosition)
         {
             OnDronePositionChanged?.Invoke(newPosition);
+        }
+
+        private void MaterialListChangedCallback(SyncList<ResourceMaterialEntry>.Operation op, int index, ResourceMaterialEntry oldMaterial, ResourceMaterialEntry newMaterial)
+        {
+            OnMaterialListChanged?.Invoke();
         }
     }
 }

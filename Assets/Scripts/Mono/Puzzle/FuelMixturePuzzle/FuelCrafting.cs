@@ -55,13 +55,13 @@ namespace Stargaze.Mono.Puzzle.FuelMixturePuzzle
             {
                 _matA = r;
                 var m = Instantiate(matPrefab, slot1.transform);
-                m.GetComponent<Image>().sprite = r.GetSprite();
+                m.GetComponent<Image>().sprite = r.Sprite;
             }
             else if (_matA != null && _matB == null)
             {
                 _matB = r;
                 var m = Instantiate(matPrefab, slot2.transform);
-                m.GetComponent<Image>().sprite = r.GetSprite();
+                m.GetComponent<Image>().sprite = r.Sprite;
             }
             else
             {
@@ -94,7 +94,7 @@ namespace Stargaze.Mono.Puzzle.FuelMixturePuzzle
                     //TODO: Spawn a component at the output of the machine so the player can collect it and use it
                     
                     var m = Instantiate(matPrefab, resultSlot.transform);
-                    m.GetComponent<Image>().sprite = result.GetSprite();
+                    m.GetComponent<Image>().sprite = result.Sprite;
 
 #if DEBUG
                     Debug.Log($"Crating Success! Crafted: {result.name}");

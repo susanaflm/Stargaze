@@ -22,7 +22,7 @@ namespace Stargaze.Mono.Puzzle
         private bool _gravityStatus = true;
         private bool _isGravityPuzzleComplete = false;
 
-        private List<ResourceMaterial> _gatheredMaterials = new();
+        private SyncList<ResourceMaterial> _gatheredMaterials = new();
 
         /// <summary>
         /// If true the puzzle was completed
@@ -34,7 +34,7 @@ namespace Stargaze.Mono.Puzzle
         /// </summary>
         public bool GravityStatus => _gravityStatus;
 
-        public List<ResourceMaterial> GatheredMaterials => _gatheredMaterials;
+        public SyncList<ResourceMaterial> GatheredMaterials => _gatheredMaterials;
 
         private void Awake()
         {
@@ -89,9 +89,10 @@ namespace Stargaze.Mono.Puzzle
         {
             if (mat == null)
                 return;
-
-            if (_gatheredMaterials.Exists(r => r.Equals(mat)))
-                return;
+            
+            foreach (var material in _gatheredMaterials)
+                if (material == mat)
+                    return;
 
             _gatheredMaterials.Add(mat);
 

@@ -84,6 +84,7 @@ namespace Stargaze.Mono.Puzzle
             _isGravityPuzzleComplete = true;
         }
 
+        [Server]
         public void AddMaterial(ResourceMaterial mat)
         {
             if (mat == null)

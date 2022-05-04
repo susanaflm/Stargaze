@@ -6012,7 +6012,8 @@ MonoBehaviour:
   loginScreen: {fileID: 752766373}
   contentScreen: {fileID: 1402609770}
   focusOnInteract: {fileID: 0}
-  materialIndicator: {fileID: 7407660969533933904, guid: 0d2d592a9ab637048b73d20bc1f0489d,
+  droneIndicator: {fileID: 905584770}
+  materialIndicatorPrefab: {fileID: 7407660969533933904, guid: 0d2d592a9ab637048b73d20bc1f0489d,
     type: 3}
   materialsParent: {fileID: 121141508}
   radarSize: {x: 20, y: 20}
@@ -9324,6 +9325,9 @@ MonoBehaviour:
     Position: {x: 0, y: 0}
   - Material: {fileID: 11400000, guid: 9026a72ced511fd4abf93f4ea6aaa9e1, type: 2}
     Position: {x: 0, y: 0}
+  moveDistance: 1
+  collectionDistance: 1
+  minSpawnDistance: 3
 --- !u!114 &1304016105
 MonoBehaviour:
   m_ObjectHideFlags: 0

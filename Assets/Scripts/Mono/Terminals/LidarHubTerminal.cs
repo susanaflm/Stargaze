@@ -9,7 +9,8 @@ namespace Stargaze.Mono.Terminals
         private DronePuzzleManager _droneManager;
 
         [Space]
-        [SerializeField] private GameObject materialIndicator;
+        [SerializeField] private RectTransform droneIndicator;
+        [SerializeField] private GameObject materialIndicatorPrefab;
         [SerializeField] private RectTransform materialsParent;
         [SerializeField] private Vector2 radarSize;
 
@@ -23,16 +24,25 @@ namespace Stargaze.Mono.Terminals
             _droneManager.OnDronePositionChanged += UpdateDronePosition;
             _droneManager.OnMaterialListChanged += UpdateMaterials;
             
+            UpdateDronePosition(_droneManager.DronePosition);
             UpdateMaterials();
         }
 
         private void UpdateDronePosition(Vector2 newPosition)
         {
-            Debug.Log($"New drone position: {newPosition}");
+            float sX = materialsParent.rect.width / radarSize.x;
+            float sY = materialsParent.rect.height / radarSize.y;
+
+            droneIndicator.anchoredPosition = new Vector2(newPosition.x * sX, newPosition.y * sY);
         }
 
         private void UpdateMaterials()
         {
+            foreach (RectTransform child in materialsParent)
+            {
+                Destroy(child.gameObject);
+            }
+            
             float sX = materialsParent.rect.width / radarSize.x;
             float sY = materialsParent.rect.height / radarSize.y;
             
@@ -40,8 +50,8 @@ namespace Stargaze.Mono.Terminals
             {
                 Vector2 pos = new Vector2(material.Position.x * sX, material.Position.y * sY);
                 
-                // TODO: Optimize this
-                GameObject obj = Instantiate(materialIndicator, materialsParent);
+                // TODO: Optimize this?
+                GameObject obj = Instantiate(materialIndicatorPrefab, materialsParent);
                 obj.GetComponent<RectTransform>().anchoredPosition = pos;
             }
         }

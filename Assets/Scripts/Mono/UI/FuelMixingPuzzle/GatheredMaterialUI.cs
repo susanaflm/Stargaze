@@ -21,7 +21,7 @@ namespace Stargaze.Mono.UI.FuelMixingPuzzle
             foreach (var resourceMaterial in PuzzleManager.Instance.GatheredMaterials)
             {
                 var r = Instantiate(materialPrefab, transform);
-                r.GetComponent<Image>().sprite = resourceMaterial.GetSprite();
+                r.GetComponent<Image>().sprite = resourceMaterial.Sprite;
                 r.GetComponent<CraftingResource>().SetResource(resourceMaterial);
 
                 //Selects one of the components

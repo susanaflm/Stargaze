@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Mirror;
 using Stargaze.ScriptableObjects.Materials;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Stargaze.Mono.Puzzle
 {
@@ -25,6 +26,9 @@ namespace Stargaze.Mono.Puzzle
         private bool _isGravityPuzzleComplete = false;
 
         private SyncList<ResourceMaterial> _gatheredMaterials = new();
+        
+        [SerializeField]
+        private List<ResourceMaterial> cheatMaterials = new();
 
         /// <summary>
         /// If true the puzzle was completed
@@ -110,5 +114,10 @@ namespace Stargaze.Mono.Puzzle
         public bool DoesPlayerHaveLockerKey() => _doesPlayerHaveLockerKey;
 
         public bool IsPowerOn() => _isPowerOn;
+
+        public void AddMaterialsCheat()
+        {
+            _gatheredMaterials.AddRange(cheatMaterials);
+        }
     }
 }

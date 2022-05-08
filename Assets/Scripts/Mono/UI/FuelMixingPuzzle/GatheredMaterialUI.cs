@@ -18,6 +18,8 @@ namespace Stargaze.Mono.UI.FuelMixingPuzzle
             if (PuzzleManager.Instance.GatheredMaterials.Count == 0)
                 return;
 
+            _current = 0;
+
             foreach (var resourceMaterial in PuzzleManager.Instance.GatheredMaterials)
             {
                 var r = Instantiate(materialPrefab, transform);

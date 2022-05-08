@@ -1,4 +1,5 @@
 using System;
+using Stargaze.Mono.Interactions.Vial;
 using Stargaze.Mono.UI.FuelMixingPuzzle;
 using Stargaze.ScriptableObjects.Crafting;
 using Stargaze.ScriptableObjects.Materials;
@@ -20,13 +21,19 @@ namespace Stargaze.Mono.Puzzle.FuelMixturePuzzle
 
         [Header("Resource Material Prefab")]
         [SerializeField] private GameObject matPrefab;
-
+        [Space]
         [SerializeField] private Button fabricateButton;
+        [Space]
+        [Header("Output")]
+        [SerializeField] private Transform outputPos;
+        [SerializeField] private GameObject vialPrefab;
 
         private ResourceMaterial _matA;
         private ResourceMaterial _matB;
 
         private float _craftTimer = 0.0f;
+
+        private ResourceMaterial resultMaterial;
         
         private void Update()
         {
@@ -39,13 +46,16 @@ namespace Stargaze.Mono.Puzzle.FuelMixturePuzzle
             {
                 fabricateButton.interactable = true;
 
-                if (resultSlot.transform.childCount != 0)
-                {
-                    var child = resultSlot.transform.GetChild(0);
-                    Destroy(child.gameObject);
+                if (resultSlot.transform.childCount == 0) return;
+                
+                var child = resultSlot.transform.GetChild(0);
+                Destroy(child.gameObject);
+
+                var m = Instantiate(vialPrefab, outputPos.position, Quaternion.identity);
+                m.GetComponent<VialInteractable>().SetResource(resultMaterial);
                     
-                    fabricateButton.Select();
-                }
+                fabricateButton.Select();
+                resultMaterial = null;
             }
         }
 
@@ -90,9 +100,9 @@ namespace Stargaze.Mono.Puzzle.FuelMixturePuzzle
 
                     _matA = null;
                     _matB = null;
-                    //TODO: Trigger a little Animation and a sound
-                    //TODO: Spawn a component at the output of the machine so the player can collect it and use it
                     
+                    //TODO: Trigger a little Animation and a sound
+
                     var m = Instantiate(matPrefab, resultSlot.transform);
                     m.GetComponent<Image>().sprite = result.Sprite;
 
@@ -104,6 +114,7 @@ namespace Stargaze.Mono.Puzzle.FuelMixturePuzzle
                     child = slot2.transform.GetChild(0);
                     Destroy(child.gameObject);
 
+                    resultMaterial = result;
                     _craftTimer = 5.0f;
                     return;
                 }

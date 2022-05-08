@@ -51,9 +51,16 @@ namespace Stargaze.Mono.Puzzle.FuelMixturePuzzle
                 var child = resultSlot.transform.GetChild(0);
                 Destroy(child.gameObject);
 
-                var m = Instantiate(vialPrefab, outputPos.position, Quaternion.identity);
-                m.GetComponent<VialInteractable>().SetResource(resultMaterial);
-                    
+                if (resultMaterial.IsFinalProduct)
+                {
+                    //TODO: Spawn The Different models for the fuels
+                }
+                else
+                {
+                    var m = Instantiate(vialPrefab, outputPos.position, Quaternion.identity);
+                    m.GetComponent<VialInteractable>().SetResource(resultMaterial);
+                }
+                
                 fabricateButton.Select();
                 resultMaterial = null;
             }

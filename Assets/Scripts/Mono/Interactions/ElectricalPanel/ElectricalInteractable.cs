@@ -84,7 +84,7 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
 
             foreach (Wire wire in wires)
             {
-                wire.GetComponent<WireController>().SetBoundaries(upperRightCorner.position, lowerLeftCorner.position);
+                wire.GetComponent<WireController>().SetBoundaries(upperRightCorner.localPosition, lowerLeftCorner.localPosition);
             }
         }
 

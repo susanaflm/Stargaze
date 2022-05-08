@@ -34,16 +34,16 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             Vector2 input = _input.WireMovement;
 
             var wireTransform = transform;
-            Vector3 pos  = wireTransform.position;
+            Vector3 pos  = wireTransform.localPosition;
 
-            pos -= wireTransform.right * (input.x * wireSpeed * Time.deltaTime);
+            pos += wireTransform.right * (input.x * wireSpeed * Time.deltaTime);
             pos += wireTransform.up * (input.y * wireSpeed * Time.deltaTime);
 
-            pos.x = Mathf.Clamp(pos.x, _lowerLeftCorner.x, _upperRightCorner.x);
+            pos.x = Mathf.Clamp(pos.x, _upperRightCorner.x, _lowerLeftCorner.x);
             pos.y = Mathf.Clamp(pos.y, _lowerLeftCorner.y, _upperRightCorner.y);
             pos.z = Mathf.Clamp(pos.z, _lowerLeftCorner.z, _upperRightCorner.z);
             
-            transform.position = pos;
+            transform.localPosition = pos;
         }
         
         private void ConnectCable()

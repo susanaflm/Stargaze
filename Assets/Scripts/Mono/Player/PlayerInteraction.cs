@@ -11,6 +11,8 @@ namespace Stargaze.Mono.Player
         private PlayerGroundController _controller;
         private Camera _playerCamera;
 
+        private IInteractable _currentInteractable;
+
         [Header("Data")]
         [SerializeField] private InteractionData interactionData;
 
@@ -34,6 +36,9 @@ namespace Stargaze.Mono.Player
         
         void Update()
         {
+            if (_controller.IsPlayerInteracting)
+                return;
+   
             CheckForInteractable();
         }
 
@@ -98,7 +103,8 @@ namespace Stargaze.Mono.Player
 
             if (!interactionData.Interactable.Switchable)
                 _controller.IsPlayerInteracting = true;
-
+            
+            _currentInteractable = interactionData.Interactable;
             interactionData.Interact();
         }
 
@@ -106,8 +112,9 @@ namespace Stargaze.Mono.Player
         {
             if (!_controller.IsPlayerInteracting) return;
             
-            interactionData.Interactable.OnInteractionEnd();
+            _currentInteractable.OnInteractionEnd();
 
+            _currentInteractable = null;
             _controller.IsPlayerInteracting = false;
         }
         

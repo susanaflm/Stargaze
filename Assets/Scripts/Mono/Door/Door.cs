@@ -12,6 +12,13 @@ namespace Stargaze.Mono.Door
         [SyncVar]
         [SerializeField] private bool isOpened;
 
+        private Animator _doorAnimator;
+
+        private void Awake()
+        {
+            _doorAnimator = GetComponent<Animator>();
+        }
+        
         [Server]
         public void OpenDoor()
         {
@@ -25,17 +32,14 @@ namespace Stargaze.Mono.Door
         {
             Debug.Log($"Door: {gameObject.name} has been opened");
 
-            //TODO: The Actual door might need to have an animator trigger
-            
-            var position = transform.position;
-            transform.DOMove(new Vector3(position.x,position.y + 3,position.z), 2f);
+            _doorAnimator.SetBool("Opened", true);
         }
 
         [Server]
         public void CloseDoor()
         {
             isOpened = false;
-            
+
             RpcCloseDoor();
         }
 
@@ -44,10 +48,7 @@ namespace Stargaze.Mono.Door
         {
             Debug.Log($"Door: {gameObject.name} has been closed");
             
-            //TODO: The Actual door might need to have an animator trigger
-            
-            var position = transform.position;
-            transform.DOMove(new Vector3(position.x,position.y - 3,position.z), 2f);
+            _doorAnimator.SetBool("Opened", false);
         }
 
         public void ToggleDoor()

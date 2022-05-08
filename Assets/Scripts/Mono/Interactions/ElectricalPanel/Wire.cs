@@ -40,6 +40,7 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             _isWireConnected = true;
 
             _isWireConnectedCorrectly = connection == desiredConnector;
+            ElectricalInteractable.OnWireConnected?.Invoke();
         }
 
         public void DisconnectCable()

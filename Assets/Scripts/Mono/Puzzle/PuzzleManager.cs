@@ -70,9 +70,9 @@ namespace Stargaze.Mono.Puzzle
             _doesPlayerHaveLockerKey = true;
         }
 
-        public void ActivatePower()
+        public void SetPowerStatus(bool status)
         {
-            _isPowerOn = true;
+            _isPowerOn = status;
         }
 
         [Server]

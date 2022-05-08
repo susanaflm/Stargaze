@@ -75,9 +75,15 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             _wires = wires;
         }
 
+        private void OnEnable()
+        {
+            _input.enabled = true;
+        }
+
         private void OnDisable()
         {
             _wires[_currentWire].SetHovered(false);
+            _input.enabled = false;
         }
     }
 }

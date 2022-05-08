@@ -89,12 +89,14 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
 
         private void OnEnable()
         {
+            _input.enabled = true;
             _input.PlaceWire += ConnectCable;
         }
 
         private void OnDisable()
         {
             _input.PlaceWire -= ConnectCable;
+            _input.enabled = false;
         }
     }
 }

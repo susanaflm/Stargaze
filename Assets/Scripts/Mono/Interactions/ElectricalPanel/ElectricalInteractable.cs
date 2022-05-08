@@ -2,13 +2,14 @@ using System;
 using Cinemachine;
 using Stargaze.Mono.Puzzle;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Stargaze.Mono.Interactions.ElectricalPanel
 {
     public class ElectricalInteractable : MonoBehaviour, IInteractable
     {
-        public delegate void OnInteraction();
-        public static OnInteraction OnInteractionEnableWire;
+        public delegate void OnConnection();
+        public static OnConnection OnWireConnected;
         
         private bool _isInteractable = true;
 
@@ -41,8 +42,38 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             puzzleCamera.gameObject.SetActive(false);
         }
 
+        private void CheckWires()
+        {
+            _isEveryWireConnected = true;
+            
+            foreach (var wire in wires)
+            {
+                if (!wire.IsPowerOn)
+                {
+                    _isEveryWireConnected = false;
+                }
+            }
+
+            if (!_isEveryWireConnected)
+            {
+                if (PuzzleManager.Instance.IsPowerOn())
+                {
+                    PuzzleManager.Instance.SetPowerStatus(false);
+                }
+                
+                return;
+            }
+            
+            PuzzleManager.Instance.SetPowerStatus(true);
+#if DEBUG
+            Debug.Log("Power On!");
+#endif
+        }
+
         public void OnInteractionStart()
         {
+            OnWireConnected += CheckWires;
+            
             puzzleCamera.gameObject.SetActive(true);
             
             wiresDoorAnimator.SetTrigger("Interacted");
@@ -59,7 +90,8 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
 
         public void OnInteractionEnd()
         {
-            _isEveryWireConnected = true;
+            OnWireConnected -= CheckWires;
+            
             puzzleCamera.gameObject.SetActive(false);
             selector.enabled = false;
 
@@ -67,28 +99,10 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             {
                 if (!wire.IsWireConnected)
                 {
-                    wire.GetComponent<WireController>().ResetPosition(); 
+                    wire.GetComponent<WireController>().ResetPosition();
                     wire.GetComponent<WireController>().enabled = false;
                 }
-                
-                if (!wire.IsPowerOn)
-                {
-                    _isEveryWireConnected = false;
-                }
             }
-
-            if (!_isEveryWireConnected)
-            {
-                return;
-            }
-            
-            PuzzleManager.Instance.ActivatePower();
-#if DEBUG
-            Debug.Log("Power On!");
-#endif
-            
         }
-        
-        
     }
 }

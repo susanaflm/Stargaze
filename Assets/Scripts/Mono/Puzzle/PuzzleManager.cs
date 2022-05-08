@@ -19,7 +19,9 @@ namespace Stargaze.Mono.Puzzle
 
         private bool _isPowerOn = false;
         
+        [SyncVar]
         private bool _gravityStatus = true;
+        [SyncVar]
         private bool _isGravityPuzzleComplete = false;
 
         private SyncList<ResourceMaterial> _gatheredMaterials = new();
@@ -73,11 +75,13 @@ namespace Stargaze.Mono.Puzzle
             _isPowerOn = true;
         }
 
+        [Server]
         public void DeactivateGravity()
         {
             _gravityStatus = false;
         }
         
+        [Server]
         public void ActivateGravity()
         {
             _gravityStatus = true;

@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d879378dac219409baa973d49a969e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwitchable: 1
+  switchable: 0
   buttonInput: 51
 --- !u!1 &2650353724580090819
 GameObject:
@@ -121,6 +121,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2650353724580090830}
+  - component: {fileID: 7779151723820690960}
   - component: {fileID: 2650353724580090831}
   - component: {fileID: 2650353724580090828}
   - component: {fileID: 2650353724580090829}
@@ -155,6 +156,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7779151723820690960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2650353724580090819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: c4d16d531d1f0fe4ca9a6d2eb1c8ced9
+  hasSpawned: 0
 --- !u!33 &2650353724580090831
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -230,6 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ac1ce4c2e800d4fba01abd6c5d9031, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   deactivateGravityCode: a1b2c3
   activateGravityCode: aa11
 --- !u!1 &2650353725050022758
@@ -342,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d879378dac219409baa973d49a969e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwitchable: 1
+  switchable: 0
   buttonInput: 98
 --- !u!1 &2650353725095935873
 GameObject:
@@ -454,7 +474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d879378dac219409baa973d49a969e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwitchable: 1
+  switchable: 0
   buttonInput: 49
 --- !u!1 &2650353725237238632
 GameObject:
@@ -566,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d879378dac219409baa973d49a969e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwitchable: 1
+  switchable: 0
   buttonInput: 52
 --- !u!1 &2650353725569941081
 GameObject:
@@ -678,7 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d879378dac219409baa973d49a969e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwitchable: 1
+  switchable: 0
   buttonInput: 99
 --- !u!1 &2650353725718318019
 GameObject:
@@ -790,7 +810,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d879378dac219409baa973d49a969e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwitchable: 1
+  switchable: 0
   buttonInput: 50
 --- !u!1 &2650353725804535301
 GameObject:
@@ -902,7 +922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d879378dac219409baa973d49a969e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwitchable: 1
+  switchable: 0
   buttonInput: 100
 --- !u!1 &2650353725931900767
 GameObject:
@@ -1014,5 +1034,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d879378dac219409baa973d49a969e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSwitchable: 1
+  switchable: 0
   buttonInput: 97

@@ -1,13 +1,17 @@
+using System;
+using Mirror;
 using Stargaze.Mono.Puzzle;
 using UnityEngine;
 
 namespace Stargaze.Mono.Interactions.GravityPanel
 {
-    public class GravityPanel : MonoBehaviour
+    public class GravityPanel : NetworkBehaviour
     {
         public delegate void OnGravityStatusChange(bool gravityStatus);
         
         public static OnGravityStatusChange OnGravitySwitch;
+
+        private PuzzleManager _puzzleManager;
         
         [SerializeField] private string deactivateGravityCode;
         [SerializeField] private string activateGravityCode;
@@ -16,7 +20,7 @@ namespace Stargaze.Mono.Interactions.GravityPanel
         private string _currentCode = "";
         private bool _isGravityOn = true;
 
-        private void Awake()
+        public override void OnStartServer()
         {
             deactivateGravityCode = deactivateGravityCode.ToLower();
             activateGravityCode = activateGravityCode.ToLower();
@@ -24,7 +28,18 @@ namespace Stargaze.Mono.Interactions.GravityPanel
             _currentUnlockCode = deactivateGravityCode;
         }
 
-        private void AddCharToCode(char input)
+        private void Start()
+        {
+            _puzzleManager = PuzzleManager.Instance;
+        }
+
+        private void OnButtonPressed(char value)
+        {
+            CmdAddCharToCode(value);
+        }
+
+        [Command(requiresAuthority = false)]
+        private void CmdAddCharToCode(char input)
         {
             //Add the touched button input to the code
             _currentCode += input;
@@ -44,6 +59,7 @@ namespace Stargaze.Mono.Interactions.GravityPanel
 #if DEBUG
             Debug.Log("Code: " + _currentCode);
 #endif
+            
             if (_currentCode != _currentUnlockCode) return;
 
             if (_currentUnlockCode == deactivateGravityCode)
@@ -52,38 +68,57 @@ namespace Stargaze.Mono.Interactions.GravityPanel
                 ActivateGravity();
 
             _currentCode = "";
-            
         }
 
+        [Server]
         private void DeactivateGravity()
         {
-            _isGravityOn = false;
+            _puzzleManager.DeactivateGravity();
+            
+            _isGravityOn = _puzzleManager.GravityStatus;
             OnGravitySwitch?.Invoke(_isGravityOn);
-            PuzzleManager.Instance.DeactivateGravity();
+            
+            RpcGravityStatusChanged(_puzzleManager.GravityStatus);
+            
 #if DEBUG
             Debug.Log("Gravity successfully deactivated");
 #endif
+            
             _currentUnlockCode = activateGravityCode;
         }
 
+        [Server]
         private void ActivateGravity()
         {
-            _isGravityOn = true;
-            OnGravitySwitch?.Invoke(_isGravityOn);
-            PuzzleManager.Instance.ActivateGravity();
+            _puzzleManager.ActivateGravity();
+            
+            _isGravityOn = _puzzleManager.GravityStatus;
+
+            RpcGravityStatusChanged(_puzzleManager.GravityStatus);
+                
 #if DEBUG
             Debug.Log("Gravity successfully activated");
 #endif
         }
 
+        [ClientRpc]
+        private void RpcGravityStatusChanged(bool status)
+        {
+#if DEBUG
+            Debug.Log($"{nameof(GravityPanel)}::{nameof(RpcGravityStatusChanged)}({status})");
+#endif
+            
+            OnGravitySwitch?.Invoke(status);
+        }
+
         private void OnEnable()
         {
-            GravityPanelButton.SendButtonInput += AddCharToCode;
+            GravityPanelButton.SendButtonInput += OnButtonPressed;
         }
 
         private void OnDisable()
         {
-            GravityPanelButton.SendButtonInput -= AddCharToCode;
+            GravityPanelButton.SendButtonInput -= OnButtonPressed;
         }
     }
 }

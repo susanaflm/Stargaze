@@ -3,9 +3,79 @@ guid: a2c6f4a4f8851574db27ed5155e342d9
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ButtonsLeft
+    second: {fileID: 2100000, guid: 69d0d83f8b0d56f4ca9332e0a93d6700, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ButtonsLeft2
+    second: {fileID: 2100000, guid: 4ad17180001be454080f713a5ee67af1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ButtonsRight
+    second: {fileID: 2100000, guid: 8372ab3b0fa97e544a2debfba71b9709, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ButtonsRight2
+    second: {fileID: 2100000, guid: fb2b387efd462314f9d473c7653ab276, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 1af49a86324a7ca4e8faf05e8fe05052, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Mid
+    second: {fileID: 2100000, guid: fb0c32237b87d72419701d98098c1950, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Panel
+    second: {fileID: 2100000, guid: 14f35de30b1c9fb489a5d54f4685ee2f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Screen3
+    second: {fileID: 2100000, guid: 4512c79b37bb0754f9f738fb20eca0f2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Screen4
+    second: {fileID: 2100000, guid: 1d44670b57fcd2046902f619d9eba652, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Screen5
+    second: {fileID: 2100000, guid: ead1b698d3086a54c87905c9d13faee5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Screen6
+    second: {fileID: 2100000, guid: 38b1bac98022ccb43b6aa5b442adeaf8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tp
+    second: {fileID: 2100000, guid: 9cd4c9746f2cad443980d01712447249, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: base color
+    second: {fileID: 2100000, guid: 27f5b86c0f7bba842994962ef247a5e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: m2
+    second: {fileID: 2100000, guid: 3e15d6dcb7f9c2f4581f6216b0c6a5bd, type: 2}
   materials:
-    materialImportMode: 0
+    materialImportMode: 2
     materialName: 0
     materialSearch: 1
     materialLocation: 1

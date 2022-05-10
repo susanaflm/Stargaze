@@ -25,10 +25,10 @@ namespace Stargaze.Mono.Interactions.GravityPanel
             //TODO: Animate Button
             
             //If the gravity puzzle is completed the player will no longer be able to interact with the gravity
-            if (PuzzleManager.Instance.GravityPuzzleStatus)
+            /*if (PuzzleManager.Instance.GravityPuzzleStatus)
             {
                 return;
-            }
+            }*/
             
             SendButtonInput?.Invoke(buttonInput);
         }

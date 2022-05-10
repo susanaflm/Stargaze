@@ -99,6 +99,7 @@ namespace Stargaze.Mono.Interactions.GravityPanel
 #if DEBUG
             Debug.Log("Gravity successfully activated");
 #endif
+            _currentUnlockCode = deactivateGravityCode;
         }
 
         [ClientRpc]

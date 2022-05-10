@@ -226,7 +226,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  magnetSpeed: 1
+  magnetSpeed: 0.2
 --- !u!114 &7517372787084788178
 MonoBehaviour:
   m_ObjectHideFlags: 0

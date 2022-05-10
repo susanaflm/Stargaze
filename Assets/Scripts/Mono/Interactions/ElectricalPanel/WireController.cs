@@ -7,6 +7,8 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
     {
         private Vector3 _lowerLeftCorner;
         private Vector3 _upperRightCorner;
+
+        private Quaternion rotation;
         
         private ElectricalInput _input;
 
@@ -17,6 +19,7 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
 
         [SerializeField] private float wireSpeed = 2.0f;
         [SerializeField] private WireSelector selector;
+        [SerializeField] private Transform parentTransform;
         
         private void Awake()
         {
@@ -38,7 +41,8 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
 
             pos += wireTransform.right * (input.x * wireSpeed * Time.deltaTime);
             pos += wireTransform.up * (input.y * wireSpeed * Time.deltaTime);
-
+            
+            //TODO: Rework Clamp Function
             pos.x = Mathf.Clamp(pos.x, _upperRightCorner.x, _lowerLeftCorner.x);
             pos.y = Mathf.Clamp(pos.y, _lowerLeftCorner.y, _upperRightCorner.y);
             pos.z = Mathf.Clamp(pos.z, _lowerLeftCorner.z, _upperRightCorner.z);
@@ -89,6 +93,8 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
 
         private void OnEnable()
         {
+            rotation = parentTransform.rotation;
+            
             _input.enabled = true;
             _input.PlaceWire += ConnectCable;
         }

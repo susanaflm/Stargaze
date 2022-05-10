@@ -587,15 +587,6 @@ namespace Stargaze.Input
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Navigate"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""3569210a-9414-4752-b7f5-8cd77598be4a"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""WireMovement"",
                     ""type"": ""Value"",
                     ""id"": ""c5844218-3c7c-4c78-ad95-95ba9af573b8"",
@@ -608,6 +599,24 @@ namespace Stargaze.Input
                     ""name"": ""PlaceWire"",
                     ""type"": ""Button"",
                     ""id"": ""9f59be8a-df3e-499a-b697-bd4a38d898bf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Left"",
+                    ""type"": ""Button"",
+                    ""id"": ""edb8a17d-d6a3-4af5-be60-772dfd8ec48e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Right"",
+                    ""type"": ""Button"",
+                    ""id"": ""3bbd32e1-b596-4552-8421-7c8ff6c8dee7"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -636,127 +645,6 @@ namespace Stargaze.Input
                     ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bbb34adb-5fef-48ef-a6aa-370b7d57cfe8"",
-                    ""path"": ""<Gamepad>/dpad"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Gamepad"",
-                    ""id"": ""31160819-fe96-4313-863b-44e72334120d"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""cf01b223-200c-40ad-a275-80aa22678ea4"",
-                    ""path"": ""<Gamepad>/rightStick/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""8de400ae-ca9d-4698-8d5b-5f2eab3d3599"",
-                    ""path"": ""<Gamepad>/rightStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""5853d5c7-16e8-4745-98d5-b42debdcad19"",
-                    ""path"": ""<Gamepad>/rightStick/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""1739b117-b322-4181-922b-389a53828349"",
-                    ""path"": ""<Gamepad>/rightStick/right"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Keyboard"",
-                    ""id"": ""2b56e053-636d-4ba6-8eb1-2a59c2aaa7ad"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""d1ae8492-d444-4a07-8448-f3caee396b43"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""e7338633-b583-41b2-9cec-a47827373a99"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""0c2436c5-564b-45aa-b51d-f793527c2dde"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""d72b38bc-6fa7-410c-9e1a-9fb116ca8032"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard & Mouse"",
-                    ""action"": ""Navigate"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
@@ -799,6 +687,94 @@ namespace Stargaze.Input
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""PlaceWire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""30af36c2-7b93-4ec8-97ff-74571a790f4d"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9bbd9be-74cb-40b7-a374-ce54a8073603"",
+                    ""path"": ""<Gamepad>/rightStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""48936be8-87ff-4ac2-b2d7-9b9deb044c56"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9bfb3112-26e3-477c-b8d7-8f9f41389e93"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Left"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0cf7dee-a4c1-4a60-a6f4-5fe98aada834"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""76f41681-4e10-46f8-b906-ee0c015a0157"",
+                    ""path"": ""<Gamepad>/rightStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2407fe68-0db7-4d57-944b-64e66ea030ea"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Right"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d983e217-7980-466c-a427-14bd949e8176"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Right"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -858,9 +834,10 @@ namespace Stargaze.Input
             // Electrical
             m_Electrical = asset.FindActionMap("Electrical", throwIfNotFound: true);
             m_Electrical_Select = m_Electrical.FindAction("Select", throwIfNotFound: true);
-            m_Electrical_Navigate = m_Electrical.FindAction("Navigate", throwIfNotFound: true);
             m_Electrical_WireMovement = m_Electrical.FindAction("WireMovement", throwIfNotFound: true);
             m_Electrical_PlaceWire = m_Electrical.FindAction("PlaceWire", throwIfNotFound: true);
+            m_Electrical_Left = m_Electrical.FindAction("Left", throwIfNotFound: true);
+            m_Electrical_Right = m_Electrical.FindAction("Right", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -1126,17 +1103,19 @@ namespace Stargaze.Input
         private readonly InputActionMap m_Electrical;
         private IElectricalActions m_ElectricalActionsCallbackInterface;
         private readonly InputAction m_Electrical_Select;
-        private readonly InputAction m_Electrical_Navigate;
         private readonly InputAction m_Electrical_WireMovement;
         private readonly InputAction m_Electrical_PlaceWire;
+        private readonly InputAction m_Electrical_Left;
+        private readonly InputAction m_Electrical_Right;
         public struct ElectricalActions
         {
             private @InputActions m_Wrapper;
             public ElectricalActions(@InputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @Select => m_Wrapper.m_Electrical_Select;
-            public InputAction @Navigate => m_Wrapper.m_Electrical_Navigate;
             public InputAction @WireMovement => m_Wrapper.m_Electrical_WireMovement;
             public InputAction @PlaceWire => m_Wrapper.m_Electrical_PlaceWire;
+            public InputAction @Left => m_Wrapper.m_Electrical_Left;
+            public InputAction @Right => m_Wrapper.m_Electrical_Right;
             public InputActionMap Get() { return m_Wrapper.m_Electrical; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1149,15 +1128,18 @@ namespace Stargaze.Input
                     @Select.started -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnSelect;
                     @Select.performed -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnSelect;
                     @Select.canceled -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnSelect;
-                    @Navigate.started -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnNavigate;
-                    @Navigate.performed -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnNavigate;
-                    @Navigate.canceled -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnNavigate;
                     @WireMovement.started -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnWireMovement;
                     @WireMovement.performed -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnWireMovement;
                     @WireMovement.canceled -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnWireMovement;
                     @PlaceWire.started -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnPlaceWire;
                     @PlaceWire.performed -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnPlaceWire;
                     @PlaceWire.canceled -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnPlaceWire;
+                    @Left.started -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnLeft;
+                    @Left.performed -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnLeft;
+                    @Left.canceled -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnLeft;
+                    @Right.started -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnRight;
+                    @Right.performed -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnRight;
+                    @Right.canceled -= m_Wrapper.m_ElectricalActionsCallbackInterface.OnRight;
                 }
                 m_Wrapper.m_ElectricalActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1165,15 +1147,18 @@ namespace Stargaze.Input
                     @Select.started += instance.OnSelect;
                     @Select.performed += instance.OnSelect;
                     @Select.canceled += instance.OnSelect;
-                    @Navigate.started += instance.OnNavigate;
-                    @Navigate.performed += instance.OnNavigate;
-                    @Navigate.canceled += instance.OnNavigate;
                     @WireMovement.started += instance.OnWireMovement;
                     @WireMovement.performed += instance.OnWireMovement;
                     @WireMovement.canceled += instance.OnWireMovement;
                     @PlaceWire.started += instance.OnPlaceWire;
                     @PlaceWire.performed += instance.OnPlaceWire;
                     @PlaceWire.canceled += instance.OnPlaceWire;
+                    @Left.started += instance.OnLeft;
+                    @Left.performed += instance.OnLeft;
+                    @Left.canceled += instance.OnLeft;
+                    @Right.started += instance.OnRight;
+                    @Right.performed += instance.OnRight;
+                    @Right.canceled += instance.OnRight;
                 }
             }
         }
@@ -1224,9 +1209,10 @@ namespace Stargaze.Input
         public interface IElectricalActions
         {
             void OnSelect(InputAction.CallbackContext context);
-            void OnNavigate(InputAction.CallbackContext context);
             void OnWireMovement(InputAction.CallbackContext context);
             void OnPlaceWire(InputAction.CallbackContext context);
+            void OnLeft(InputAction.CallbackContext context);
+            void OnRight(InputAction.CallbackContext context);
         }
     }
 }

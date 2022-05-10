@@ -23,40 +23,40 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             _currentWire = 0;
 
             _input.Select += SelectWire;
+            _input.Left += GoLeft;
+            _input.Right += GoRight;
         }
 
         // Update is called once per frame
         void Update()
         {
-            Vector2 navigationInput = _input.Navigate;
-
-            _wires[_currentWire].SetHovered(true);
-            
-            if (navigationInput.x > 0)
-            {
-                _wires[_currentWire].SetHovered(false);
-
-                _currentWire++;
-            }
-
-            if (navigationInput.x < 0)
-            {
-                _wires[_currentWire].SetHovered(false);
-
-                _currentWire--;
-            }
-
-            if (_currentWire < 0)
-            {
-                _currentWire = _wires.Length - 1;
-            }
-
-            if (_currentWire > _wires.Length - 1)
-            {
-                _currentWire = 0;
-            }
+     
         }
 
+        private void GoLeft()
+        {
+            _wires[_currentWire].SetHovered(false);
+
+            _currentWire--;
+            
+            if (_currentWire < 0)
+                _currentWire = _wires.Length - 1;
+
+            _wires[_currentWire].SetHovered(true);
+        }
+
+        private void GoRight()
+        {
+            _wires[_currentWire].SetHovered(false);
+
+            _currentWire++;
+            
+            if (_currentWire > _wires.Length - 1)
+                _currentWire = 0;
+
+            _wires[_currentWire].SetHovered(true);
+        }
+        
         private void SelectWire()
         {
             _wires[_currentWire].GetComponent<WireController>().enabled = true;
@@ -78,6 +78,7 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
         private void OnEnable()
         {
             _input.enabled = true;
+            _wires[_currentWire].SetHovered(true);
         }
 
         private void OnDisable()

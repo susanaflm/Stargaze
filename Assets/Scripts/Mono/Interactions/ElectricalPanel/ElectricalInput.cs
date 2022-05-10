@@ -13,7 +13,9 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
 
         public Action PlaceWire { get; set; }
 
-        public Vector2 Navigate { get; private set; }
+        public Action Left { get; set; }
+
+        public Action Right { get; set; }
 
         public Vector2 WireMovement { get; private set; }
 
@@ -23,11 +25,12 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
 
             _actions.Electrical.Select.performed += _ => Select?.Invoke();
             _actions.Electrical.PlaceWire.performed += _ => PlaceWire?.Invoke();
+            _actions.Electrical.Left.performed += _ => Left?.Invoke();
+            _actions.Electrical.Right.performed += _ => Right?.Invoke();
         }
 
         private void Update()
         {
-            Navigate = _actions.Electrical.Navigate.ReadValue<Vector2>().normalized;
             WireMovement = _actions.Electrical.WireMovement.ReadValue<Vector2>();
         }
         

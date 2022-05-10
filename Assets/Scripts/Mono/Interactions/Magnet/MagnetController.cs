@@ -39,16 +39,17 @@ namespace Stargaze.Mono.Interactions.Magnet
         private void CmdMove(Vector2 input)
         {
             var magnetTransform = transform;
-            Vector3 pos  = magnetTransform.localPosition;
+            Vector3 pos  = magnetTransform.position;
 
             pos += magnetTransform.right * (input.x * magnetSpeed * Time.deltaTime);
             pos += magnetTransform.up * (input.y * magnetSpeed * Time.deltaTime);
 
+            /*
             pos.x = Mathf.Clamp(pos.x, _lowerLeftCorner.x, _upperRightCorner.x);
             pos.y = Mathf.Clamp(pos.y, _lowerLeftCorner.y, _upperRightCorner.y);
-            pos.z = Mathf.Clamp(pos.z, _lowerLeftCorner.z, _upperRightCorner.z);
+            pos.z = Mathf.Clamp(pos.z, _lowerLeftCorner.z, _upperRightCorner.z);*/
             
-            transform.localPosition = pos;
+            transform.position = pos;
         }
 
         [ServerCallback]

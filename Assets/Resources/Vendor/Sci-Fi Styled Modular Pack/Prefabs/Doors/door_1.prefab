@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3372520}
   - component: {fileID: 2389654}
   - component: {fileID: 9550430}
+  - component: {fileID: 686380760}
   m_Layer: 0
   m_Name: door_1_right
   m_TagString: Untagged
@@ -104,6 +105,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &686380760
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119082}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.6227976, y: 3.85862, z: 0.14652929}
+  m_Center: {x: 0.8620849, y: 1.9999999, z: 0.00002193451}
 --- !u!1 &125588
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,6 +131,8 @@ GameObject:
   - component: {fileID: 2354544}
   - component: {fileID: 9574882}
   - component: {fileID: 6455900}
+  - component: {fileID: 1629084671}
+  - component: {fileID: 1629084672}
   m_Layer: 0
   m_Name: door_1
   m_TagString: Untagged
@@ -225,6 +241,38 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 4bffff855c108e34c83d8605893f4c51, type: 3}
+--- !u!114 &1629084671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e37f10c9a99d94c84644cba270d4e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  isOpened: 0
+--- !u!114 &1629084672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: ea798cfb4939d4441b95d1bd39d0767f
+  hasSpawned: 0
 --- !u!1 &174170
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,6 +285,7 @@ GameObject:
   - component: {fileID: 3324834}
   - component: {fileID: 2342890}
   - component: {fileID: 9537216}
+  - component: {fileID: 686380761}
   m_Layer: 0
   m_Name: door_1_left
   m_TagString: Untagged
@@ -329,3 +378,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &686380761
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174170}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.3490463, y: 3.85862, z: 0.14652929}
+  m_Center: {x: -0.7254762, y: 1.9999999, z: 0.00002193451}

@@ -17,12 +17,15 @@ namespace Stargaze.ScriptableObjects.Materials
     {
         public static void WriteResourceMaterial(this NetworkWriter writer, ResourceMaterial material)
         {
-            writer.WriteString(material.name);
+            writer.WriteString(material != null ? material.name : "");
         }
         
         public static ResourceMaterial ReadResourceMaterial(this NetworkReader reader)
         {
             string materialName = reader.ReadString();
+
+            if (string.IsNullOrEmpty(materialName))
+                return null;
             
             ResourceMaterial material = Resources.Load<ResourceMaterial>($"ScriptableObjects/Materials/{materialName}");
             

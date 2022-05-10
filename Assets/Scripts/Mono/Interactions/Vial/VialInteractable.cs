@@ -1,3 +1,4 @@
+using Mirror;
 using Stargaze.Mono.Puzzle;
 using Stargaze.ScriptableObjects.Materials;
 using UnityEngine;
@@ -5,7 +6,7 @@ using UnityEngine.Serialization;
 
 namespace Stargaze.Mono.Interactions.Vial
 {
-    public class VialInteractable : MonoBehaviour, IInteractable
+    public class VialInteractable : NetworkBehaviour, IInteractable
     {
 
         [SerializeField]
@@ -21,8 +22,15 @@ namespace Stargaze.Mono.Interactions.Vial
         
         public void OnInteractionStart()
         {
-            PuzzleManager.Instance.GatheredMaterials.Add(vialMaterial);
+            CmdCollectVial();
+        }
+
+        [Command(requiresAuthority = false)]
+        private void CmdCollectVial()
+        {
+            PuzzleManager.Instance.AddMaterial(vialMaterial);
             Destroy(gameObject);
+            NetworkServer.UnSpawn(gameObject);
         }
 
         public void OnInteractionEnd()

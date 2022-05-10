@@ -12,7 +12,7 @@ namespace Stargaze.Mono.Interactions.GravityPanel
         
         private bool _isInteractable = true;
 
-        [SerializeField] private bool switchable;
+        [SerializeField] private bool switchable = true;
         
         [SerializeField] private char buttonInput;
         

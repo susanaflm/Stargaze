@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5573887312960558627}
   - component: {fileID: 3426437575476880257}
   - component: {fileID: 1829837465163150259}
+  - component: {fileID: 1431660231}
   m_Layer: 0
   m_Name: MagnetPickup
   m_TagString: Untagged
@@ -134,3 +135,16 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   switchable: 1
+--- !u!65 &1431660231
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3245852422134008752}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24186587, y: 0.036962755, z: 0.33910418}
+  m_Center: {x: 0, y: 0.018424831, z: -0.162781}

@@ -111,8 +111,7 @@ GameObject:
   - component: {fileID: 2331942}
   - component: {fileID: 9575016}
   - component: {fileID: 6452128}
-  - component: {fileID: 36077882}
-  - component: {fileID: 36077883}
+  - component: {fileID: 1547802227}
   m_Layer: 0
   m_Name: glass_panel_1_with_door
   m_TagString: Untagged
@@ -221,7 +220,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 1d8fb1d801abb5741a1a870b2e3986dd, type: 3}
---- !u!114 &36077882
+--- !u!114 &1547802227
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -230,26 +229,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 141970}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8e37f10c9a99d94c84644cba270d4e9, type: 3}
+  m_Script: {fileID: 11500000, guid: b9309cbc05478d84ca0cdcb731ae18f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  isOpened: 0
---- !u!114 &36077883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 0
-  serverOnly: 0
-  visible: 0
-  m_AssetId: ac7a01ca06ca9044eb15b32cb7a936f8
-  hasSpawned: 0

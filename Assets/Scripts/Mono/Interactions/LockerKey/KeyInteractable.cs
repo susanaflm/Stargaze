@@ -1,11 +1,11 @@
+using Mirror;
 using Stargaze.Mono.Puzzle;
 using UnityEngine;
 
 namespace Stargaze.Mono.Interactions.LockerKey
 {
-    public class KeyInteractable : MonoBehaviour, IInteractable
+    public class KeyInteractable : NetworkBehaviour, IInteractable
     {
-        
         private bool _isInteractable = true;
 
         [SerializeField] private bool switchable;
@@ -15,7 +15,7 @@ namespace Stargaze.Mono.Interactions.LockerKey
         
         public void OnInteractionStart()
         {
-            PuzzleManager.Instance.GetLockerKey();
+            PuzzleManager.Instance.CmdGetLockerKey();
             Destroy(gameObject);
         }
 

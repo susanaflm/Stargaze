@@ -11,11 +11,10 @@ namespace Stargaze.Mono.Puzzle
     {
         public static PuzzleManager Instance;
 
-        private int _keycardAccessLevel = 0;
-        
         [SyncVar]
         private bool _doesPlayerHaveMagnet = false;
 
+        [SyncVar]
         private bool _doesPlayerHaveLockerKey = false;
 
         [SyncVar]
@@ -53,16 +52,6 @@ namespace Stargaze.Mono.Puzzle
             
             Instance = this;
         }
-        
-        public int GetKeycardAccessLevel()
-        {
-            return _keycardAccessLevel;
-        }
-
-        public void SetCurrentKeycardAccesslevel(int kcAccess)
-        {
-            _keycardAccessLevel = kcAccess;
-        }
 
         [Server]
         public void GetMagnet()
@@ -70,7 +59,8 @@ namespace Stargaze.Mono.Puzzle
             _doesPlayerHaveMagnet = true;
         }
 
-        public void GetLockerKey()
+        [Command(requiresAuthority = false)]
+        public void CmdGetLockerKey()
         {
             _doesPlayerHaveLockerKey = true;
         }

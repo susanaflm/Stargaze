@@ -1,25 +1,34 @@
 using System;
+using Mirror;
 using Stargaze.Mono.Interactions;
 using UnityEngine;
 
 namespace Stargaze.Mono.Door
 {
-    public class DoorInteractable : MonoBehaviour, IInteractable
+    public class DoorInteractable : NetworkBehaviour, IInteractable
     {
         public bool Switchable => true;
         public bool IsInteractable => true;
-
-        private bool isOpened = false;
+        
         private Animator _doorAnimator;
 
-        private void Start()
+        [SyncVar(hook = nameof(DoorOpenStateChangedCallback))]
+        private bool isOpened = false;
+
+        private void Awake()
         {
             _doorAnimator = GetComponent<Animator>();
         }
 
         public void OnInteractionStart()
         {
-            ToggleDoor();
+            CmdToggleDoor();
+        }
+
+        [Command(requiresAuthority = false)]
+        private void CmdToggleDoor()
+        {
+            isOpened = !isOpened;
         }
 
         public void OnInteractionEnd()
@@ -27,23 +36,24 @@ namespace Stargaze.Mono.Door
             
         }
         
-        private void ToggleDoor()
+        private void DoorOpenStateChangedCallback(bool oldState, bool newState)
         {
-            if (isOpened)
-                CloseDoor();
-            else
+            if (oldState == newState)
+                return;
+            
+            if (newState)
                 OpenDoor();
+            else
+                CloseDoor();
         }
 
         private void OpenDoor()
         {
-            isOpened = true;
             _doorAnimator.SetBool("Opened", true);
         }
 
         private void CloseDoor()
         {
-            isOpened = false;
             _doorAnimator.SetBool("Opened", false);
         }
     }

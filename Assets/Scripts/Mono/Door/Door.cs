@@ -19,6 +19,7 @@ namespace Stargaze.Mono.Door
         private void Awake()
         {
             _doorAnimator = GetComponent<Animator>();
+            _doorAnimator.SetBool("Opened" , isOpened);
         }
         
         [Server]

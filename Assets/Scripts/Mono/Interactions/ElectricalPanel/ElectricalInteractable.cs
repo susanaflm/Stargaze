@@ -79,8 +79,8 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             wiresDoorAnimator.SetTrigger("Interacted");
             electricalDoorAnimator.SetTrigger("Interacted");
 
-            selector.enabled = true;
             selector.SetWires(wires);
+            selector.enabled = true;
 
             foreach (Wire wire in wires)
             {

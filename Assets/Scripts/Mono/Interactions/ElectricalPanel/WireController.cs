@@ -8,8 +8,6 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
         private Vector3 _lowerLeftCorner;
         private Vector3 _upperRightCorner;
 
-        private Quaternion rotation;
-        
         private ElectricalInput _input;
 
         private Wire _wire;
@@ -55,10 +53,16 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             if (_hoveringConnection == null)
                 return;
 
-            transform.position = _hoveringConnection.transform.position;
-
             _connection = _hoveringConnection;
+
+            if (_connection.IsConnectorOccupied)
+            {
+                return;
+            }
+            
             _wire.ConnectCable(_connection);
+            
+            transform.position = _connection.transform.position;
             
             selector.SetActive();
             GetComponent<WireController>().enabled = false;
@@ -93,8 +97,8 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
 
         private void OnEnable()
         {
-            rotation = parentTransform.rotation;
-            
+            //transform.localRotation = parentTransform.rotation;
+
             _input.enabled = true;
             _input.PlaceWire += ConnectCable;
         }

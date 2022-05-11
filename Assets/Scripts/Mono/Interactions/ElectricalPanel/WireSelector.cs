@@ -7,7 +7,7 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
     {
         private Wire[] _wires;
 
-        private int _currentWire;
+        private int _currentWire = 0;
 
         private Material originalWireMaterial;
 
@@ -20,8 +20,6 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
 
         void Start()
         {
-            _currentWire = 0;
-
             _input.Select += SelectWire;
             _input.Left += GoLeft;
             _input.Right += GoRight;

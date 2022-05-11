@@ -15,6 +15,7 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
         private bool _isWireConnected;
         
         private bool _isPlayerInteracting;
+        private Connector _connector;
         
         [Tooltip("The Spot in which the wire will work to give power to the electrical box")]
         [SerializeField] private Connector desiredConnector;
@@ -38,14 +39,21 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
         public void ConnectCable(Connector connection)
         {
             _isWireConnected = true;
+            _connector = connection;
+            _connector.SetWireConnected(true);
 
-            _isWireConnectedCorrectly = connection == desiredConnector;
+            _isWireConnectedCorrectly = _connector == desiredConnector;
             ElectricalInteractable.OnWireConnected?.Invoke();
         }
 
         public void DisconnectCable()
         {
             _isWireConnected = false;
+
+            if (_connector == null)
+                return;
+            
+            _connector.SetWireConnected(false);
         }
 
         public Vector3 GetOriginalPosition()

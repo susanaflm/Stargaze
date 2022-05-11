@@ -19,6 +19,7 @@ namespace Stargaze.Mono.Player
         [Space] [Header("Ray Settings")]
         [SerializeField] private float rayDistance;
         [SerializeField] private float raySphereRadius;
+        [SerializeField] private LayerMask detectableLayers;
 
 
         private void Awake()
@@ -48,7 +49,7 @@ namespace Stargaze.Mono.Player
             var camTransform = _playerCamera.transform;
             Ray ray = new Ray(camTransform.position, camTransform.forward);
 
-            bool hitSomething = Physics.Raycast(ray, out hit, rayDistance);
+            bool hitSomething = Physics.Raycast(ray, out hit, rayDistance, detectableLayers);
 
             if (hitSomething)
             {
@@ -79,7 +80,7 @@ namespace Stargaze.Mono.Player
             }
             
 #if DEBUG
-            Debug.DrawRay(ray.origin, ray.direction * rayDistance, hitSomething ? Color.green : Color.red );
+            Debug.DrawRay(ray.origin, ray.direction * rayDistance, hitSomething && interactionData.Interactable != null ? Color.green : Color.red );
 #endif
         }
 

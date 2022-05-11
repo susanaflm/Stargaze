@@ -563,6 +563,9 @@ MonoBehaviour:
   interactionData: {fileID: 11400000, guid: a5a5f7ce268b3964599fe0ae5a161035, type: 2}
   rayDistance: 3
   raySphereRadius: 0.15
+  detectableLayers:
+    serializedVersion: 2
+    m_Bits: 2147484087
 --- !u!114 &6639225953265203610
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2449877678478987668}
   - component: {fileID: 1607905263894470193}
   - component: {fileID: 3581657033364597499}
+  - component: {fileID: 5182015049342268586}
   m_Layer: 0
   m_Name: Eletrical_type2
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3077197043779128110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7948201, y: 1.7948201, z: 1.7948201}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5182015049342268586
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3077197043779128110}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8000001, y: 2.0031655, z: 0.60426015}
+  m_Center: {x: -0.39999956, y: 1.0015827, z: 0.002129704}

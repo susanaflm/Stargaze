@@ -2030,7 +2030,7 @@ Transform:
   m_GameObject: {fileID: 4633068183173190965}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 5.405, y: 0, z: 11.373}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.79482, y: 1.79482, z: 1.79482}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4990579731912860271}
@@ -5669,6 +5669,7 @@ GameObject:
   - component: {fileID: 2449429457253996349}
   - component: {fileID: 6529038469252469322}
   - component: {fileID: 8104984943118702458}
+  - component: {fileID: 5100735702861073336}
   m_Layer: 7
   m_Name: EletricalWPanel
   m_TagString: Untagged
@@ -5745,6 +5746,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5100735702861073336
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6506138705476787347}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.79999995, y: 2.003165, z: 0.60426}
+  m_Center: {x: 0.0000004917515, y: 1.0015825, z: 0.0021292267}
 --- !u!1 &6572623758161101491
 GameObject:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 445366}
   - component: {fileID: 3331664}
   - component: {fileID: 2345728}
-  - component: {fileID: 6547430}
+  - component: {fileID: 6910513265934341705}
   m_Layer: 0
   m_Name: decorative_wall_5
   m_TagString: Untagged
@@ -84,8 +84,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6547430
-BoxCollider:
+--- !u!64 &6910513265934341705
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -94,6 +94,7 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4, y: 4, z: 0.30411983}
-  m_Center: {x: 0, y: 2, z: 0.15205976}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 78fd4647be0da2e4dbbb4bc3cfe6ca31, type: 3}

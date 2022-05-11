@@ -1,15 +1,16 @@
 using System;
 using System.Collections.Generic;
 using Mirror;
+using Mono.CecilX;
 using Stargaze.ScriptableObjects.Materials;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Stargaze.Mono.Puzzle
 {
     public class PuzzleManager : NetworkBehaviour
     {
         public static PuzzleManager Instance;
+        public Action<ResourceMaterial> OnCollectMaterial;
 
         [SyncVar]
         private bool _doesPlayerHaveMagnet = false;
@@ -114,6 +115,12 @@ namespace Stargaze.Mono.Puzzle
         public void AddMaterialsCheat()
         {
             _gatheredMaterials.AddRange(cheatMaterials);
+        }
+
+        [Server]
+        public void CollectMaterial(ResourceMaterial resourceMaterial)
+        {
+            OnCollectMaterial?.Invoke(resourceMaterial);
         }
     }
 }

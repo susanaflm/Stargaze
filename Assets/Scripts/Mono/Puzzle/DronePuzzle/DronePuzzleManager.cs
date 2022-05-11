@@ -103,7 +103,7 @@ namespace Stargaze.Mono.Puzzle.DronePuzzle
 
             foreach (int i in indicesToCollect)
             {
-                PuzzleManager.Instance.AddMaterial(_materials[i].Material);
+                PuzzleManager.Instance.CollectMaterial(_materials[i].Material);
                 _materials.RemoveAt(i);
             }
             

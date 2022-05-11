@@ -53,7 +53,7 @@ namespace Stargaze.Mono.Door
 
         public void ToggleDoor()
         {
-            if (!PuzzleManager.Instance.IsPowerOn())
+            if (!PuzzleManager.Instance.IsPowerOn() || !PuzzleManager.Instance.GravityStatus)
             {
                 Debug.Log("Can't open door! Turn Power On or activate gravity");
                 return;

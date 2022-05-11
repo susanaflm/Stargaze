@@ -36,7 +36,7 @@ namespace Stargaze.Mono.Puzzle
         public bool GravityPuzzleStatus => _isGravityPuzzleComplete; 
         
         /// <summary>
-        /// Varaible so the player can't interact with doors and progress the game without gravity
+        /// Variable so the player can't interact with doors and progress the game without gravity
         /// </summary>
         public bool GravityStatus => _gravityStatus;
 

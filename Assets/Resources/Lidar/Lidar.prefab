@@ -227,7 +227,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 93c6d153e3a92ea459e291d3c7d2a10f, type: 2}
+  - {fileID: 2100000, guid: dd2676f47c92a844396c54e15a9e6320, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -509,6 +509,7 @@ GameObject:
   - component: {fileID: 7168321431698723836}
   - component: {fileID: 6112833617031322713}
   - component: {fileID: 8300647037299796115}
+  - component: {fileID: 1821790356}
   m_Layer: 0
   m_Name: Lidar
   m_TagString: Untagged
@@ -525,7 +526,7 @@ Transform:
   m_GameObject: {fileID: 7507833663313709382}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.54580575, y: 0.54580575, z: 0.54580575}
+  m_LocalScale: {x: 0.8883534, y: 0.8883534, z: 0.8883534}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3036840032055833646}
@@ -587,3 +588,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1821790356
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7507833663313709382}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8625242199234482032, guid: 8d9cdede158a3b54b9edf121b3608456, type: 3}

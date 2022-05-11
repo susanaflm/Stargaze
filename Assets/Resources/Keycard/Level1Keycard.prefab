@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8016355967973289943}
   - component: {fileID: 1085598938493466176}
   - component: {fileID: -8831464867601336601}
-  - component: {fileID: 4715410273700902121}
+  - component: {fileID: 3634548399395020103}
   m_Layer: 0
   m_Name: Level1Keycard
   m_TagString: Untagged
@@ -28,14 +28,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8376463550449634818}
-  m_LocalRotation: {x: 0, y: 0.8141814, z: 0, w: 0.5806106}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.28224844, y: 0.35815358, z: 0.9998944}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 109.013, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5249831632775519005
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -115,7 +115,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.53144664, y: 0.27920982, z: 0.001975254}
   m_Center: {x: 1.1772983e-10, y: 0, z: -0.0009875892}
---- !u!114 &4715410273700902121
+--- !u!114 &3634548399395020103
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,8 +124,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8376463550449634818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15fe29849aa740a4eb606e5121b604b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 23615770aabc8bf4492886a87a5251ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchable: 1
-  accessLevel: 1
+  switchable: 0
+  interactionUI: {fileID: 0}

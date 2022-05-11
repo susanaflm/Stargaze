@@ -11,6 +11,8 @@ namespace Stargaze.Mono.Door
     {
         [SyncVar]
         [SerializeField] private bool isOpened;
+        [SyncVar]
+        [SerializeField] private bool requirePower = true;
 
         private Animator _doorAnimator;
 
@@ -53,12 +55,15 @@ namespace Stargaze.Mono.Door
 
         public void ToggleDoor()
         {
-            if (!PuzzleManager.Instance.IsPowerOn() || !PuzzleManager.Instance.GravityStatus)
+            if (requirePower)
             {
-                Debug.Log("Can't open door! Turn Power On or activate gravity");
-                return;
+                if (!PuzzleManager.Instance.IsPowerOn() || !PuzzleManager.Instance.GravityStatus)
+                {
+                    Debug.Log("Can't open door! Turn Power On or activate gravity");
+                    return;
+                }
             }
-
+            
             if (isOpened)
                 CloseDoor();
             else

@@ -25,6 +25,17 @@ namespace Stargaze.Mono.Interactions.Inspection
             interactionUI.SetActive(true);
             
             _inspectObject = Instantiate(gameObject, Vector3.zero, Quaternion.identity);
+            
+            foreach (var comp in _inspectObject.GetComponents<Component>())
+            {
+                if (comp is Transform or MeshFilter or MeshRenderer)
+                {
+                    continue;
+                }
+                
+                Destroy(comp);
+            }
+            
             _inspectObject.AddComponent<InspectionTurn>();
             _inspectObject.layer = LayerMask.NameToLayer("UI");
         }

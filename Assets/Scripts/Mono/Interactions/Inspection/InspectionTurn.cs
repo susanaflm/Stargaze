@@ -8,6 +8,13 @@ namespace Stargaze.Mono.Interactions.Inspection
     {
         private Vector3 _lastPos;
 
+        private Vector3 _scale;
+
+        private void Start()
+        {
+            _scale = transform.localScale;
+        }
+
         // Update is called once per frame
         void Update()
         {
@@ -24,9 +31,23 @@ namespace Stargaze.Mono.Interactions.Inspection
                 var axis = Quaternion.AngleAxis(-90f, Vector3.forward) * delta;
                 transform.rotation = Quaternion.AngleAxis(delta.magnitude * 0.5f, axis) * transform.rotation;
             }
-            
+
+            Vector2 scroll = Mouse.current.scroll.ReadValue();
+
+            switch (scroll.y)
+            {
+                case > 0:
+                    _scale *= 1.5f;
+                    transform.localScale = _scale;
+                    break;
+                case < 0:
+                    _scale *= 0.5f;
+                    transform.localScale = _scale;
+                    break;
+            }
+
             //TODO: Proper implementation of InputActions
-            
+
         }
     }
 }

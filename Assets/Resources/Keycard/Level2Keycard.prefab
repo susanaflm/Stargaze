@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3862121082353256837}
   - component: {fileID: 1338391196795822491}
   - component: {fileID: 1214049051614041906}
-  - component: {fileID: 2444202256361560914}
+  - component: {fileID: 4374475821282772240}
   m_Layer: 0
   m_Name: Level2Keycard
   m_TagString: Untagged
@@ -115,7 +115,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5314467, y: 0.27920982, z: 0.0019752542}
   m_Center: {x: 0, y: 0, z: -0.0009875894}
---- !u!114 &2444202256361560914
+--- !u!114 &4374475821282772240
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,8 +124,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 3357995206478211152}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15fe29849aa740a4eb606e5121b604b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 23615770aabc8bf4492886a87a5251ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  switchable: 1
-  accessLevel: 1
+  switchable: 0
+  interactionUI: {fileID: 0}

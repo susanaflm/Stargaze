@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Stargaze.Mono.Wires
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class DistanceJoint3D : MonoBehaviour
     {
         public Transform ConnectedRigidbody;

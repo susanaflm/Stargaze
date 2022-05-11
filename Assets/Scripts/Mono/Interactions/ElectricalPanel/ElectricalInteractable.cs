@@ -58,16 +58,13 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             {
                 if (PuzzleManager.Instance.IsPowerOn())
                 {
-                    PuzzleManager.Instance.SetPowerStatus(false);
+                    PuzzleManager.Instance.CmdSetPowerStatus(false);
                 }
                 
                 return;
             }
             
-            PuzzleManager.Instance.SetPowerStatus(true);
-#if DEBUG
-            Debug.Log("Power On!");
-#endif
+            PuzzleManager.Instance.CmdSetPowerStatus(true);
         }
 
         public void OnInteractionStart()

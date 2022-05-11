@@ -18,6 +18,7 @@ namespace Stargaze.Mono.Puzzle
 
         private bool _doesPlayerHaveLockerKey = false;
 
+        [SyncVar]
         private bool _isPowerOn = false;
         
         [SyncVar]
@@ -74,9 +75,14 @@ namespace Stargaze.Mono.Puzzle
             _doesPlayerHaveLockerKey = true;
         }
 
-        public void SetPowerStatus(bool status)
+        [Command(requiresAuthority = false)]        
+        public void CmdSetPowerStatus(bool status)
         {
             _isPowerOn = status;
+            
+#if DEBUG
+            Debug.Log("Power On!");
+#endif
         }
 
         [Server]

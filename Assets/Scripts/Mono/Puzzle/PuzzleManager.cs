@@ -11,6 +11,10 @@ namespace Stargaze.Mono.Puzzle
     {
         public static PuzzleManager Instance;
         public Action<ResourceMaterial> OnCollectMaterial;
+        public Action<List<Door.Door>> OnElectricalPuzzleComplete;
+        public Action<List<Door.Door>> OnElectricalPuzzleUndo;
+        public Action<List<Door.Door>> OnMazePuzzleComplete;
+        public Action<List<Door.Door>> OnGravityPuzzleComplete;
 
         [SyncVar]
         private bool _doesPlayerHaveMagnet = false;
@@ -23,19 +27,25 @@ namespace Stargaze.Mono.Puzzle
         
         [SyncVar]
         private bool _gravityStatus = true;
-        [SyncVar]
-        private bool _isGravityPuzzleComplete = false;
+
+        private bool _gravityPuzzleComplete = false;
+        private bool _mazePuzzleComplete = false;
 
         private SyncList<ResourceMaterial> _gatheredMaterials = new();
         
+        [Tooltip("Electrical Puzzle Doors")] [SerializeField]
+        private List<Door.Door> electricalDoors = new();
+
+        [Tooltip("Player Maze Puzzle Doors")] [SerializeField]
+        private List<Door.Door> mazeDoors = new();
+
+        [Tooltip("Gravity Puzzle Doors")] [SerializeField]
+        private List<Door.Door> gravityDoors = new();
+        
         [SerializeField]
         private List<ResourceMaterial> cheatMaterials = new();
-
-        /// <summary>
-        /// If true the puzzle was completed
-        /// </summary>
-        public bool GravityPuzzleStatus => _isGravityPuzzleComplete; 
         
+
         /// <summary>
         /// Variable so the player can't interact with doors and progress the game without gravity
         /// </summary>
@@ -70,6 +80,15 @@ namespace Stargaze.Mono.Puzzle
         public void CmdSetPowerStatus(bool status)
         {
             _isPowerOn = status;
+
+            if (_isPowerOn)
+            {
+                OnElectricalPuzzleComplete?.Invoke(electricalDoors);
+            }
+            else
+            {
+                OnElectricalPuzzleUndo?.Invoke(electricalDoors);
+            }
             
 #if DEBUG
             Debug.Log("Power On!");
@@ -86,7 +105,6 @@ namespace Stargaze.Mono.Puzzle
         public void ActivateGravity()
         {
             _gravityStatus = true;
-            _isGravityPuzzleComplete = true;
         }
 
         [Server]
@@ -121,6 +139,22 @@ namespace Stargaze.Mono.Puzzle
         public void CollectMaterial(ResourceMaterial resourceMaterial)
         {
             OnCollectMaterial?.Invoke(resourceMaterial);
+        }
+
+        public void CompleteGravity()
+        {
+            if (_gravityPuzzleComplete)
+                return;
+
+            OnGravityPuzzleComplete?.Invoke(gravityDoors);
+        }
+
+        public void CompleteMaze()
+        {
+            if (_mazePuzzleComplete)
+                return;
+
+            OnMazePuzzleComplete?.Invoke(mazeDoors);
         }
     }
 }

@@ -260,6 +260,9 @@ GameObject:
   - component: {fileID: 9054010258375394413}
   - component: {fileID: 318470294771075201}
   - component: {fileID: 5990730107645425884}
+  - component: {fileID: 1953556906}
+  - component: {fileID: 1953556902}
+  - component: {fileID: 1953556903}
   m_Layer: 0
   m_Name: LockerDoor
   m_TagString: Untagged
@@ -335,6 +338,52 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1953556906
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024513709806197136}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.560952, y: 1.7663356, z: 0.023538556}
+  m_Center: {x: -0.280476, y: 0.88298327, z: -0.0019043479}
+--- !u!95 &1953556902
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024513709806197136}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 614bac2d532dd27459a6fcc78066255a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1953556903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5024513709806197136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab132e3feb0e90b489d34c0c79874560, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchable: 1
 --- !u!1 &5252221494919252341
 GameObject:
   m_ObjectHideFlags: 0
@@ -548,6 +597,7 @@ GameObject:
   - component: {fileID: 5677992130179830084}
   - component: {fileID: 6999704260455326409}
   - component: {fileID: 5666429217576332970}
+  - component: {fileID: 1101041649}
   m_Layer: 0
   m_Name: Locker
   m_TagString: Untagged
@@ -623,6 +673,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &1101041649
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7592885338440858866}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2414751425368093432, guid: 5b9e6715d5368b84b98d7c9833f2094f, type: 3}
 --- !u!1 &8093279529094157511
 GameObject:
   m_ObjectHideFlags: 0
@@ -914,17 +978,17 @@ PrefabInstance:
     - target: {fileID: 2725291808134886122, guid: acf9fc497bdd9de4ba104908538be5ce,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5174
+      value: -0.4613
       objectReference: {fileID: 0}
     - target: {fileID: 2725291808134886122, guid: acf9fc497bdd9de4ba104908538be5ce,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.309
+      value: 0.3381
       objectReference: {fileID: 0}
     - target: {fileID: 2725291808134886122, guid: acf9fc497bdd9de4ba104908538be5ce,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.1316
+      value: 0.0734
       objectReference: {fileID: 0}
     - target: {fileID: 2725291808134886122, guid: acf9fc497bdd9de4ba104908538be5ce,
         type: 3}

@@ -262,6 +262,8 @@ GameObject:
   - component: {fileID: 8882814469320610549}
   - component: {fileID: 5542175389255802192}
   - component: {fileID: 7713879387926555034}
+  - component: {fileID: 9002508440810417620}
+  - component: {fileID: 5707262003568776194}
   m_Layer: 0
   m_Name: EletricalBook
   m_TagString: Untagged
@@ -336,3 +338,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &9002508440810417620
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8074329741395380303}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13394073, y: 0.4901746, z: 0.32075718}
+  m_Center: {x: -0.0012935762, y: 0.24508724, z: -0.15301704}
+--- !u!114 &5707262003568776194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8074329741395380303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0d2c1d8d8a867d41abc1653ac243aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchable: 0
+  page1: {fileID: 21300000, guid: b164bfaf427a61d4883d22f4a6d5a86d, type: 3}
+  page2: {fileID: 21300000, guid: 6acb1ccdff3f1b74c9ea9b962df1939c, type: 3}
+  bookUI: {fileID: 0}
+  page1UI: {fileID: 0}
+  page2UI: {fileID: 0}

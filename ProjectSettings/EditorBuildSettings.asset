@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 58f56d1c964726d438ca7e8d2e02a929
   - enabled: 1
-    path: Assets/Scenes/NetcodePlayground.unity
-    guid: 22cfb27daefeff34bb6c2f7684d24086
+    path: Assets/Scenes/Lobby.unity
+    guid: 55d2041004ba7554dab6403cad42a169
+  - enabled: 1
+    path: Assets/Scenes/Main scene.unity
+    guid: 4f72b289f8cec894fb4b5205b075d96b
   m_configObjects: {}

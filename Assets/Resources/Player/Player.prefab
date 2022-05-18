@@ -565,7 +565,7 @@ MonoBehaviour:
   raySphereRadius: 0.15
   detectableLayers:
     serializedVersion: 2
-    m_Bits: 2147484087
+    m_Bits: 2147484083
 --- !u!114 &6639225953265203610
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,15 +15,11 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
         private float _timer = 0.0f;
         private bool _isPlayerInBounds;
         
-        
-        // Start is called before the first frame update
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
         void Update()
         {
+            if (!_isPlayerInBounds)
+                return;
+
             _timer += Time.deltaTime;
 
             if (_timer >= timeToKill * 60)
@@ -35,7 +31,11 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<PlayerInput>())
+            {
                 _isPlayerInBounds = true;
+                _door.ToggleDoor();
+            }
+                
         }
 
         private void OnTriggerExit(Collider other)

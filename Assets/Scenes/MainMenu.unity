@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 865869682}
   - component: {fileID: 865869680}
   - component: {fileID: 865869681}
+  - component: {fileID: 865869683}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -256,12 +257,12 @@ MonoBehaviour:
   authenticator: {fileID: 865869682}
   playerPrefab: {fileID: 7399808359976636700, guid: bd749a81be07df543b26aa72e33cc6a3,
     type: 3}
-  autoCreatePlayer: 0
+  autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs: []
   showRoomGUI: 0
   minPlayers: 1
-  roomPlayerPrefab: {fileID: -3476325596203360670, guid: 5c4806dbfd9639d4f81a758fdba8d757,
+  roomPlayerPrefab: {fileID: 8632369290991091487, guid: 5c4806dbfd9639d4f81a758fdba8d757,
     type: 3}
   RoomScene: Assets/Scenes/Lobby.unity
   GameplayScene: Assets/Scenes/Main scene.unity
@@ -285,7 +286,7 @@ MonoBehaviour:
   SteamAppID: 480
   AllowSteamRelay: 1
   UseNextGenSteamNetworking: 1
-  InitFacepunch: 1
+  InitFacepunch: 0
   SteamUserID: 0
 --- !u!114 &865869681
 MonoBehaviour:
@@ -317,6 +318,19 @@ MonoBehaviour:
   OnClientAuthenticated:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &865869683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865869672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e12b2e2566b445e5994edfe9035aada6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  appID: 480
 --- !u!1 &958648338
 GameObject:
   m_ObjectHideFlags: 0

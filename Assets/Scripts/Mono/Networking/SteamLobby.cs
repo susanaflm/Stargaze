@@ -89,8 +89,6 @@ namespace Stargaze.Mono.Networking
             lobby.SetData(LobbyDataKeys.LobbyName.ToString(), $"{SteamClient.Name}'s Lobby");
             lobby.SetData(LobbyDataKeys.LobbyValidationCheck.ToString(), "Stargaze");
 
-            _networkManager.LobbyName = $"{SteamClient.Name}'s Lobby";
-
             _networkManager.StartHost();
         }
 
@@ -107,11 +105,8 @@ namespace Stargaze.Mono.Networking
             CurrentLobbyID = lobby.Id;
 
             string hostAddress = lobby.GetData(LobbyDataKeys.HostAddress.ToString());
-            string lobbyName = lobby.GetData(LobbyDataKeys.LobbyName.ToString());
 
             _networkManager.networkAddress = hostAddress;
-            _networkManager.LobbyName = lobbyName;
-            
             _networkManager.StartClient();
         }
     }

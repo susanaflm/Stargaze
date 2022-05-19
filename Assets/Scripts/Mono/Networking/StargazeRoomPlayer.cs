@@ -18,9 +18,7 @@ namespace Stargaze.Mono.Networking
         public Action OnRoleChanged;
         
         public string Username => _friend.Name;
-
         public PlayerRoles Role => _role;
-
         public bool IsReady => readyToBegin;
         
         public override void OnStartServer()

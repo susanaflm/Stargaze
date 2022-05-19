@@ -13,10 +13,6 @@ namespace Stargaze.Mono.Networking
         public static Action OnPlayerEntered;
         public static Action OnPlayerExit;
         
-        private string _lobbyName;
-        
-        public string LobbyName { get; set; }
-        
         public override void OnRoomServerConnect(NetworkConnectionToClient conn)
         {
             StargazeAuthenticationData authData = (StargazeAuthenticationData)conn.authenticationData;

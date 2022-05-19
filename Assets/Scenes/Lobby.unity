@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a4d24d2e4e64ba5804d71476d2e5ab5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lobbyNameLabel: {fileID: 1054949294}
   playerList: {fileID: 564777768}
   prefab: {fileID: 87456311019479686, guid: f36ccd67db5877843bbf8da300a834ab, type: 3}
   swapRolesButton: {fileID: 724670476}

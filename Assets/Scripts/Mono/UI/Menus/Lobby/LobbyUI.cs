@@ -1,5 +1,6 @@
 ﻿using Mirror;
 using Stargaze.Mono.Networking;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,6 +11,7 @@ namespace Stargaze.Mono.UI.Menus.Lobby
         private StargazeNetworkManager _networkManager;
 
         [Header("UI Elements")]
+        [SerializeField] private TMP_Text lobbyNameLabel;
         [SerializeField] private Transform playerList;
 
         [Space]
@@ -25,6 +27,9 @@ namespace Stargaze.Mono.UI.Menus.Lobby
             _networkManager = (StargazeNetworkManager)NetworkManager.singleton;
             
             swapRolesButton.gameObject.SetActive(NetworkServer.active);
+
+            Steamworks.Data.Lobby currentLobby = new Steamworks.Data.Lobby(SteamLobby.Instance.CurrentLobbyID);
+            lobbyNameLabel.text = currentLobby.GetData(LobbyDataKeys.LobbyName.ToString());
         }
 
         void UpdatePlayers()

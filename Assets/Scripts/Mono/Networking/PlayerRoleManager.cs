@@ -91,6 +91,12 @@ namespace Stargaze.Mono.Networking
                 return PlayerRoles.None;
         }
 
+        [Server]
+        public void SwapRoles()
+        {
+            (navigatorPlayerID, engineerPlayerID) = (engineerPlayerID, navigatorPlayerID);
+        }
+
         private void RolesChangedCallback(SteamId oldValue, SteamId newValue)
         {
             OnRolesChanged?.Invoke();

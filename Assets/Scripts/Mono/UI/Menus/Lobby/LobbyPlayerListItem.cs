@@ -23,7 +23,7 @@ namespace Stargaze.Mono.UI.Menus.Lobby
             {
                 if (_player != null)
                 {
-                    // TODO: Remove callbacks
+                    _player.OnRoleChanged -= UpdateRoleIndicator;
                 }
                 
                 _player = value;
@@ -31,8 +31,8 @@ namespace Stargaze.Mono.UI.Menus.Lobby
                 if (_player != null)
                 {
                     UpdateUI();
-                    
-                    // TODO: Add callbacks
+
+                    _player.OnRoleChanged += UpdateRoleIndicator;
                 }
             }
         }
@@ -55,6 +55,11 @@ namespace Stargaze.Mono.UI.Menus.Lobby
         private void UpdateReadyStatus()
         {
             readyIndicator.SetActive(_player.IsReady);
+        }
+
+        private void OnDestroy()
+        {
+            _player.OnRoleChanged -= UpdateRoleIndicator;
         }
     }
 }

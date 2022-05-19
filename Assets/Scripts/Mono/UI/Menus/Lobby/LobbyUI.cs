@@ -1,6 +1,7 @@
 ﻿using Mirror;
 using Stargaze.Mono.Networking;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Stargaze.Mono.UI.Menus.Lobby
 {
@@ -14,10 +15,16 @@ namespace Stargaze.Mono.UI.Menus.Lobby
         [Space]
         
         [SerializeField] private LobbyPlayerListItem prefab;
+
+        [Space]
+        
+        [SerializeField] private Button swapRolesButton;
         
         private void Start()
         {
             _networkManager = (StargazeNetworkManager)NetworkManager.singleton;
+            
+            swapRolesButton.gameObject.SetActive(NetworkServer.active);
         }
 
         void UpdatePlayers()
@@ -34,6 +41,11 @@ namespace Stargaze.Mono.UI.Menus.Lobby
                 LobbyPlayerListItem item = Instantiate(prefab, playerList);
                 item.Player = player;
             }
+        }
+        
+        public void OnSwapRolesButtonPressed()
+        {
+            PlayerRoleManager.Instance.SwapRoles();
         }
 
         private void OnEnable()

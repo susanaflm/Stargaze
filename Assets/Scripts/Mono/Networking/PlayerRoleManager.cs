@@ -102,7 +102,7 @@ namespace Stargaze.Mono.Networking
             OnRolesChanged?.Invoke();
         }
 
-        public override void OnStopClient()
+        public override void OnStopServer()
         {
             Instance = null;
             Destroy(gameObject);

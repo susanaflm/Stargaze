@@ -64,6 +64,18 @@ namespace Stargaze.Mono.UI.Menus.Lobby
             PlayerRoleManager.Instance.SwapRoles();
         }
 
+        public void OnLeaveLobbyButtonPressed()
+        {
+            if (NetworkServer.active && NetworkClient.isConnected)
+            {
+                _networkManager.StopHost();
+            }
+            else if (NetworkClient.isConnected)
+            {
+                _networkManager.StopClient();
+            }
+        }
+
         private void SetPlayerReady(bool status)
         {
             _networkManager.LocalRoomPlayer.SetReady(status);

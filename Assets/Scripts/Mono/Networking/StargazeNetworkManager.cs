@@ -1,6 +1,5 @@
 ﻿using System;
 using Mirror;
-using NaughtyAttributes;
 using UnityEngine;
 
 namespace Stargaze.Mono.Networking
@@ -12,12 +11,14 @@ namespace Stargaze.Mono.Networking
 
         public static Action OnPlayerEntered;
         public static Action OnPlayerExit;
+
+        public StargazeRoomPlayer LocalRoomPlayer;
         
         public override void OnRoomServerConnect(NetworkConnectionToClient conn)
         {
             StargazeAuthenticationData authData = (StargazeAuthenticationData)conn.authenticationData;
             
-            Debug.Log($"Player with Steam ID {authData.SteamID} joined the lobby");
+            Debug.Log($"Player with Steam ID {authData.SteamID} joined the lobby. Connection ID: {conn.connectionId}");
 
             OnServerPlayerConnected?.Invoke(conn);
         }
@@ -26,7 +27,7 @@ namespace Stargaze.Mono.Networking
         {
             StargazeAuthenticationData authData = (StargazeAuthenticationData)conn.authenticationData;
             
-            Debug.Log($"Player with Steam ID {authData.SteamID} disconnected from the lobby");
+            Debug.Log($"Player with Steam ID {authData.SteamID} disconnected from the lobby. Connection ID: {conn.connectionId}");
 
             OnServerPlayerDisconnected?.Invoke(conn);
         }

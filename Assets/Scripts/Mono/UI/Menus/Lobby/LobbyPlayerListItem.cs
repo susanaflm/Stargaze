@@ -24,6 +24,7 @@ namespace Stargaze.Mono.UI.Menus.Lobby
                 if (_player != null)
                 {
                     _player.OnRoleChanged -= UpdateRoleIndicator;
+                    _player.OnReadyStatusChanged -= UpdateReadyStatus;
                 }
                 
                 _player = value;
@@ -33,6 +34,7 @@ namespace Stargaze.Mono.UI.Menus.Lobby
                     UpdateUI();
 
                     _player.OnRoleChanged += UpdateRoleIndicator;
+                    _player.OnReadyStatusChanged += UpdateReadyStatus;
                 }
             }
         }
@@ -60,6 +62,7 @@ namespace Stargaze.Mono.UI.Menus.Lobby
         private void OnDestroy()
         {
             _player.OnRoleChanged -= UpdateRoleIndicator;
+            _player.OnReadyStatusChanged -= UpdateReadyStatus;
         }
     }
 }

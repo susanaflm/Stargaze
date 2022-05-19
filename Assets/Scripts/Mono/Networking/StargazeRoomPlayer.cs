@@ -16,6 +16,7 @@ namespace Stargaze.Mono.Networking
         private Friend _friend;
 
         public Action OnRoleChanged;
+        public Action OnReadyStatusChanged;
         
         public string Username => _friend.Name;
         public PlayerRoles Role => _role;
@@ -29,6 +30,16 @@ namespace Stargaze.Mono.Networking
             {
                 _role = PlayerRoleManager.Instance.GetPlayerRole(_steamId);
             };
+        }
+
+        public override void OnStartLocalPlayer()
+        {
+            ((StargazeNetworkManager)NetworkManager.singleton).LocalRoomPlayer = this;
+        }
+
+        public void SetReady(bool ready)
+        {
+            CmdChangeReadyState(ready);
         }
 
         [Server]
@@ -45,6 +56,11 @@ namespace Stargaze.Mono.Networking
         private void RoleChangedCallback(PlayerRoles oldValue, PlayerRoles newValue)
         {
             OnRoleChanged?.Invoke();
+        }
+
+        public override void ReadyStateChanged(bool oldReadyState, bool newReadyState)
+        {
+            OnReadyStatusChanged?.Invoke();
         }
     }
 }

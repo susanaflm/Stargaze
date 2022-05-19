@@ -21,6 +21,11 @@ namespace Stargaze.Mono.UI.Menus.Lobby
         [Space]
         
         [SerializeField] private Button swapRolesButton;
+
+        [Space]
+        
+        [SerializeField] private Button readyButton;
+        [SerializeField] private Button unreadyButton;
         
         private void Start()
         {
@@ -30,6 +35,12 @@ namespace Stargaze.Mono.UI.Menus.Lobby
 
             Steamworks.Data.Lobby currentLobby = new Steamworks.Data.Lobby(SteamLobby.Instance.CurrentLobbyID);
             lobbyNameLabel.text = currentLobby.GetData(LobbyDataKeys.LobbyName.ToString());
+            
+            readyButton.onClick.AddListener(() => SetPlayerReady(true));
+            unreadyButton.onClick.AddListener(() => SetPlayerReady(false));
+            
+            readyButton.gameObject.SetActive(true);
+            unreadyButton.gameObject.SetActive(false);
         }
 
         void UpdatePlayers()
@@ -51,6 +62,19 @@ namespace Stargaze.Mono.UI.Menus.Lobby
         public void OnSwapRolesButtonPressed()
         {
             PlayerRoleManager.Instance.SwapRoles();
+        }
+
+        private void SetPlayerReady(bool status)
+        {
+            _networkManager.LocalRoomPlayer.SetReady(status);
+
+            UpdateReadyButtons();
+        }
+
+        private void UpdateReadyButtons()
+        {
+            readyButton.gameObject.SetActive(!_networkManager.LocalRoomPlayer.IsReady);
+            unreadyButton.gameObject.SetActive(_networkManager.LocalRoomPlayer.IsReady);
         }
 
         private void OnEnable()

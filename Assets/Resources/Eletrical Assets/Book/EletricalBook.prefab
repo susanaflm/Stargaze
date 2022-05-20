@@ -364,8 +364,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   switchable: 0
-  page1: {fileID: 21300000, guid: b164bfaf427a61d4883d22f4a6d5a86d, type: 3}
-  page2: {fileID: 21300000, guid: 6acb1ccdff3f1b74c9ea9b962df1939c, type: 3}
-  bookUI: {fileID: 0}
-  page1UI: {fileID: 0}
-  page2UI: {fileID: 0}
+  _doesItHaveAnimator: 0
+  pageTurnButtons: {fileID: 0}
+  buttonBack: {fileID: 0}
+  buttonFront: {fileID: 0}
+  inspectionUI: {fileID: 0}
+  bookPrefab: {fileID: 2977336818497310764, guid: 63662708300779b48a4f918bc46e9703,
+    type: 3}

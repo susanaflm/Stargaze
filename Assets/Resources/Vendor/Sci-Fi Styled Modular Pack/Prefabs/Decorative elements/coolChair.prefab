@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 5609407711479458693}
   - component: {fileID: 8824597872920945696}
   - component: {fileID: 6742929103756595434}
+  - component: {fileID: 146892605387601716}
   m_Layer: 0
   m_Name: coolChair
   m_TagString: Untagged
@@ -278,7 +279,7 @@ Transform:
   m_GameObject: {fileID: 5085494421179445567}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.348793, y: 1.348793, z: 1.348793}
+  m_LocalScale: {x: 1.2772664, y: 1.2772665, z: 1.2772664}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4150643243985749514}
@@ -335,3 +336,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &146892605387601716
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5085494421179445567}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1156783, y: 1.0819246, z: 0.7843289}
+  m_Center: {x: -0.19239323, y: 0.85300475, z: 0.00000037252912}

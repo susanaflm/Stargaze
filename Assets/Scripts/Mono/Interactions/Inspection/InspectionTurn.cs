@@ -37,11 +37,11 @@ namespace Stargaze.Mono.Interactions.Inspection
             switch (scroll.y)
             {
                 case > 0:
-                    _scale *= 1.5f;
+                    _scale *= 1.1f;
                     transform.localScale = _scale;
                     break;
                 case < 0:
-                    _scale *= 0.5f;
+                    _scale /= 1.1f;
                     transform.localScale = _scale;
                     break;
             }

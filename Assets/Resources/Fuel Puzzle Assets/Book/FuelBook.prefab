@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 7370928960309213488}
   - component: {fileID: 5901148464910284437}
   - component: {fileID: 8503323907351200351}
+  - component: {fileID: 6672489752223078108}
   m_Layer: 0
   m_Name: FuelBook
   m_TagString: Untagged
@@ -170,6 +171,26 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6672489752223078108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854590538600604554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0d2c1d8d8a867d41abc1653ac243aba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchable: 0
+  _doesItHaveAnimator: 1
+  pageTurnButtons: {fileID: 0}
+  buttonBack: {fileID: 0}
+  buttonFront: {fileID: 0}
+  inspectionUI: {fileID: 0}
+  bookPrefab: {fileID: 6649742894821170402, guid: c6be429970c54904c98fc991c8afad91,
+    type: 3}
 --- !u!1 &8100425050983795572
 GameObject:
   m_ObjectHideFlags: 0

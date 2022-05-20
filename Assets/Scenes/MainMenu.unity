@@ -994,7 +994,7 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs: []
   showRoomGUI: 0
-  minPlayers: 2
+  minPlayers: 1
   roomPlayerPrefab: {fileID: 8632369290991091487, guid: 5c4806dbfd9639d4f81a758fdba8d757,
     type: 3}
   RoomScene: Assets/Scenes/Lobby.unity

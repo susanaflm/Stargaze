@@ -140,20 +140,24 @@ namespace Stargaze.Mono.Puzzle
             OnCollectMaterial?.Invoke(resourceMaterial);
         }
 
+        [Server]
         public void CompleteGravity()
         {
             if (_gravityPuzzleComplete)
                 return;
 
             OnGravityPuzzleComplete?.Invoke(gravityDoors);
+            _gravityPuzzleComplete = true;
         }
 
+        [Server]
         public void CompleteMaze()
         {
             if (_mazePuzzleComplete)
                 return;
 
             OnMazePuzzleComplete?.Invoke(mazeDoors);
+            _mazePuzzleComplete = true;
         }
     }
 }

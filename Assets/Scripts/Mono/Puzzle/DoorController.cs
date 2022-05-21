@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
 namespace Stargaze.Mono.Puzzle
 {
-    public class DoorController : MonoBehaviour
+    [RequireComponent(typeof(NetworkIdentity))]
+    public class DoorController : NetworkBehaviour
     {
+        [Server]
         private void ToggleDoors(List<Door.Door> doors)
         {
             foreach (Door.Door door in doors)

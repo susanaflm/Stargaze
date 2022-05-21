@@ -10,7 +10,7 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
         [SerializeField] private float timeToKill = 3;
 
         [Tooltip("This Door will be closed behind the player")]
-        [SerializeField] private Door.Door _door;
+        [SerializeField] private Door.Door door;
 
         private float _timer = 0.0f;
         private bool _isPlayerInBounds;
@@ -33,7 +33,7 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
             if (other.GetComponent<PlayerInput>())
             {
                 _isPlayerInBounds = true;
-                _door.ToggleDoor();
+                door.ToggleDoor();
             }
                 
         }

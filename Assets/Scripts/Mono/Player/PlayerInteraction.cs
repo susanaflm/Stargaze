@@ -1,12 +1,18 @@
+using System;
 using Stargaze.Mono.Interactions;
 using Stargaze.Mono.Interactions.Inspection;
 using Stargaze.Mono.Interactions.Magnet;
 using UnityEngine;
+using Color = UnityEngine.Color;
 
 namespace Stargaze.Mono.Player
 {
     public class PlayerInteraction : MonoBehaviour
     {
+
+        public static Action OnHoverInteractable;
+        public static Action OnHoverInteractableExit;
+        
         private PlayerInput _input;
         private PlayerGroundController _controller;
         private Camera _playerCamera;
@@ -78,7 +84,12 @@ namespace Stargaze.Mono.Player
             {
                 interactionData.ResetInteractable();
             }
-            
+
+            if (interactionData.Interactable != null)
+                OnHoverInteractable?.Invoke();
+            else
+                OnHoverInteractableExit?.Invoke();
+
 #if DEBUG
             Debug.DrawRay(ray.origin, ray.direction * rayDistance, hitSomething && interactionData.Interactable != null ? Color.green : Color.red );
 #endif

@@ -37,7 +37,7 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             var wireTransform = transform;
             Vector3 pos  = wireTransform.localPosition;
 
-            pos += wireTransform.right * (input.x * wireSpeed * Time.deltaTime);
+            pos += -wireTransform.right * (input.x * wireSpeed * Time.deltaTime);
             pos += wireTransform.up * (input.y * wireSpeed * Time.deltaTime);
             
             //TODO: Rework Clamp Function

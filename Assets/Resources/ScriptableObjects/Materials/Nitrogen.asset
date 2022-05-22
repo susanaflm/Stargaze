@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Nitrogen
   m_EditorClassIdentifier: 
   Name: Nitrogen
-  Sprite: {fileID: 21300000, guid: e711d6c97eb8ed7459ad65641851c175, type: 3}
+  CraftedComponent: 0
+  Sprite: {fileID: 21300000, guid: 57fa21d3e98967241b54ab45c0bd718b, type: 3}

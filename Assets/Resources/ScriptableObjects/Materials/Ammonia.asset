@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Ammonia
   m_EditorClassIdentifier: 
   Name: Ammonia
-  Sprite: {fileID: 21300000, guid: 2921c525b6ce1b44b87d9180afd03e6f, type: 3}
+  CraftedComponent: 1
+  Sprite: {fileID: 21300000, guid: 7b2f0dc00d1474b4dac61f466c6236a8, type: 3}

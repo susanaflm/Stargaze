@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Aluminum
   m_EditorClassIdentifier: 
   Name: Aluminium
-  Sprite: {fileID: 21300000, guid: 6686d5692bac44744b507bc2ddef45ad, type: 3}
+  CraftedComponent: 0
+  Sprite: {fileID: 21300000, guid: d3866bcc428d0be4ead77c75b9e04b7f, type: 3}

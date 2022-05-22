@@ -58,18 +58,11 @@ namespace Stargaze.Mono.Puzzle.FuelMixturePuzzle
 
                 if (_resultMaterial == null)
                     return;
-
-                if (_resultMaterial.IsFinalProduct)
-                {
-                    //TODO: Spawn The Different models for the fuels
-                }
-                else
-                {
-                    GameObject vialObject = Instantiate(vialPrefab, outputPos.position, Quaternion.identity);
-                    vialObject.GetComponent<VialInteractable>().SetResource(_resultMaterial);
-                    NetworkServer.Spawn(vialObject);
-                }
                 
+                GameObject vialObject = Instantiate(vialPrefab, outputPos.position, Quaternion.identity);
+                vialObject.GetComponent<VialInteractable>().SetResource(_resultMaterial);
+                NetworkServer.Spawn(vialObject);
+
                 RpcSelectFabricateButton();
                 
                 _resultMaterial = null;

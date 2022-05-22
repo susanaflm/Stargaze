@@ -10,10 +10,6 @@ namespace Stargaze.Mono.Puzzle
     {
         public static PuzzleManager Instance;
         public Action<ResourceMaterial> OnCollectMaterial;
-        public Action<List<Door.Door>> OnElectricalPuzzleComplete;
-        public Action<List<Door.Door>> OnElectricalPuzzleUndo;
-        public Action<List<Door.Door>> OnMazePuzzleComplete;
-        public Action<List<Door.Door>> OnGravityPuzzleComplete;
 
         [SyncVar]
         private bool _doesPlayerHaveMagnet = false;
@@ -80,15 +76,7 @@ namespace Stargaze.Mono.Puzzle
         {
             _isPowerOn = status;
 
-            if (_isPowerOn)
-            {
-                OnElectricalPuzzleComplete?.Invoke(electricalDoors);
-            }
-            else
-            {
-                OnElectricalPuzzleUndo?.Invoke(electricalDoors);
-            }
-            
+            ToggleDoors(electricalDoors);
 #if DEBUG
             Debug.Log("Power On!");
 #endif
@@ -146,7 +134,7 @@ namespace Stargaze.Mono.Puzzle
             if (_gravityPuzzleComplete)
                 return;
 
-            OnGravityPuzzleComplete?.Invoke(gravityDoors);
+            ToggleDoors(gravityDoors);
             _gravityPuzzleComplete = true;
         }
 
@@ -156,8 +144,19 @@ namespace Stargaze.Mono.Puzzle
             if (_mazePuzzleComplete)
                 return;
 
-            OnMazePuzzleComplete?.Invoke(mazeDoors);
+            ToggleDoors(mazeDoors);
             _mazePuzzleComplete = true;
+        }
+        
+        [Server]
+        private void ToggleDoors(List<Door.Door> doors)
+        {
+            foreach (Door.Door door in doors)
+            {
+                door.ToggleDoor();
+                
+                Debug.Log($"Opening door {door}");
+            }
         }
     }
 }

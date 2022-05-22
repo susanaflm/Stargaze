@@ -120,7 +120,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   vialMaterial: {fileID: 0}
-  switchable: 0
+  switchable: 1
 --- !u!54 &4545125644110571681
 Rigidbody:
   m_ObjectHideFlags: 0

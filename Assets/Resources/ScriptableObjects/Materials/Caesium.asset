@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47fd9846d49b652468cb458638ce76c3, type: 3}
-  m_Name: AmmoniumPerchlorate
+  m_Name: Caesium
   m_EditorClassIdentifier: 
-  Name: Ammonium Perchlorate
-  CraftedComponent: 1
-  Sprite: {fileID: 21300000, guid: 38d3334da15d6db4d95286f0356d7514, type: 3}
+  Name: Caesium
+  CraftedComponent: 0
+  Sprite: {fileID: 21300000, guid: 2e66a3025cd09d745977df08610b8301, type: 3}

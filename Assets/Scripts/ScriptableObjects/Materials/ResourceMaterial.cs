@@ -7,7 +7,7 @@ namespace Stargaze.ScriptableObjects.Materials
     public class ResourceMaterial : ScriptableObject
     {
         public string Name;
-        public bool IsFinalProduct;
+        public bool CraftedComponent;
 
         [Tooltip("Image to be used when crafting the fuel")]
         public Sprite Sprite;

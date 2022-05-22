@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: PerchloricAcid
   m_EditorClassIdentifier: 
   Name: Perchloric Acid
-  Sprite: {fileID: 21300000, guid: c0d76ebba2ebfc641aaef3253ef6c68d, type: 3}
+  CraftedComponent: 1
+  Sprite: {fileID: 21300000, guid: 50abd6424ad883e449526851fa152946, type: 3}

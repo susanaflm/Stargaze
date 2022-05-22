@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: LiquidFuel
   m_EditorClassIdentifier: 
   Name: Liquid Fuel
-  Sprite: {fileID: 21300000, guid: cb6b554059478c24bbee765a9487ff3f, type: 3}
+  CraftedComponent: 1
+  Sprite: {fileID: 21300000, guid: 6b6df76ef595a994ba9ded28fdc33d4b, type: 3}

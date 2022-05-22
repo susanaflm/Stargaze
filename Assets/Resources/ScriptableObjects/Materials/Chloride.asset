@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: Chloride
   m_EditorClassIdentifier: 
   Name: Chloride
-  Sprite: {fileID: 21300000, guid: 4366a570c5450004a8f21c12378b9242, type: 3}
+  CraftedComponent: 0
+  Sprite: {fileID: 21300000, guid: 834840a5f8910ec48bb822c12be19ed5, type: 3}

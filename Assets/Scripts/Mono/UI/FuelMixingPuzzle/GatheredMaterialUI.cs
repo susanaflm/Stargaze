@@ -10,8 +10,15 @@ namespace Stargaze.Mono.UI.FuelMixingPuzzle
 {
     public class GatheredMaterialUI : MonoBehaviour
     {
-        [SerializeField] private GameObject materialPrefab;
         private int _current = 0;
+        private int _currentBaseChild;
+        private int _currentCraftedChild;
+        
+        [SerializeField] private GameObject materialPrefab;
+
+        [SerializeField] private GameObject baseMaterials;
+        [SerializeField] private GameObject craftedMaterials;
+        
 
         private void FillUiWithGatheredMaterials()
         {
@@ -19,18 +26,34 @@ namespace Stargaze.Mono.UI.FuelMixingPuzzle
                 return;
 
             _current = 0;
+            _currentBaseChild = 0;
+            _currentCraftedChild = 0;
 
             foreach (var resourceMaterial in PuzzleManager.Instance.GatheredMaterials)
             {
-                var r = Instantiate(materialPrefab, transform);
-                r.GetComponent<Image>().sprite = resourceMaterial.Sprite;
-                r.GetComponent<CraftingResource>().SetResource(resourceMaterial);
+                if (!resourceMaterial.CraftedComponent)
+                {
+                    var r = Instantiate(materialPrefab, baseMaterials.transform.GetChild(_currentBaseChild).transform);
+                    r.GetComponent<Image>().sprite = resourceMaterial.Sprite;
+                    r.GetComponent<CraftingResource>().SetResource(resourceMaterial);
 
-                //Selects one of the components
-                if (_current == 0)
-                    r.GetComponent<Button>().Select();
+                    //Selects one of the components
+                    if (_current == 0)
+                        r.GetComponent<Button>().Select();
+
+                    _currentBaseChild++;
+                }
+                else
+                {
+                    var r = Instantiate(materialPrefab, craftedMaterials.transform.GetChild(_currentCraftedChild).transform);
+                    r.GetComponent<Image>().sprite = resourceMaterial.Sprite;
+                    r.GetComponent<CraftingResource>().SetResource(resourceMaterial);
+                    
+                    _currentCraftedChild++;
+                }
                 
                 _current++;
+ 
             }
         }
 

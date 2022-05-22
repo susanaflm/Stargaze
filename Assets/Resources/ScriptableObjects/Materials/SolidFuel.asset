@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: SolidFuel
   m_EditorClassIdentifier: 
   Name: Solid Fuel
-  Sprite: {fileID: 21300000, guid: b052d2672c2225b4196620e0eb4c8eeb, type: 3}
+  CraftedComponent: 1
+  Sprite: {fileID: 21300000, guid: d4d91ac45121d114a85cf98272953494, type: 3}

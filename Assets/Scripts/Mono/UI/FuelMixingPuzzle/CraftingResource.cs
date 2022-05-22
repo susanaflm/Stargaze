@@ -23,7 +23,6 @@ namespace Stargaze.Mono.UI.FuelMixingPuzzle
         public void SetResource(ResourceMaterial resourceMaterial)
         {
             _resource = resourceMaterial;
-            textBox.text = resourceMaterial.name;
         }
 
         private void OnDisable()

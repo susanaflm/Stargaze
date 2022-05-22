@@ -1398,7 +1398,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1affd0a579225bd4e97b82ad77f482f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0a46ac3099f499641b1f529efbfaa618, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3440,6 +3440,7 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 1650199410077515795, guid: a918cefb70f075843abb2096989e61e8, type: 3}
+  - {fileID: 990517179962653591, guid: b4c24ce58b5d6ee47a74371373a979e5, type: 3}
   showRoomGUI: 0
   minPlayers: 2
   roomPlayerPrefab: {fileID: 8632369290991091487, guid: 5c4806dbfd9639d4f81a758fdba8d757,

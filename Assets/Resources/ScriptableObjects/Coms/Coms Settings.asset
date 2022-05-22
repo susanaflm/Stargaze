@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Coms Settings
   m_EditorClassIdentifier: 
   StartingFrequency: 901
-  EmergencyFrequency: 1234
+  EmergencyFrequency: 1280

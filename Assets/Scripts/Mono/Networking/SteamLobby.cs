@@ -42,6 +42,23 @@ namespace Stargaze.Mono.Networking
             SteamMatchmaking.OnLobbyEntered += OnLobbyEntered;
         }
 
+        public async void HostLobby(string lobbyName, bool isPublic)
+        {
+            Lobby? lobbyRequest = await SteamMatchmaking.CreateLobbyAsync(_networkManager.maxConnections);
+            
+            if (lobbyRequest.HasValue)
+            {
+                if (isPublic)
+                    lobbyRequest.Value.SetPublic();
+                else
+                    lobbyRequest.Value.SetFriendsOnly();
+                
+                lobbyRequest.Value.SetData(LobbyDataKeys.LobbyName.ToString(), lobbyName);
+                    
+                lobbyRequest.Value.SetJoinable(true);
+            }
+        }
+
         [Button]
         public async void HostFriendOnlyLobby()
         {
@@ -51,6 +68,7 @@ namespace Stargaze.Mono.Networking
             {
                 lobbyRequest.Value.SetFriendsOnly();
                 lobbyRequest.Value.SetJoinable(true);
+                lobbyRequest.Value.SetData(LobbyDataKeys.LobbyName.ToString(), $"{SteamClient.Name}'s Lobby");
             }
         }
         
@@ -63,6 +81,7 @@ namespace Stargaze.Mono.Networking
             {
                 lobbyRequest.Value.SetPublic();
                 lobbyRequest.Value.SetJoinable(true);
+                lobbyRequest.Value.SetData(LobbyDataKeys.LobbyName.ToString(), $"{SteamClient.Name}'s Lobby");
             }
         }
 
@@ -86,7 +105,6 @@ namespace Stargaze.Mono.Networking
             CurrentLobbyID = lobby.Id;
 
             lobby.SetData(LobbyDataKeys.HostAddress.ToString(), SteamClient.SteamId.ToString());
-            lobby.SetData(LobbyDataKeys.LobbyName.ToString(), $"{SteamClient.Name}'s Lobby");
             lobby.SetData(LobbyDataKeys.LobbyValidationCheck.ToString(), "Stargaze");
 
             _networkManager.StartHost();

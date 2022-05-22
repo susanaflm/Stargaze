@@ -6,15 +6,20 @@ namespace Stargaze.Mono.UI.Menus.MainMenu
 {
     public class MainMenu : MonoBehaviour
     {
+        [Header("Menus")]
+        [SerializeField] private JoinGameMenu joinGameMenu;
+        [SerializeField] private HostGameMenu hostGameMenu;
+        
         public void OnJoinGameButtonPressed()
         {
-            // TODO: Enable lobby list section
+            joinGameMenu.Show();
+            Hide();
         }
         
         public void OnHostGameButtonPressed()
         {
-            // TODO: Show lobby host options
-            SteamLobby.Instance.HostFriendOnlyLobby();
+            hostGameMenu.Show();
+            Hide();
         }
         
         public void OnOptionsButtonPressed()

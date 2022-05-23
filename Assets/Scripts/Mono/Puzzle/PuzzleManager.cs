@@ -23,7 +23,10 @@ namespace Stargaze.Mono.Puzzle
         [SyncVar]
         private bool _gravityStatus = true;
 
+        [SyncVar]
         private bool _gravityPuzzleComplete = false;
+        
+        [SyncVar]
         private bool _mazePuzzleComplete = false;
 
         private SyncList<ResourceMaterial> _gatheredMaterials = new();

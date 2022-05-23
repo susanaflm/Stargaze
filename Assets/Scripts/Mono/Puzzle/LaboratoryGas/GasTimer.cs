@@ -33,7 +33,7 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
             if (other.GetComponent<PlayerInput>())
             {
                 _isPlayerInBounds = true;
-                door.ToggleDoor();
+                door.CmdToggleDoor();
             }
                 
         }

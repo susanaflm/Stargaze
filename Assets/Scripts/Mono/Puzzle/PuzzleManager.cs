@@ -153,7 +153,7 @@ namespace Stargaze.Mono.Puzzle
         {
             foreach (Door.Door door in doors)
             {
-                door.ToggleDoor();
+                door.CmdToggleDoor();
                 
                 Debug.Log($"Opening door {door}");
             }

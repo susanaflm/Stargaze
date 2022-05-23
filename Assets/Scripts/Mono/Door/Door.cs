@@ -3,13 +3,12 @@ using Mirror;
 using NaughtyAttributes;
 using Stargaze.Mono.Puzzle;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Stargaze.Mono.Door
 {
     public class Door : NetworkBehaviour
     {
-        [SyncVar]
+        [SyncVar(hook = nameof(OnDoorStateChangedCallback))]
         [SerializeField] private bool isOpened;
         [SyncVar]
         [SerializeField] private bool requirePower = true;
@@ -19,9 +18,19 @@ namespace Stargaze.Mono.Door
         private void Awake()
         {
             _doorAnimator = GetComponent<Animator>();
+        }
+
+        public override void OnStartClient()
+        {
             _doorAnimator.SetBool("Opened" , isOpened);
         }
-        
+
+        private void OnDoorStateChangedCallback(bool oldValue, bool newValue)
+        {
+            
+            _doorAnimator.SetBool("Opened" , newValue);
+        }
+
         [Server]
         public void OpenDoor()
         {
@@ -54,7 +63,8 @@ namespace Stargaze.Mono.Door
             _doorAnimator.SetBool("Opened", false);
         }
 
-        public void ToggleDoor()
+        [Command(requiresAuthority = false)]
+        public void CmdToggleDoor()
         {
             if (requirePower)
             {

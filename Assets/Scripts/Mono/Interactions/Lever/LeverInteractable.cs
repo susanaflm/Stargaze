@@ -27,7 +27,7 @@ namespace Stargaze.Mono.Interactions.Lever
         {
             foreach (var door in attachedDoors)
             {
-                door.ToggleDoor();
+                door.CmdToggleDoor();
             }
         }
 

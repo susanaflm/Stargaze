@@ -1,6 +1,4 @@
-﻿using Mirror;
-using Stargaze.Mono.Networking;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Stargaze.Mono.UI.Menus.MainMenu
 {
@@ -9,7 +7,29 @@ namespace Stargaze.Mono.UI.Menus.MainMenu
         [Header("Menus")]
         [SerializeField] private JoinGameMenu joinGameMenu;
         [SerializeField] private HostGameMenu hostGameMenu;
-        
+        [SerializeField] private OptionsMenu optionsMenu;
+
+        private void Awake()
+        {
+            joinGameMenu.OnMenuQuit += () =>
+            {
+                joinGameMenu.Hide();
+                Show();
+            };
+
+            hostGameMenu.OnMenuQuit += () =>
+            {
+                hostGameMenu.Hide();
+                Show();
+            };
+
+            optionsMenu.OnMenuQuit += () =>
+            {
+                optionsMenu.Hide();
+                Show();
+            };
+        }
+
         public void OnJoinGameButtonPressed()
         {
             joinGameMenu.Show();
@@ -24,7 +44,8 @@ namespace Stargaze.Mono.UI.Menus.MainMenu
         
         public void OnOptionsButtonPressed()
         {
-            // TODO: Enable options section
+            optionsMenu.Show();
+            Hide();
         }
         
         public void OnCreditsButtonPressed()

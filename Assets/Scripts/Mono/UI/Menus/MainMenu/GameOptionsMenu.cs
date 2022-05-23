@@ -1,19 +1,13 @@
 ﻿using System;
-using Stargaze.Mono.Networking;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Stargaze.Mono.UI.Menus.MainMenu
 {
-    public class HostGameMenu : MonoBehaviour
+    public class GameOptionsMenu : MonoBehaviour
     {
         private InputAction _goBackAction;
-
-        [Header("Fields")]
-        [SerializeField] private TMP_InputField lobbyNameInput;
-        [SerializeField] private TMP_Dropdown lobbyPrivacyDropdown;
-
+        
         public Action OnMenuQuit;
         
         private void Awake()
@@ -24,14 +18,6 @@ namespace Stargaze.Mono.UI.Menus.MainMenu
             {
                 OnMenuQuit?.Invoke();
             };
-        }
-
-        public void OnHostGameButtonPressed()
-        {
-            string lobbyName = lobbyNameInput.text;
-            bool isPublic = lobbyPrivacyDropdown.value == 0;
-            
-            SteamLobby.Instance.HostLobby(lobbyName, isPublic);
         }
         
         public void OnGoBackButtonPressed()

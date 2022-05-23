@@ -142,7 +142,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Join Game
+  m_text: Button
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cc62a6193a3ecdc44b342dadb58cf145, type: 2}
   m_sharedMaterial: {fileID: 3050475818111024074, guid: cc62a6193a3ecdc44b342dadb58cf145,
@@ -281,10 +281,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.83137256, g: 0.6627451, b: 0.9843137, a: 1}
-    m_PressedColor: {r: 0.53802395, g: 0.42889646, b: 0.637, a: 1}
-    m_SelectedColor: {r: 0.83137256, g: 0.6627451, b: 0.9843137, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_PressedColor: {r: 0.688, g: 0.688, b: 0.688, a: 1}
+    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
     m_DisabledColor: {r: 0.5943396, g: 0.5915361, b: 0.5915361, a: 0.27450982}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

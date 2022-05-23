@@ -1,4 +1,5 @@
-﻿using Stargaze.Mono.Networking;
+﻿using System;
+using Stargaze.Mono.Networking;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,13 +8,12 @@ namespace Stargaze.Mono.UI.Menus.MainMenu
     public class JoinGameMenu : MonoBehaviour
     {
         private InputAction _goBackAction;
-        
-        [Header("Menus")]
-        [SerializeField] private MainMenu mainMenu;
 
         [Header("Lobby List")]
         [SerializeField] private Transform lobbyListParent;
         [SerializeField] private LobbyListItem lobbyListItemPrefab;
+
+        public Action OnMenuQuit;
 
         private void Awake()
         {
@@ -21,8 +21,7 @@ namespace Stargaze.Mono.UI.Menus.MainMenu
 
             _goBackAction.performed += _ =>
             {
-                mainMenu.Show();
-                Hide();
+                OnMenuQuit?.Invoke();
             };
         }
 
@@ -56,8 +55,7 @@ namespace Stargaze.Mono.UI.Menus.MainMenu
 
         public void OnGoBackButtonPressed()
         {
-            mainMenu.Show();
-            Hide();
+            OnMenuQuit?.Invoke();
         }
         
         public void Show()

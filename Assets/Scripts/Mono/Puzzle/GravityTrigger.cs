@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace Stargaze.Mono.Puzzle
 {
-    [RequireComponent(typeof(NetworkIdentity))]
     public class GravityTrigger : NetworkBehaviour
     {
-        [Server]
+        [ServerCallback]
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<PlayerInput>())

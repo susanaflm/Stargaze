@@ -491,7 +491,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ESQ
+  m_text: ESC
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 84bc3ca5286adb647b89e35a922a68fd, type: 2}
   m_sharedMaterial: {fileID: -7452574474992445940, guid: 84bc3ca5286adb647b89e35a922a68fd,
@@ -771,9 +771,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Stargaze.Mono.UI.Menus.MainMenu.HostGameMenu, Assembly-CSharp
-        m_MethodName: OnGoBackButtonPressed
+      - m_Target: {fileID: 17307731}
+        m_TargetAssemblyTypeName: Stargaze.Mono.UI.Menus.Lobby.LobbyUI, Assembly-CSharp
+        m_MethodName: OnLeaveLobbyButtonPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -800,7 +800,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 7
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
@@ -1919,7 +1919,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 50, y: 0}
+  m_AnchoredPosition: {x: 50, y: -13}
   m_SizeDelta: {x: 235, y: 75}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1820512609
@@ -2002,7 +2002,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 50, y: 0}
+  m_AnchoredPosition: {x: 50, y: -13}
   m_SizeDelta: {x: 235, y: 75}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &2014842756

@@ -12,9 +12,16 @@ namespace Stargaze.Mono.UI.Menus.Lobby
         
         [Header("UI Elements")]
         [SerializeField] private TMP_Text usernameLabel;
-        [SerializeField] private GameObject navigatorIndicator;
-        [SerializeField] private GameObject engineerIndicator;
-        [SerializeField] private GameObject readyIndicator;
+        
+        [Space]
+        
+        [SerializeField] private GameObject navigatorNotReadyIndicator;
+        [SerializeField] private GameObject navigatorReadyIndicator;
+        
+        [Space]
+        
+        [SerializeField] private GameObject engineerNotReadyIndicator;
+        [SerializeField] private GameObject engineerReadyIndicator;
 
         public StargazeRoomPlayer Player
         {
@@ -24,7 +31,7 @@ namespace Stargaze.Mono.UI.Menus.Lobby
                 if (_player != null)
                 {
                     _player.OnRoleChanged -= UpdateRoleIndicator;
-                    _player.OnReadyStatusChanged -= UpdateReadyStatus;
+                    _player.OnReadyStatusChanged -= UpdateRoleIndicator;
                 }
                 
                 _player = value;
@@ -34,7 +41,7 @@ namespace Stargaze.Mono.UI.Menus.Lobby
                     UpdateUI();
 
                     _player.OnRoleChanged += UpdateRoleIndicator;
-                    _player.OnReadyStatusChanged += UpdateReadyStatus;
+                    _player.OnReadyStatusChanged += UpdateRoleIndicator;
                 }
             }
         }
@@ -44,25 +51,32 @@ namespace Stargaze.Mono.UI.Menus.Lobby
             usernameLabel.text = _player.Username;
             
             UpdateRoleIndicator();
-
-            UpdateReadyStatus();
         }
 
         private void UpdateRoleIndicator()
         {
-            navigatorIndicator.SetActive(_player.Role == PlayerRoles.Navigator);
-            engineerIndicator.SetActive(_player.Role == PlayerRoles.Engineer);
-        }
-
-        private void UpdateReadyStatus()
-        {
-            readyIndicator.SetActive(_player.IsReady);
+            if (_player.Role == PlayerRoles.Engineer)
+            {
+                engineerReadyIndicator.SetActive(_player.IsReady);
+                engineerNotReadyIndicator.SetActive(!_player.IsReady);
+                
+                navigatorReadyIndicator.SetActive(false);
+                navigatorNotReadyIndicator.SetActive(false);
+            }
+            else if (_player.Role == PlayerRoles.Navigator)
+            {
+                navigatorReadyIndicator.SetActive(_player.IsReady);
+                navigatorNotReadyIndicator.SetActive(!_player.IsReady);
+                
+                engineerReadyIndicator.SetActive(false);
+                engineerNotReadyIndicator.SetActive(false);
+            }
         }
 
         private void OnDestroy()
         {
             _player.OnRoleChanged -= UpdateRoleIndicator;
-            _player.OnReadyStatusChanged -= UpdateReadyStatus;
+            _player.OnReadyStatusChanged -= UpdateRoleIndicator;
         }
     }
 }

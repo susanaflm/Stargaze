@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 6373529882243774933}
   - component: {fileID: 8060467231117882992}
   - component: {fileID: 5204049507639476922}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MazeBack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 5996686958368809839}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.352173, y: 1.3521731, z: 1.352173}
+  m_LocalScale: {x: 1.8869538, y: 1.8719342, z: 1.529804}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 352527099592106101}
@@ -181,7 +181,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6915816905925990203}
   - component: {fileID: 6915816905925990202}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: cm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6915816906331179159}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: -0.69399995, y: 0.005999991, z: -0.090999365}
+  m_LocalPosition: {x: -0.69399995, y: -0.005, z: -0.090999365}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -271,7 +271,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6915816906526925382}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.00699789, y: 0.6930007, z: -1.290337}
+  m_LocalPosition: {x: -0.006998964, y: 0.70300037, z: -1.5880115}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -308,7 +308,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7768116, y: 1}
+    m_SensorSize: {x: 1.9393665, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -341,7 +341,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6915816907492293666}
   m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
-  m_LocalPosition: {x: 0.691, y: 1.3870001, z: -0.083899915}
+  m_LocalPosition: {x: 0.691, y: 1.394, z: -0.083899915}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

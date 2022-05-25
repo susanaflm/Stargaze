@@ -24,7 +24,7 @@ namespace Stargaze.Mono.Puzzle.DronePuzzle
         [SyncVar(hook = nameof(DronePositionChangedCallback))]
         private Vector2 _dronePosition;
 
-        private SyncList<ResourceMaterialEntry> _materials = new();
+        private readonly SyncList<ResourceMaterialEntry> _materials = new();
 
         [SerializeField] private ResourceMaterialEntry[] materialsToSpawn;
 

@@ -31,7 +31,7 @@ namespace Stargaze.Mono.Puzzle
         [SyncVar]
         private bool _mazePuzzleComplete = false;
 
-        private SyncList<ResourceMaterial> _gatheredMaterials = new();
+        private readonly SyncList<ResourceMaterial> _gatheredMaterials = new();
         
         [Tooltip("Electrical Puzzle Doors")] [SerializeField]
         private List<Door.Door> electricalDoors = new();

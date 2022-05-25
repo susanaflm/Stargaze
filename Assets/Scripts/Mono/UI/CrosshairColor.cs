@@ -28,16 +28,30 @@ namespace Stargaze.Mono.UI
             _crosshair.color = defaultColor;
         }
 
+        private void DeactivateCrosshair()
+        {
+            _crosshair.enabled = false;
+        }
+
+        private void ActivateCrosshair()
+        {
+            _crosshair.enabled = true;
+        }
+
         private void OnEnable()
         {
             PlayerInteraction.OnHoverInteractable += SetHover;
             PlayerInteraction.OnHoverInteractableExit += SetDefault;
+            PlayerInteraction.OnInteractEnter += DeactivateCrosshair;
+            PlayerInteraction.OnInteractExit += ActivateCrosshair;
         }
 
         private void OnDisable()
         {
             PlayerInteraction.OnHoverInteractable -= SetHover;
             PlayerInteraction.OnHoverInteractableExit -= SetDefault;
+            PlayerInteraction.OnInteractEnter -= DeactivateCrosshair;
+            PlayerInteraction.OnInteractExit -= ActivateCrosshair;
         }
     }
 }

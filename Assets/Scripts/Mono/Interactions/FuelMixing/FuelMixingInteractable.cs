@@ -24,11 +24,17 @@ namespace Stargaze.Mono.Interactions.FuelMixing
         {
             fuelMixingUI.SetActive(true);
             FillUI?.Invoke();
+            
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
         }
 
         public void OnInteractionEnd()
         {
             fuelMixingUI.SetActive(false);
+            
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
     }
 }

@@ -64,7 +64,8 @@ namespace Stargaze.Mono.Player
         [Command]
         private void CmdSendVoiceData(byte[] voiceBuffer, int size, ushort frequency)
         {
-            if (frequency != comsSettings.EmergencyFrequency)
+            if (frequency < comsSettings.EmergencyFrequency - comsSettings.ErrorMargin &&
+                frequency > comsSettings.EmergencyFrequency + comsSettings.ErrorMargin)
                 return;
             
             RpcReceiveVoiceData(voiceBuffer, size);

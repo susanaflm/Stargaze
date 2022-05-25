@@ -10,5 +10,6 @@ namespace Stargaze.ScriptableObjects.Coms
         [Space]
         
         public ushort EmergencyFrequency = 4321;
+        public ushort ErrorMargin = 2;
     }
 }

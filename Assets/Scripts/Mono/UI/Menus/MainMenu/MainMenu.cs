@@ -8,6 +8,7 @@ namespace Stargaze.Mono.UI.Menus.MainMenu
         [SerializeField] private JoinGameMenu joinGameMenu;
         [SerializeField] private HostGameMenu hostGameMenu;
         [SerializeField] private OptionsMenu optionsMenu;
+        [SerializeField] private CreditsMenu creditsMenu;
 
         private void Awake()
         {
@@ -26,6 +27,12 @@ namespace Stargaze.Mono.UI.Menus.MainMenu
             optionsMenu.OnMenuQuit += () =>
             {
                 optionsMenu.Hide();
+                Show();
+            };
+
+            creditsMenu.OnMenuQuit += () =>
+            {
+                creditsMenu.Hide();
                 Show();
             };
         }
@@ -50,7 +57,8 @@ namespace Stargaze.Mono.UI.Menus.MainMenu
         
         public void OnCreditsButtonPressed()
         {
-            // TODO: Enable credits section
+            creditsMenu.Show();
+            Hide();
         }
         
         public void OnQuitGameButtonPressed()

@@ -12,6 +12,8 @@ namespace Stargaze.Mono.Player
 
         public static Action OnHoverInteractable;
         public static Action OnHoverInteractableExit;
+        public static Action OnInteractEnter;
+        public static Action OnInteractExit;
         
         private PlayerInput _input;
         private PlayerGroundController _controller;
@@ -114,10 +116,14 @@ namespace Stargaze.Mono.Player
             }
 
             if (!interactionData.Interactable.Switchable)
+            {
                 _controller.IsPlayerInteracting = true;
+                OnInteractEnter?.Invoke();
+            }
             
             _currentInteractable = interactionData.Interactable;
             interactionData.Interact();
+            
         }
 
         private void ExitInteraction()
@@ -128,6 +134,8 @@ namespace Stargaze.Mono.Player
 
             _currentInteractable = null;
             _controller.IsPlayerInteracting = false;
+            
+            OnInteractExit?.Invoke();
         }
         
         //TODO: Until the player gets the magnet, The Magnet Interaction will display a message that the user cannot interact with it

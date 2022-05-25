@@ -60,6 +60,15 @@ namespace Stargaze.Mono.Puzzle.FuelMixturePuzzle
                     return;
                 
                 GameObject vialObject = Instantiate(vialPrefab, outputPos.position, Quaternion.identity);
+
+                foreach (Component comp in vialObject.GetComponents<Component>())
+                {
+                    if (comp is Rigidbody)
+                    {
+                        Destroy(comp);
+                    }
+                }
+                
                 vialObject.GetComponent<VialInteractable>().SetResource(_resultMaterial);
                 NetworkServer.Spawn(vialObject);
 

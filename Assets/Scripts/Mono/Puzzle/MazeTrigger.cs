@@ -7,13 +7,18 @@ namespace Stargaze.Mono.Puzzle
 {
     public class MazeTrigger : NetworkBehaviour
     {
-        [ServerCallback]
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<PlayerInput>())
             {
-                PuzzleManager.Instance.CompleteMaze();
+                CmdCompleteMaze();
             }
+        }
+
+        [Command(requiresAuthority = false)]
+        private void CmdCompleteMaze()
+        {
+            PuzzleManager.Instance.CompleteMaze();
         }
     }
 }

@@ -6,13 +6,18 @@ namespace Stargaze.Mono.Puzzle
 {
     public class GravityTrigger : NetworkBehaviour
     {
-        [ServerCallback]
         private void OnTriggerEnter(Collider other)
         {
             if (other.GetComponent<PlayerInput>())
             {
-                PuzzleManager.Instance.CompleteGravity();
+                CmdCompleteGravity();
             }
+        }
+
+        [Command(requiresAuthority = false)]
+        private void CmdCompleteGravity()
+        {
+            PuzzleManager.Instance.CompleteGravity();
         }
     }
 }

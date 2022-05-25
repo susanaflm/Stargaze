@@ -244,5 +244,5 @@ MonoBehaviour:
   magneticLayer:
     serializedVersion: 2
     m_Bits: 256
-  magnetStrength: 4000
+  magnetStrength: 6000
   attractionPoint: {fileID: 3690455526791403546}

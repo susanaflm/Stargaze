@@ -3570,7 +3570,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5064fec5b66124e943f67caa5ef00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wireSpeed: 1
+  wireSpeed: 0.5
   selector: {fileID: 5515395681725765442}
   parentTransform: {fileID: 5404361728156995471}
 --- !u!114 &5515395681928490944
@@ -4058,7 +4058,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5064fec5b66124e943f67caa5ef00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wireSpeed: 1
+  wireSpeed: 0.5
   selector: {fileID: 5515395681725765442}
   parentTransform: {fileID: 5404361728156995471}
 --- !u!114 &5515395682387945177
@@ -4402,7 +4402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5064fec5b66124e943f67caa5ef00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wireSpeed: 1
+  wireSpeed: 0.5
   selector: {fileID: 5515395681725765442}
   parentTransform: {fileID: 5404361728156995471}
 --- !u!114 &5515395682637866373
@@ -4756,7 +4756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ee15d2ec0b4c444935a1a23005bb2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  desiredConnector: {fileID: 5515395682280108445}
+  desiredConnector: {fileID: 5515395681999802576}
 --- !u!114 &5515395683051661301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4769,7 +4769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5064fec5b66124e943f67caa5ef00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wireSpeed: 1
+  wireSpeed: 0.5
   selector: {fileID: 5515395681725765442}
   parentTransform: {fileID: 5404361728156995471}
 --- !u!114 &5515395683051661310
@@ -5189,7 +5189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea5064fec5b66124e943f67caa5ef00f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wireSpeed: 1
+  wireSpeed: 0.5
   selector: {fileID: 5515395681725765442}
   parentTransform: {fileID: 5404361728156995471}
 --- !u!114 &5515395683488773844
@@ -6417,6 +6417,7 @@ GameObject:
   - component: {fileID: 1746333339472330593}
   - component: {fileID: 2076198766419520702}
   - component: {fileID: 5515395682619287650}
+  - component: {fileID: 1120276526}
   m_Layer: 7
   m_Name: WiresDoor
   m_TagString: Untagged
@@ -6431,14 +6432,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7495380041072496822}
-  m_LocalRotation: {x: 0.69191116, y: -0, z: -0, w: 0.7219827}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.00068959594, y: 0.7013707, z: 0.29999992}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2449429457253996349}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 87.563, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1746333339472330593
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6509,6 +6510,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &1120276526
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7495380041072496822}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.26280838, y: 0.09060102, z: 0.0034504663}
+  m_Center: {x: 5.9531617e-13, y: 0.04530045, z: 0.0017252185}
 --- !u!1 &7558400177171337067
 GameObject:
   m_ObjectHideFlags: 0

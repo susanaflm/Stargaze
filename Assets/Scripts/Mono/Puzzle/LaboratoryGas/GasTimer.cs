@@ -12,8 +12,12 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
         [Tooltip("This Door will be closed behind the player")]
         [SerializeField] private Door.Door door;
 
+        [SerializeField] private Transform teleportPosition;
+
         private float _timer = 0.0f;
         private bool _isPlayerInBounds;
+
+        private GameObject _player;
         
         void Update()
         {
@@ -24,7 +28,15 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
 
             if (_timer >= timeToKill * 60)
             {
-                //TODO: Kill Player
+                if (_player == null)
+                    return;
+
+                _player.GetComponent<CharacterController>().enabled = false;
+                _player.transform.position = teleportPosition.position;
+                _player.GetComponent<CharacterController>().enabled = true;
+
+                _timer = 0.0f;
+                _isPlayerInBounds = false;
             }
 
 #if DEBUG
@@ -36,18 +48,9 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
         {
             if (other.GetComponent<PlayerInput>())
             {
+                _player = other.gameObject;
                 _isPlayerInBounds = true;
                 door.CmdToggleDoor();
-            }
-                
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.GetComponent<PlayerInput>())
-            {
-                _timer = 0.0f;
-                _isPlayerInBounds = false;
             }
                 
         }

@@ -166,6 +166,7 @@ namespace Stargaze.Mono.Puzzle
             }
         }
 
+        [Server]
         private void CheckFuel()
         {
             int fuelCount = _gatheredMaterials.Count(gatheredMaterial => gatheredMaterial.isFinalProduct);
@@ -176,9 +177,19 @@ namespace Stargaze.Mono.Puzzle
             }
         }
 
+        [ClientRpc]
         private void PlayGameEndSequence()
         {
-            //TODO: End game for both players and play final cutscene
+            //TODO: Final cutscene
+            
+            if (NetworkServer.active && NetworkClient.isConnected)
+            {
+                NetworkManager.singleton.StopHost();
+            }
+            else if (NetworkClient.isConnected)
+            {
+                NetworkManager.singleton.StopClient();
+            }
         }
     }
 }

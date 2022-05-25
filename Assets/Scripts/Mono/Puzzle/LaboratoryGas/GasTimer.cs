@@ -26,6 +26,10 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
             {
                 //TODO: Kill Player
             }
+
+#if DEBUG
+            //Debug.Log($"Timer: {_timer}");
+#endif
         }
 
         private void OnTriggerEnter(Collider other)

@@ -21,9 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Keyboard
-  m_Shader: {fileID: 4800000, guid: ee7e4c9a5f6364b688a332c67fc32cca, type: 3}
+  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_ValidKeywords:
-  - _CLEARCOATMAP
   - _DETAIL_MULX2
   - _EMISSION
   - _METALLICSPECGLOSSMAP
@@ -163,12 +162,12 @@ Material:
     - _OcclusionStrength: 1
     - _Opacity: 1
     - _OpacityThreshold: 0
-    - _Parallax: 0.0052
+    - _Parallax: 0.0102
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _Shininess: 0
-    - _Smoothness: 0.5
+    - _Smoothness: 0.547
     - _SmoothnessSource: 0
     - _SmoothnessTextureChannel: 0
     - _SpecSource: 0
@@ -192,7 +191,7 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0.2973102, g: 1.756833, b: 1.756833, a: 0}
+    - _EmissionColor: {r: 4.594794, g: 4.594794, b: 4.594794, a: 0}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _HueVariation: {r: 1, g: 0.5, b: 0, a: 0}
     - _HueVariationColor: {r: 1, g: 0.5, b: 0, a: 0.1}

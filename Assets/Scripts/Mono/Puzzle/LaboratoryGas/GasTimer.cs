@@ -54,5 +54,14 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
             }
                 
         }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.GetComponent<PlayerInput>())
+            {
+                _timer = 0.0f;
+                _isPlayerInBounds = false;
+            }
+        }
     }
 }

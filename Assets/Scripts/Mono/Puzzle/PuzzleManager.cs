@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Mirror;
 using Stargaze.ScriptableObjects.Materials;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace Stargaze.Mono.Puzzle
 {
@@ -108,6 +110,8 @@ namespace Stargaze.Mono.Puzzle
                     return;
 
             _gatheredMaterials.Add(mat);
+            
+            CheckFuel();
 
 #if DEBUG
             Debug.Log($"Successfully added {mat.name}");   
@@ -160,6 +164,21 @@ namespace Stargaze.Mono.Puzzle
                 
                 Debug.Log($"Opening door {door}");
             }
+        }
+
+        private void CheckFuel()
+        {
+            int fuelCount = _gatheredMaterials.Count(gatheredMaterial => gatheredMaterial.isFinalProduct);
+
+            if (fuelCount == 2)
+            {
+                PlayGameEndSequence();
+            }
+        }
+
+        private void PlayGameEndSequence()
+        {
+            //TODO: End game for both players and play final cutscene
         }
     }
 }

@@ -8,9 +8,15 @@ namespace Stargaze.Mono.Interactions.Lever
     {
         private bool _isInteractable = true;
 
-        [SerializeField] private bool switchable;
+        private bool _isTurnedOn = false;
+        private Material switchMaterial;
+
+        [SerializeField] private bool switchable = true;
         
         [SerializeField] private List<Door.Door> attachedDoors = new();
+
+        [SerializeField] private Material turnedOff;
+        [SerializeField] private Material turnedOn;
         
         public bool Switchable => switchable;
 
@@ -19,6 +25,9 @@ namespace Stargaze.Mono.Interactions.Lever
         public void OnInteractionStart()
         {
             ToggleDoorState();
+            _isTurnedOn = !_isTurnedOn;
+            
+            GetComponent<Renderer>().material = _isTurnedOn ? turnedOn : turnedOff;
         }
 
         public void OnInteractionEnd() { }

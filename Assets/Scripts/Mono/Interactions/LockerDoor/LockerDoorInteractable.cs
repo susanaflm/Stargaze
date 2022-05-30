@@ -12,6 +12,9 @@ namespace Stargaze.Mono.Interactions.LockerDoor
 
         private bool isInteractable = true;
 
+        [SerializeField] private AudioClip openLocker;
+        [SerializeField] private AudioClip tryOpenLocker;
+
         public bool Switchable => switchable;
         public bool IsInteractable => isInteractable;
 
@@ -26,6 +29,11 @@ namespace Stargaze.Mono.Interactions.LockerDoor
             if (PuzzleManager.Instance.DoesPlayerHaveLockerKey())
             {
                 doorAnimator.SetTrigger("Open");
+                GetComponent<AudioSource>().PlayOneShot(openLocker);
+            }
+            else
+            {
+                GetComponent<AudioSource>().PlayOneShot(tryOpenLocker);
             }
         }
 

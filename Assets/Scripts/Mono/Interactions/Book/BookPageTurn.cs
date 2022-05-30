@@ -5,7 +5,6 @@ namespace Stargaze.Mono.Interactions.Book
 {
     public class BookPageTurn : MonoBehaviour
     {
-
         private Animator _animator;
 
         private bool isPageTurned = false;
@@ -23,6 +22,7 @@ namespace Stargaze.Mono.Interactions.Book
                 _animator.SetTrigger("TurnPageForward");
                 isPageTurned = true;
                 Debug.Log("Turned Page");
+                GetComponent<AudioSource>().Play();
             }
         }
 
@@ -33,6 +33,7 @@ namespace Stargaze.Mono.Interactions.Book
                 _animator.SetTrigger("TurnPageBack");
                 isPageTurned = false;
                 Debug.Log("Turned Page Back");
+                GetComponent<AudioSource>().Play();
             }
         }
 

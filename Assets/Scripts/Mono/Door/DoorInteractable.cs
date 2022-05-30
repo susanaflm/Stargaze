@@ -14,6 +14,10 @@ namespace Stargaze.Mono.Door
 
         [SyncVar(hook = nameof(DoorOpenStateChangedCallback))]
         private bool isOpened = false;
+        
+        [Header("Audio")]
+        [SerializeField] private AudioClip doorOpen; 
+        [SerializeField] private AudioClip doorClose; 
 
         private void Awake()
         {
@@ -23,6 +27,7 @@ namespace Stargaze.Mono.Door
         public void OnInteractionStart()
         {
             CmdToggleDoor();
+            GetComponent<AudioSource>().PlayOneShot(!isOpened ? doorOpen : doorClose);
         }
 
         [Command(requiresAuthority = false)]

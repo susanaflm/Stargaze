@@ -13,12 +13,21 @@ namespace Stargaze.Mono.Interactions.GravityPanel
 
         private PuzzleManager _puzzleManager;
         
+        [Header("Codes")]
         [SerializeField] private string deactivateGravityCode;
         [SerializeField] private string activateGravityCode;
+
+        [Header("Audio")]
+        [SerializeField] private AudioClip gravityOn;
+        [SerializeField] private AudioClip gravityOff;
+        [SerializeField] private AudioClip codeReset;
+        [SerializeField] private AudioClip buttonPress;
 
         private string _currentUnlockCode;
         private string _currentCode = "";
         private bool _isGravityOn = true;
+
+        private AudioSource _source;
 
         public override void OnStartServer()
         {
@@ -31,6 +40,7 @@ namespace Stargaze.Mono.Interactions.GravityPanel
         private void Start()
         {
             _puzzleManager = PuzzleManager.Instance;
+            _source = GetComponent<AudioSource>();
         }
 
         private void OnButtonPressed(char value)
@@ -43,6 +53,10 @@ namespace Stargaze.Mono.Interactions.GravityPanel
         {
             //Add the touched button input to the code
             _currentCode += input;
+            
+            _source.spatialBlend = 1;
+            _source.PlayOneShot(buttonPress);
+            _source.spatialBlend = 0;
 
             if (_currentCode.Length > _currentUnlockCode.Length)
             {
@@ -53,7 +67,10 @@ namespace Stargaze.Mono.Interactions.GravityPanel
             if (input != _currentUnlockCode[_currentCode.Length - 1])
             {
                 _currentCode = "";
-                //TODO:Shoot an audio warning to say to the player that it reset
+                
+                _source.spatialBlend = 1;
+                _source.PlayOneShot(codeReset);
+                _source.spatialBlend = 0;
             }
 
 #if DEBUG
@@ -79,6 +96,7 @@ namespace Stargaze.Mono.Interactions.GravityPanel
             OnGravitySwitch?.Invoke(_isGravityOn);
             
             RpcGravityStatusChanged(_puzzleManager.GravityStatus);
+            _source.PlayOneShot(gravityOff);
             
 #if DEBUG
             Debug.Log("Gravity successfully deactivated");
@@ -95,6 +113,7 @@ namespace Stargaze.Mono.Interactions.GravityPanel
             _isGravityOn = _puzzleManager.GravityStatus;
 
             RpcGravityStatusChanged(_puzzleManager.GravityStatus);
+            _source.PlayOneShot(gravityOn);
                 
 #if DEBUG
             Debug.Log("Gravity successfully activated");

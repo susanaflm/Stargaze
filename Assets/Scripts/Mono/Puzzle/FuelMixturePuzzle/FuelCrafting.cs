@@ -73,6 +73,7 @@ namespace Stargaze.Mono.Puzzle.FuelMixturePuzzle
                 NetworkServer.Spawn(vialObject);
 
                 RpcSelectFabricateButton();
+                GetComponent<AudioSource>().Play();
                 
                 _resultMaterial = null;
             }

@@ -79,6 +79,8 @@ namespace Stargaze.Mono.Door
                 CloseDoor();
             else
                 OpenDoor();
+            
+            GetComponent<AudioSource>().Play();
         }
     }
 }

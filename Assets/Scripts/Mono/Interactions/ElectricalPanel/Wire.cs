@@ -41,6 +41,7 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             _isWireConnected = true;
             _connector = connection;
             _connector.SetWireConnected(true);
+            GetComponent<AudioSource>().Play();
 
             _isWireConnectedCorrectly = _connector == desiredConnector;
             ElectricalInteractable.OnWireConnected?.Invoke();

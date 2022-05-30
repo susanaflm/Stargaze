@@ -24,6 +24,10 @@ namespace Stargaze.Mono.Interactions.Book
 
         [Header("Opened Book Prefab")]
         [SerializeField] private GameObject bookPrefab;
+
+        [Header("Audio")]
+        [SerializeField] private AudioClip openBook;
+        [SerializeField] private AudioClip closeBook;
         
         public bool Switchable => switchable;
         
@@ -40,6 +44,8 @@ namespace Stargaze.Mono.Interactions.Book
 
             _inspectObject.AddComponent<InspectionTurn>();
             _inspectObject.layer = LayerMask.NameToLayer("UI");
+            
+            GetComponent<AudioSource>().PlayOneShot(openBook);
 
             if (_doesItHaveAnimator)
             {
@@ -52,6 +58,7 @@ namespace Stargaze.Mono.Interactions.Book
         public void OnInteractionEnd()
         {
             RestoreUI();
+            GetComponent<AudioSource>().PlayOneShot(closeBook);
         }
         
         

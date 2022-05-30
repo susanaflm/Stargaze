@@ -25,6 +25,8 @@ namespace Stargaze.Mono.Interactions.Lever
         public void OnInteractionStart()
         {
             ToggleDoorState();
+            GetComponent<AudioSource>().Play();
+            
             _isTurnedOn = !_isTurnedOn;
             
             GetComponent<Renderer>().material = _isTurnedOn ? turnedOn : turnedOff;

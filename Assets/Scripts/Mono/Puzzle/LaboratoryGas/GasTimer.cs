@@ -34,6 +34,8 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
                 _player.GetComponent<CharacterController>().enabled = false;
                 _player.transform.position = teleportPosition.position;
                 _player.GetComponent<CharacterController>().enabled = true;
+                
+                GetComponent<AudioSource>().Play();
 
                 _timer = 0.0f;
                 _isPlayerInBounds = false;

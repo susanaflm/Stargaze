@@ -9,6 +9,8 @@ namespace Stargaze.Mono.Interactions.Inspection
         
         private GameObject _inspectObject;
 
+        private AudioSource _source;
+
         [SerializeField] private bool switchable;
 
         [SerializeField] private GameObject interactionUI;
@@ -17,13 +19,21 @@ namespace Stargaze.Mono.Interactions.Inspection
 
         public bool IsInteractable => _isInteractable;
 
+        private void Awake()
+        {
+            _source = GetComponent<AudioSource>();
+        }
+
         public void OnInteractionStart()
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 
             interactionUI.SetActive(true);
-            
+
+            if (_source != null)
+                _source.Play();
+
             _inspectObject = Instantiate(gameObject, Vector3.zero, Quaternion.identity);
             
             foreach (var comp in _inspectObject.GetComponents<Component>())

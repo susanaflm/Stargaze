@@ -47,7 +47,7 @@ namespace Stargaze.Mono.Terminals
         
         protected virtual void TerminalStart() { }
 
-        public void OnInteractionStart()
+        public virtual void OnInteractionStart()
         {
             loginScreen.SetActive(false);
             contentScreen.SetActive(true);

@@ -1,3 +1,4 @@
+using System;
 using Stargaze.ScriptableObjects.Materials;
 using TMPro;
 using UnityEngine;
@@ -10,13 +11,17 @@ namespace Stargaze.Mono.UI.FuelMixingPuzzle
 
         public static OnButtonClick OnAddToRecipe;
 
-        [SerializeField] private TMP_Text textBox;
-        
         private ResourceMaterial _resource;
+        private AudioSource _source;
 
+        private void Awake()
+        {
+            _source = GetComponent<AudioSource>();
+        }
 
         public void AddToRecipe()
         {
+            _source.Play();
             OnAddToRecipe?.Invoke(_resource);
         }
         

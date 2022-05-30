@@ -40,6 +40,7 @@ namespace Stargaze.Mono.Interactions.Magnet
             if (other.CompareTag("Magnetic"))
             {
                 _magneticStuff.Add(other.gameObject.GetComponent<Rigidbody>());
+                GetComponent<AudioSource>().Play();
             }
         }
 

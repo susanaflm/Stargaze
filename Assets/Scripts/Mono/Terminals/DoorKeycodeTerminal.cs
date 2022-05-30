@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace Stargaze.Mono.Terminals
 {
@@ -9,6 +10,13 @@ namespace Stargaze.Mono.Terminals
     {
         [SyncVar(hook = nameof(OnInputCodeChanged))]
         private string _currentInput;
+
+        private AudioSource _audioSource;
+        
+        [Header("Audio")]
+        [SerializeField] private AudioClip buttonClick; 
+        [SerializeField] private AudioClip buttonClearClick;
+        [SerializeField] private AudioClip correctCode;
         
         [Header("Security")]
         [SerializeField] private string code;
@@ -17,6 +25,11 @@ namespace Stargaze.Mono.Terminals
         [Header("Events")]
         [SerializeField] private UnityEvent onCodeValidated;
 
+        protected override void TerminalAwake()
+        {
+            _audioSource = GetComponent<AudioSource>();
+        }
+
         public override void OnStartServer()
         {
             _currentInput = "";
@@ -24,6 +37,7 @@ namespace Stargaze.Mono.Terminals
 
         public void OnNumberInput(int value)
         {
+            _audioSource.PlayOneShot(buttonClick);
             CmdNumberInput(value);
         }
 
@@ -35,6 +49,7 @@ namespace Stargaze.Mono.Terminals
 
         public void OnClearButtonPressed()
         {
+            _audioSource.PlayOneShot(buttonClearClick);
             CmdClearInput();
         }
 
@@ -55,6 +70,7 @@ namespace Stargaze.Mono.Terminals
             if (_currentInput != code)
                 return;
             
+            _audioSource.PlayOneShot(correctCode);
             onCodeValidated.Invoke();
         }
 

@@ -55,5 +55,12 @@ namespace Stargaze.Mono.Terminals
                 obj.GetComponent<RectTransform>().anchoredPosition = pos;
             }
         }
+
+        public override void OnInteractionStart()
+        {
+            base.OnInteractionStart();
+            
+            GetComponent<AudioSource>().Play();
+        }
     }
 }

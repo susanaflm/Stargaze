@@ -73,6 +73,8 @@ namespace Stargaze.Mono.UI.RadioFrequencyPanel
             UpdateFrequencyDisplay();
             
             OnRadioFrequencyPanelShow?.Invoke();
+            
+            GetComponent<AudioSource>().Play();
         }
         
         private void Hide()

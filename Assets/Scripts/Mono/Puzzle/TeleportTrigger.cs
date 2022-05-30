@@ -14,6 +14,8 @@ namespace Stargaze.Mono.Puzzle
                 other.GetComponent<CharacterController>().enabled = false;
                 other.transform.position = positionToTeleport.position;
                 other.GetComponent<CharacterController>().enabled = true;
+                
+                GetComponent<AudioSource>().Play();
             }
         }
     }

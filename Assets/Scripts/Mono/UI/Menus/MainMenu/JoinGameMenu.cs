@@ -46,7 +46,7 @@ namespace Stargaze.Mono.UI.Menus.MainMenu
             foreach (Steamworks.Data.Lobby lobby in lobbies)
             {
                 if (string.IsNullOrEmpty(lobby.GetData(LobbyDataKeys.LobbyValidationCheck.ToString())))
-                    return;
+                    continue;
                 
                 LobbyListItem item = Instantiate(lobbyListItemPrefab, lobbyListParent);
                 item.Lobby = lobby;

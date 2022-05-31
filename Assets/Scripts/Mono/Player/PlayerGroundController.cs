@@ -10,8 +10,6 @@ namespace Stargaze.Mono.Player
     [RequireComponent(typeof(CharacterController))]
     public class PlayerGroundController : NetworkBehaviour
     {
-        private Action OnLand;
-        
         private PlayerInput _input;
 
         private CharacterController _characterController;
@@ -53,7 +51,12 @@ namespace Stargaze.Mono.Player
         [SerializeField] private float groundCheckRadius;
         [SerializeField] private LayerMask groundCheckLayer;
 
+        public Action OnJump;
+        public Action OnLand;
+        
         public Vector2 AnimationDir { get; private set; }
+
+        public bool IsGrounded => _isGrounded;
         
         public bool IsPlayerInteracting
         {
@@ -182,8 +185,8 @@ namespace Stargaze.Mono.Player
                 strafeSpeed
             );
 
-            // TODO: This will make the character animate even when we is walking against a wall. Do we want to fix this?
-            AnimationDir = movementInput;
+            Vector3 localVelocity = transform.InverseTransformVector(_strafeVelocity);
+            AnimationDir = new Vector2(localVelocity.x / strafeSpeed, localVelocity.z / strafeSpeed);
         }
 
         private void CalculateVerticalVelocity()
@@ -200,7 +203,10 @@ namespace Stargaze.Mono.Player
                 return;
             
             if (_isGrounded && !_isSliding)
+            {
                 _verticalVelocity += transform.up * Mathf.Sqrt(jumpHeight * -2f * Physics.gravity.y);
+                OnJump?.Invoke();
+            }
         }
 
         private void HandleRotation()

@@ -1,4 +1,5 @@
 ﻿using System;
+using Stargaze.Mono.UI.RadioFrequencyPanel;
 using UnityEngine;
 
 namespace Stargaze.Mono.Player
@@ -26,12 +27,37 @@ namespace Stargaze.Mono.Player
                 Debug.LogError($"No animator component found on {name} neither on his children nor parent.");
         }
 
+        private void Start()
+        {
+            _playerGroundController.OnJump += () =>
+            {
+                _animator.SetTrigger("Jump");
+            };
+            
+            _playerGroundController.OnLand += () =>
+            {
+                _animator.SetTrigger("Land");
+            };
+
+            RadioFrequencyPanel.OnRadioFrequencyPanelShow += () =>
+            {
+                _animator.SetTrigger("WristUp");
+            };
+            
+            RadioFrequencyPanel.OnRadioFrequencyPanelHide += () =>
+            {
+                _animator.SetTrigger("WristDown");
+            };
+        }
+
         private void Update()
         {
             Vector2 dir = _playerGroundController.AnimationDir;
             
-            _animator.SetFloat("X_Dir", dir.x);
-            _animator.SetFloat("Y_Dir", dir.y);
+            _animator.SetFloat("DirX", dir.x);
+            _animator.SetFloat("DirY", dir.y);
+            
+            _animator.SetBool("IsGrounded", _playerGroundController.IsGrounded);
         }
     }
 }

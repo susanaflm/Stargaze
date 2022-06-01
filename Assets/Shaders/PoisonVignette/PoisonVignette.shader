@@ -7,19 +7,19 @@ Shader "Unlit/PoisonVignette"
         _OuterRing ("Outer Ring", Range (0,1)) = 1.0
         _VignetteColor("Vignette Color", Color) = (0,1,0,1)
         _VignettePosition ("Center Position", Vector) = (0.5,0.5,1,1)
+        _VignetteTexture ("Vignette Texture", 2D) = "white" {}
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
+        Tags { "RenderType"="Opaque" "RenderPipeline" = "UniversalRenderPipeline" }
 
         Pass
         {
-            CGPROGRAM
+            HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-
-            #include "UnityCG.cginc"
+            
+            #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             struct appdata
             {
@@ -30,35 +30,46 @@ Shader "Unlit/PoisonVignette"
             struct v2f
             {
                 float2 uv : TEXCOORD0;
-                UNITY_FOG_COORDS(1)
                 float4 vertex : SV_POSITION;
             };
 
             sampler2D _MainTex;
             float4 _MainTex_ST;
-            float4 _MainTex_TexelSize;
+            sampler2D _VignetteTexture;
+            float4 _VignetteTexture_ST;
             float _InnerRing;
             float _OuterRing;
-            float _VignetteColor;
+            float4 _VignetteColor;
             half4 _VignettePosition;
 
+
+            float4 mix(float4 x, float4 y, float weight) //GLSL function mix()
+            {
+                return x *(1 - weight) + y * weight;
+            }
+            
             v2f vert (appdata v)
             {
                 v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
+                o.vertex = TransformObjectToHClip(v.vertex);
                 o.uv = TRANSFORM_TEX(v.uv, _MainTex);
                 return o;
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            half4 frag (v2f i) : SV_Target
             {
-                fixed4 col = _VignetteColor;
+                half4 col = tex2D(_MainTex, i.uv);
+                half4 vignetteTexture = tex2D(_VignetteTexture, i.uv);
+                
+                //fixed4 col = _VignetteColor;
                 half2 center = half2(_VignettePosition.x, _VignettePosition.y);
-                float dist = distance(center, i.uv) * 1.414213; //Math trick that gets the distance to fit in [0,1]
-                float vig = clamp((_OuterRing - dist) / (_OuterRing - _InnerRing), 0.0, 1.0);
-                return col * vig;
+                float dist = distance(center, i.uv) * 1.414213;
+                //float vig = clamp((_OuterRing - dist) / (_OuterRing - _InnerRing), 0.0, 1.0);
+                float vig = smoothstep(_InnerRing, _OuterRing, dist);
+                col = mix(col, _VignetteColor * vignetteTexture, vig);
+                return col;
             }
-            ENDCG
+            ENDHLSL
         }
     }
 }

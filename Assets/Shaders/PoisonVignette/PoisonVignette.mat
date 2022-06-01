@@ -96,10 +96,10 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _InnerRing: 1.0099994
+    - _InnerRing: 1
     - _Metallic: 0
     - _OcclusionStrength: 1
-    - _OuterRing: 1.0099994
+    - _OuterRing: 1
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1

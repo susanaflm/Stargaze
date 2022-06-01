@@ -45,6 +45,7 @@ namespace Stargaze.Mono.Door
             Debug.Log($"Door: {gameObject.name} has been opened");
 
             _doorAnimator.SetBool("Opened", true);
+            GetComponent<AudioSource>().Play();
         }
 
         [Server]
@@ -61,6 +62,7 @@ namespace Stargaze.Mono.Door
             Debug.Log($"Door: {gameObject.name} has been closed");
             
             _doorAnimator.SetBool("Opened", false);
+            GetComponent<AudioSource>().Play();
         }
 
         [Command(requiresAuthority = false)]
@@ -79,8 +81,6 @@ namespace Stargaze.Mono.Door
                 CloseDoor();
             else
                 OpenDoor();
-            
-            GetComponent<AudioSource>().Play();
         }
     }
 }

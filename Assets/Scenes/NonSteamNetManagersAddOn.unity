@@ -8,8 +8,9 @@ OcclusionCullingSettings:
     smallestOccluder: 5
     smallestHole: 0.25
     backfaceThreshold: 100
-  m_SceneGUID: 00000000000000000000000000000000
-  m_OcclusionCullingData: {fileID: 0}
+  m_SceneGUID: 4222e18df305549419a91ff6614cee6a
+  m_OcclusionCullingData: {fileID: 36300000, guid: 1211840e854b5b8499a3fafee66ea02b,
+    type: 2}
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
@@ -200,7 +201,7 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 1650199410077515795, guid: a918cefb70f075843abb2096989e61e8, type: 3}
-  - {fileID: 43939775991087772, guid: 5a30fe0c4f62b2247bc2a93d4a69ad38, type: 3}
+  - {fileID: 990517179962653591, guid: b4c24ce58b5d6ee47a74371373a979e5, type: 3}
 --- !u!4 &1861148821
 Transform:
   m_ObjectHideFlags: 0

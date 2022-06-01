@@ -46,6 +46,7 @@ namespace Stargaze.Mono.Interactions.GravityPanel
         private void OnButtonPressed(char value)
         {
             CmdAddCharToCode(value);
+            _source.PlayOneShot(buttonPress);
         }
 
         [Command(requiresAuthority = false)]
@@ -53,10 +54,6 @@ namespace Stargaze.Mono.Interactions.GravityPanel
         {
             //Add the touched button input to the code
             _currentCode += input;
-            
-            _source.spatialBlend = 1;
-            _source.PlayOneShot(buttonPress);
-            _source.spatialBlend = 0;
 
             if (_currentCode.Length > _currentUnlockCode.Length)
             {
@@ -68,9 +65,7 @@ namespace Stargaze.Mono.Interactions.GravityPanel
             {
                 _currentCode = "";
                 
-                _source.spatialBlend = 1;
                 _source.PlayOneShot(codeReset);
-                _source.spatialBlend = 0;
             }
 
 #if DEBUG
@@ -96,8 +91,6 @@ namespace Stargaze.Mono.Interactions.GravityPanel
             OnGravitySwitch?.Invoke(_isGravityOn);
             
             RpcGravityStatusChanged(_puzzleManager.GravityStatus);
-            _source.PlayOneShot(gravityOff);
-            
 #if DEBUG
             Debug.Log("Gravity successfully deactivated");
 #endif
@@ -113,8 +106,6 @@ namespace Stargaze.Mono.Interactions.GravityPanel
             _isGravityOn = _puzzleManager.GravityStatus;
 
             RpcGravityStatusChanged(_puzzleManager.GravityStatus);
-            _source.PlayOneShot(gravityOn);
-                
 #if DEBUG
             Debug.Log("Gravity successfully activated");
 #endif
@@ -129,6 +120,8 @@ namespace Stargaze.Mono.Interactions.GravityPanel
 #endif
             
             OnGravitySwitch?.Invoke(status);
+
+            _source.PlayOneShot(status == true ? gravityOn : gravityOff);
         }
 
         private void OnEnable()

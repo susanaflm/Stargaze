@@ -1,5 +1,6 @@
 using System;
 using Stargaze.Mono.Player;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace Stargaze.Mono.Puzzle.LaboratoryGas
@@ -33,6 +34,9 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
 
                 if (_currentOuterValue <= 1)
                     _currentOuterValue += 0.01f;
+
+                _currentInnerValue = Mathf.Clamp(_currentInnerValue, 0.0f, 1.0f);
+                _currentOuterValue = Mathf.Clamp(_currentOuterValue, 0.0f, 1.0f);
                 
                 _poisonVignetteMat.SetFloat("_InnerRing", _currentInnerValue);
                 _poisonVignetteMat.SetFloat("_OuterRing", _currentOuterValue);

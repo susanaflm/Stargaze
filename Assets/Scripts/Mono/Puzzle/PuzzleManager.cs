@@ -11,7 +11,10 @@ namespace Stargaze.Mono.Puzzle
     public class PuzzleManager : NetworkBehaviour
     {
         public static PuzzleManager Instance;
+        
         public Action<ResourceMaterial> OnCollectMaterial;
+
+        public Action OnGameFinished;
 
         [SyncVar]
         private bool _doesPlayerHaveMagnet = false;
@@ -180,16 +183,7 @@ namespace Stargaze.Mono.Puzzle
         [ClientRpc]
         private void PlayGameEndSequence()
         {
-            //TODO: Final cutscene
-            
-            if (NetworkServer.active && NetworkClient.isConnected)
-            {
-                NetworkManager.singleton.StopHost();
-            }
-            else if (NetworkClient.isConnected)
-            {
-                NetworkManager.singleton.StopClient();
-            }
+            OnGameFinished?.Invoke();
         }
     }
 }

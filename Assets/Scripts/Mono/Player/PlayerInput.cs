@@ -1,6 +1,7 @@
 using System;
 using Mirror;
 using Stargaze.Input;
+using Stargaze.Mono.CutSceneControllers;
 using Stargaze.Mono.UI.RadioFrequencyPanel;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -44,6 +45,18 @@ namespace Stargaze.Mono.Player
                     Enable();
             };
 #endif
+            
+            if (IntroController.IsPlaying)
+                Disable();
+            
+            if (OutroController.IsPlaying)
+                Disable();
+
+            IntroController.OnStartPlay += Disable;
+            IntroController.OnEndPlay += Enable;
+            
+            OutroController.OnStartPlay += Disable;
+            OutroController.OnEndPlay += Enable;
         }
 
         public override void OnStartLocalPlayer()

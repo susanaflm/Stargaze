@@ -157,7 +157,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.0298014, y: 1}
+    m_SensorSize: {x: 2.0182421, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -368,6 +368,7 @@ GameObject:
   - component: {fileID: 7399808359976636699}
   - component: {fileID: -8248323361080855220}
   - component: {fileID: 7769415834629100746}
+  - component: {fileID: 1367407690039443537}
   - component: {fileID: 7399808359976636698}
   - component: {fileID: 4139647170239020420}
   - component: {fileID: -4715022724298441142}
@@ -453,6 +454,22 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+--- !u!114 &1367407690039443537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7399808359976636700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  animator: {fileID: 1163909225877526548}
 --- !u!143 &7399808359976636698
 CharacterController:
   m_ObjectHideFlags: 0
@@ -663,6 +680,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90f11d70aa05f3947b9a92182af7e2f2, type: 3}
+--- !u!95 &1163909225877526548 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2630113355278941231, guid: 90f11d70aa05f3947b9a92182af7e2f2,
+    type: 3}
+  m_PrefabInstance: {fileID: 3794004987757175867}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5100086415006827118 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8241630189932815957, guid: 90f11d70aa05f3947b9a92182af7e2f2,

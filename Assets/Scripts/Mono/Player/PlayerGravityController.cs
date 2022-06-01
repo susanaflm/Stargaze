@@ -1,4 +1,5 @@
-﻿using Mirror;
+﻿using System;
+using Mirror;
 using Stargaze.Mono.Interactions.GravityPanel;
 using Stargaze.Mono.Puzzle;
 using UnityEngine;
@@ -10,6 +11,9 @@ namespace Stargaze.Mono.Player
     {
         private PlayerGroundController _groundController;
         private PlayerZeroGController _zeroGController;
+
+        public Action OnGravityOn;
+        public Action OnGravityOff;
 
         private void Awake()
         {
@@ -37,10 +41,12 @@ namespace Stargaze.Mono.Player
             if (isGravityOn)
             {
                 _zeroGController.ResetRotation();
+                OnGravityOn?.Invoke();
             }
             else
             {
                 _groundController.RecenterCamera();
+                OnGravityOff?.Invoke();
             }
             
             _groundController.enabled = isGravityOn;

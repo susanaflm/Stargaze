@@ -11,10 +11,9 @@ namespace Stargaze.Mono.Puzzle
     public class PuzzleManager : NetworkBehaviour
     {
         public static PuzzleManager Instance;
+        public static Action OnGameFinished;
         
         public Action<ResourceMaterial> OnCollectMaterial;
-
-        public Action OnGameFinished;
 
         [SyncVar]
         private bool _doesPlayerHaveMagnet = false;

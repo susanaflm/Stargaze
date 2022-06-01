@@ -27,7 +27,7 @@ namespace Stargaze.Mono.CutSceneControllers
         {
             _player.Prepare();
 
-            PuzzleManager.Instance.OnGameFinished += PlayVideo;
+            PuzzleManager.OnGameFinished += PlayVideo;
 
             Hide();
         }

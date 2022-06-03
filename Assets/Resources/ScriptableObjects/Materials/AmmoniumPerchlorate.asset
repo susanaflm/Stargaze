@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Ammonium Perchlorate
   CraftedComponent: 1
+  isFinalProduct: 0
   Sprite: {fileID: 21300000, guid: 38d3334da15d6db4d95286f0356d7514, type: 3}
+  vialColor: {r: 0, g: 0, b: 0, a: 0.60784316}

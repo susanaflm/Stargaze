@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Oxygen
   CraftedComponent: 0
+  isFinalProduct: 0
   Sprite: {fileID: 21300000, guid: 1ba93cca600b05b48af8e1912f4c3ac6, type: 3}
+  vialColor: {r: 1, g: 0, b: 0, a: 0.60784316}

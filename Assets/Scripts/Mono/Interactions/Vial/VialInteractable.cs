@@ -1,3 +1,4 @@
+using System;
 using Mirror;
 using Stargaze.Mono.Puzzle;
 using Stargaze.ScriptableObjects.Materials;
@@ -8,7 +9,6 @@ namespace Stargaze.Mono.Interactions.Vial
 {
     public class VialInteractable : NetworkBehaviour, IInteractable
     {
-
         [SerializeField]
         private ResourceMaterial vialMaterial;
         
@@ -19,7 +19,7 @@ namespace Stargaze.Mono.Interactions.Vial
         public bool Switchable => switchable;
 
         public bool IsInteractable => _isInteractable;
-        
+
         public void OnInteractionStart()
         {
             CmdCollectVial();
@@ -41,6 +41,8 @@ namespace Stargaze.Mono.Interactions.Vial
         public void SetResource(ResourceMaterial rm)
         {
             vialMaterial = rm;
+            
+            GetComponent<Renderer>().material.SetColor("_BaseColor", rm.vialColor);
         }
     }
 }

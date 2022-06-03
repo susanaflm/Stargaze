@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Perchloric Acid
   CraftedComponent: 1
+  isFinalProduct: 0
   Sprite: {fileID: 21300000, guid: 50abd6424ad883e449526851fa152946, type: 3}
+  vialColor: {r: 0.119199276, g: 1, b: 0, a: 0.60784316}

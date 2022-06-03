@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Nitrogen
   CraftedComponent: 0
+  isFinalProduct: 0
   Sprite: {fileID: 21300000, guid: 57fa21d3e98967241b54ab45c0bd718b, type: 3}
+  vialColor: {r: 0.025950909, g: 0, b: 1, a: 0.60784316}

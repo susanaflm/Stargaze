@@ -15,6 +15,7 @@ namespace Stargaze.Mono.BackgroundSoundTrack
                 backgroundSoundTrack.Stop();
                 backgroundSoundTrack.clip = soundtrackToPlay;
                 backgroundSoundTrack.Play();
+                gameObject.SetActive(false);
             }
         }
     }

@@ -2,6 +2,7 @@ using System;
 using Stargaze.Mono.Player;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Stargaze.Mono.Puzzle.LaboratoryGas
 {
@@ -15,10 +16,12 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
 
         [SerializeField] private Transform teleportPosition;
 
-        [SerializeField] private Material _poisonVignetteMat;
+        [SerializeField] private Material poisonVignetteMat;
 
         private float _timer = 0.0f;
-        private bool _isPlayerInBounds;
+        private float _outerRingTimer;
+        
+        private bool _isPlayerInBounds = false;
 
         private float _currentInnerValue;
         private float _currentOuterValue;
@@ -38,8 +41,8 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
                 _currentInnerValue = Mathf.Clamp(_currentInnerValue, 0.0f, 1.0f);
                 _currentOuterValue = Mathf.Clamp(_currentOuterValue, 0.0f, 1.0f);
                 
-                _poisonVignetteMat.SetFloat("_InnerRing", _currentInnerValue);
-                _poisonVignetteMat.SetFloat("_OuterRing", _currentOuterValue);
+                poisonVignetteMat.SetFloat("_InnerRing", _currentInnerValue);
+                poisonVignetteMat.SetFloat("_OuterRing", _currentOuterValue);
                 
                 return;
             }
@@ -47,16 +50,17 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
             _timer += Time.deltaTime;
 
             _currentInnerValue = 1.0f - (_timer / (timeToKill * 60));
-            _currentOuterValue = 1.0f - ((_timer / (timeToKill * 60)) * 0.5f);
+            if (_currentInnerValue <= 0.5)
+            {
+                _outerRingTimer += Time.deltaTime;
+                _currentOuterValue = 1.0f - ((_outerRingTimer / (timeToKill * 60)) * 0.5f);
+            }
 
-            _poisonVignetteMat.SetFloat("_InnerRing", _currentInnerValue);
-            _poisonVignetteMat.SetFloat("_OuterRing", _currentOuterValue);
+            poisonVignetteMat.SetFloat("_InnerRing", _currentInnerValue);
+            poisonVignetteMat.SetFloat("_OuterRing", _currentOuterValue);
 
             if (_timer >= timeToKill * 60)
             {
-                if (_player == null)
-                    return;
-
                 _player.GetComponent<CharacterController>().enabled = false;
                 _player.transform.position = teleportPosition.position;
                 _player.GetComponent<CharacterController>().enabled = true;
@@ -64,10 +68,8 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
                 GetComponent<AudioSource>().Play();
 
                 _timer = 0.0f;
+                _outerRingTimer = 0.0f;
                 _isPlayerInBounds = false;
-                
-                _poisonVignetteMat.SetFloat("_InnerRing", 1.0f);
-                _poisonVignetteMat.SetFloat("_OuterRing", 1.0f);
             }
 
 #if DEBUG
@@ -84,8 +86,8 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
                 door.CmdToggleDoor();
             }
             
-            _poisonVignetteMat.SetFloat("_InnerRing", 1.0f);
-            _poisonVignetteMat.SetFloat("_OuterRing", 1.0f);
+            poisonVignetteMat.SetFloat("_InnerRing", 1.0f);
+            poisonVignetteMat.SetFloat("_OuterRing", 1.0f);
                 
         }
 
@@ -96,6 +98,12 @@ namespace Stargaze.Mono.Puzzle.LaboratoryGas
                 _timer = 0.0f;
                 _isPlayerInBounds = false;
             }
+        }
+
+        private void OnDisable()
+        {
+            poisonVignetteMat.SetFloat("_InnerRing", 1.0f);
+            poisonVignetteMat.SetFloat("_OuterRing", 1.0f);
         }
     }
 }

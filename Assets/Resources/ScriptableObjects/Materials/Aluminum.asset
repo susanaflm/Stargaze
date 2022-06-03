@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Aluminium
   CraftedComponent: 0
+  isFinalProduct: 0
   Sprite: {fileID: 21300000, guid: d3866bcc428d0be4ead77c75b9e04b7f, type: 3}
+  vialColor: {r: 0.5471698, g: 0.5471698, b: 0.5471698, a: 0.60784316}

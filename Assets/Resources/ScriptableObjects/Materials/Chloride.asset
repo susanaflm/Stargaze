@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Chloride
   CraftedComponent: 0
+  isFinalProduct: 0
   Sprite: {fileID: 21300000, guid: 834840a5f8910ec48bb822c12be19ed5, type: 3}
+  vialColor: {r: 0.1508168, g: 1, b: 0, a: 0.60784316}

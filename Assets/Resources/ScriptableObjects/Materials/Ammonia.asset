@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Ammonia
   CraftedComponent: 1
+  isFinalProduct: 0
   Sprite: {fileID: 21300000, guid: 7b2f0dc00d1474b4dac61f466c6236a8, type: 3}
+  vialColor: {r: 0.44477654, g: 0, b: 1, a: 0.60784316}

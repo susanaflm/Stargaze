@@ -16,3 +16,4 @@ MonoBehaviour:
   CraftedComponent: 1
   isFinalProduct: 1
   Sprite: {fileID: 21300000, guid: 6b6df76ef595a994ba9ded28fdc33d4b, type: 3}
+  vialColor: {r: 1, g: 0.5694697, b: 0, a: 1}

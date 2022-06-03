@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Hydrogen
   CraftedComponent: 0
+  isFinalProduct: 0
   Sprite: {fileID: 21300000, guid: cf2ab4a37c2710d419172d215ff6bd07, type: 3}
+  vialColor: {r: 0, g: 0.91761637, b: 1, a: 0.60784316}

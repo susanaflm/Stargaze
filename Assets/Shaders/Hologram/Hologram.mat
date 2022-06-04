@@ -10,7 +10,8 @@ Material:
   m_Name: Hologram
   m_Shader: {fileID: 4800000, guid: 92c611d4a94bd9e418a6a9fa70849c93, type: 3}
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _HARDTRANSITION_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -98,9 +99,11 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _HardTransition: 1
+    - _HardTransitionThreshold: 0.65
     - _MaxOpacity: 0.95
     - _Metallic: 0
-    - _MinOpacity: 0.75
+    - _MinOpacity: 0.9
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueOffset: 0

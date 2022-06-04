@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d06b766deaa47839e1616be6ef29323, type: 3}
   m_Name: GameSettingsData
   m_EditorClassIdentifier: 
-  CameraSensitivity: 0
-  MagnetSensitivity: 0
-  EletricalSensitivity: 0
+  CameraSensitivity: 1
+  MagnetSensitivity: 1
+  EletricalSensitivity: 1

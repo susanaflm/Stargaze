@@ -1,4 +1,5 @@
 using System;
+using Stargaze.ScriptableObjects.Settings;
 using UnityEngine;
 
 namespace Stargaze.Mono.Interactions.ElectricalPanel
@@ -14,10 +15,10 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
         
         private Connector _hoveringConnection;
         private Connector _connection;
-
-        [SerializeField] private float wireSpeed = 2.0f;
+        
         [SerializeField] private WireSelector selector;
         [SerializeField] private Transform parentTransform;
+        [SerializeField] private GameSettingsData gameSettings;
         
         private void Awake()
         {
@@ -37,8 +38,8 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             var wireTransform = transform;
             Vector3 pos  = wireTransform.localPosition;
 
-            pos += -wireTransform.right * (input.x * wireSpeed * Time.deltaTime);
-            pos += wireTransform.up * (input.y * wireSpeed * Time.deltaTime);
+            pos += -wireTransform.right * (input.x * gameSettings.EletricalSensitivity * Time.deltaTime);
+            pos += wireTransform.up * (input.y * gameSettings.EletricalSensitivity * Time.deltaTime);
             
             //TODO: Rework Clamp Function
             pos.x = Mathf.Clamp(pos.x, _upperRightCorner.x, _lowerLeftCorner.x);

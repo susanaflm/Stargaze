@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Mirror;
+using Stargaze.ScriptableObjects.Settings;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -12,8 +13,8 @@ namespace Stargaze.Mono.Interactions.Magnet
         private Vector3 _lowerLeftCorner;
 
         private MagnetInput _input;
-
-        [SerializeField] private float magnetSpeed;
+        
+        [SerializeField] private GameSettingsData gameSettings;
         
         private void Awake()
         {
@@ -41,8 +42,8 @@ namespace Stargaze.Mono.Interactions.Magnet
             var magnetTransform = transform;
             Vector3 pos  = magnetTransform.position;
 
-            pos += magnetTransform.right * (input.x * magnetSpeed * Time.deltaTime);
-            pos += magnetTransform.up * (input.y * magnetSpeed * Time.deltaTime);
+            pos += magnetTransform.right * (input.x * gameSettings.MagnetSensitivity * Time.deltaTime);
+            pos += magnetTransform.up * (input.y * gameSettings.MagnetSensitivity * Time.deltaTime);
 
             /*
             pos.x = Mathf.Clamp(pos.x, _lowerLeftCorner.x, _upperRightCorner.x);

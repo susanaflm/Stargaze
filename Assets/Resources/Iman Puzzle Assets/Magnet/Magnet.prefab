@@ -228,6 +228,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   magnetSpeed: 0.2
+  gameSettings: {fileID: 11400000, guid: 36c2a90480228ed4eac9651517c68b63, type: 2}
 --- !u!114 &7517372787084788178
 MonoBehaviour:
   m_ObjectHideFlags: 0

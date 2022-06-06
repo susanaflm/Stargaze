@@ -75,6 +75,8 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             
             wiresDoorAnimator.SetTrigger("Interacted");
             electricalDoorAnimator.SetTrigger("Interacted");
+            
+            GetComponent<AudioSource>().Play();
 
             selector.SetWires(wires);
             selector.enabled = true;
@@ -91,6 +93,8 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             
             puzzleCamera.gameObject.SetActive(false);
             selector.enabled = false;
+
+            GetComponent<AudioSource>().enabled = false;
 
             foreach (var wire in wires)
             {

@@ -2,6 +2,7 @@ using System;
 using Mirror;
 using Stargaze.Input;
 using Stargaze.Mono.CutSceneControllers;
+using Stargaze.Mono.UI.Menus.PauseMenu;
 using Stargaze.Mono.UI.RadioFrequencyPanel;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -57,6 +58,9 @@ namespace Stargaze.Mono.Player
             
             OutroController.OnStartPlay += Disable;
             OutroController.OnEndPlay += Enable;
+
+            PauseMenu.OnPause += Disable;
+            PauseMenu.OnResume += Enable;
         }
 
         public override void OnStartLocalPlayer()

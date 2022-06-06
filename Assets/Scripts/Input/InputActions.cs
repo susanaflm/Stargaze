@@ -557,6 +557,15 @@ namespace Stargaze.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""092f692d-0ba3-4a65-87e3-1ebd94168786"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -568,6 +577,28 @@ namespace Stargaze.Input
                     ""processors"": """",
                     ""groups"": ""Keyboard & Mouse"",
                     ""action"": ""ShowRadioFrequencyPanel"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dfd22987-8d95-4471-999b-5ea8a5e554e4"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard & Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eb0d11b9-4277-4e35-b995-7e5977654779"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -831,6 +862,7 @@ namespace Stargaze.Input
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_ShowRadioFrequencyPanel = m_UI.FindAction("ShowRadioFrequencyPanel", throwIfNotFound: true);
+            m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
             // Electrical
             m_Electrical = asset.FindActionMap("Electrical", throwIfNotFound: true);
             m_Electrical_Select = m_Electrical.FindAction("Select", throwIfNotFound: true);
@@ -1070,11 +1102,13 @@ namespace Stargaze.Input
         private readonly InputActionMap m_UI;
         private IUIActions m_UIActionsCallbackInterface;
         private readonly InputAction m_UI_ShowRadioFrequencyPanel;
+        private readonly InputAction m_UI_Pause;
         public struct UIActions
         {
             private @InputActions m_Wrapper;
             public UIActions(@InputActions wrapper) { m_Wrapper = wrapper; }
             public InputAction @ShowRadioFrequencyPanel => m_Wrapper.m_UI_ShowRadioFrequencyPanel;
+            public InputAction @Pause => m_Wrapper.m_UI_Pause;
             public InputActionMap Get() { return m_Wrapper.m_UI; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1087,6 +1121,9 @@ namespace Stargaze.Input
                     @ShowRadioFrequencyPanel.started -= m_Wrapper.m_UIActionsCallbackInterface.OnShowRadioFrequencyPanel;
                     @ShowRadioFrequencyPanel.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnShowRadioFrequencyPanel;
                     @ShowRadioFrequencyPanel.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnShowRadioFrequencyPanel;
+                    @Pause.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                    @Pause.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
+                    @Pause.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPause;
                 }
                 m_Wrapper.m_UIActionsCallbackInterface = instance;
                 if (instance != null)
@@ -1094,6 +1131,9 @@ namespace Stargaze.Input
                     @ShowRadioFrequencyPanel.started += instance.OnShowRadioFrequencyPanel;
                     @ShowRadioFrequencyPanel.performed += instance.OnShowRadioFrequencyPanel;
                     @ShowRadioFrequencyPanel.canceled += instance.OnShowRadioFrequencyPanel;
+                    @Pause.started += instance.OnPause;
+                    @Pause.performed += instance.OnPause;
+                    @Pause.canceled += instance.OnPause;
                 }
             }
         }
@@ -1205,6 +1245,7 @@ namespace Stargaze.Input
         public interface IUIActions
         {
             void OnShowRadioFrequencyPanel(InputAction.CallbackContext context);
+            void OnPause(InputAction.CallbackContext context);
         }
         public interface IElectricalActions
         {

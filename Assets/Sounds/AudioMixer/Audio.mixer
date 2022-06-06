@@ -33,6 +33,20 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-6913205964935116429
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 9e799a70c5f176e4f9a12abdf126ff8d
+  m_EffectName: Attenuation
+  m_MixLevel: c924894cbb79e1b47bf74f468bed3b4a
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &-1613851594388642878
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -62,13 +76,24 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: fff2ba1af6d2a9d45ad460592660702d
+    name: ComsVolume
+  - guid: b0a2c8cd1fadf524e99ef31d3f4aaeb5
+    name: EffectsVolume
+  - guid: 0ec01782aae04a640a949aa44527d76a
+    name: MasterVolume
+  - guid: a4cfc05c709b8504596f3cb143717223
+    name: StepsVolume
+  - guid: 53f5d78c6fb6e4a4cb76fbedfe6d9f65
+    name: UIVolume
   m_AudioMixerGroupViews:
   - guids:
     - f8c8784d47d363c4998db1516a342d3b
     - 01b79c4a8dd87414d8d01dd4842436cb
     - 66463055bad92ec489cf4763cb30247d
     - 06abdb2b30c65904591fffec391a0b25
+    - ef4dc895363e0dd41bbbc7e672f0f387
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -85,6 +110,7 @@ AudioMixerGroupController:
   - {fileID: 7665929286436710970}
   - {fileID: -7741661104743660855}
   - {fileID: 3957506394986562238}
+  - {fileID: 2373042695608906566}
   m_Volume: 0ec01782aae04a640a949aa44527d76a
   m_Pitch: c4a844793c06a034eaff07160cd35e1b
   m_Send: 00000000000000000000000000000000
@@ -118,9 +144,28 @@ AudioMixerSnapshotController:
   m_AudioMixer: {fileID: 24100000}
   m_SnapshotID: 09838adb445d0ed419d458d8df2a8339
   m_FloatValues:
-    0ec01782aae04a640a949aa44527d76a: -0.16685188
-    b0a2c8cd1fadf524e99ef31d3f4aaeb5: -0.27209902
+    0ec01782aae04a640a949aa44527d76a: 0
+    b0a2c8cd1fadf524e99ef31d3f4aaeb5: 0
   m_TransitionOverrides: {}
+--- !u!243 &2373042695608906566
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Coms
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: ef4dc895363e0dd41bbbc7e672f0f387
+  m_Children: []
+  m_Volume: fff2ba1af6d2a9d45ad460592660702d
+  m_Pitch: c6173e5c9cc68764fae2bf8f8c97a4ff
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -6913205964935116429}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!243 &3957506394986562238
 AudioMixerGroupController:
   m_ObjectHideFlags: 0

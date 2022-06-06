@@ -1,6 +1,7 @@
 ﻿using System;
 using Stargaze.ScriptableObjects.Settings;
 using UnityEngine;
+using UnityEngine.Audio;
 
 namespace Stargaze.Mono.Managers
 {
@@ -12,7 +13,9 @@ namespace Stargaze.Mono.Managers
 
         [SerializeField] private SettingsData settingsData;
 
-        public Action OnSettingsChanged;
+        [Space]
+        
+        [SerializeField] private AudioMixer audioMixer;
 
         public SettingsData SettingsData => settingsData;
 
@@ -42,8 +45,13 @@ namespace Stargaze.Mono.Managers
             Screen.SetResolution(videoSettingsData.ResolutionWidth, videoSettingsData.ResolutionHeight, videoSettingsData.Fullscreen, videoSettingsData.RefreshRate);
             QualitySettings.vSyncCount = videoSettingsData.VSync ? 1 : 0;
             QualitySettings.SetQualityLevel(videoSettingsData.GraphicsPreset);
-            
-            // TODO: Apply audio
+
+            AudioSettingsData audioSettingsData = settingsData.AudioSettings;
+
+            audioMixer.SetFloat("MasterVolume", -80 + (80 * audioSettingsData.MasterVolume));
+            audioMixer.SetFloat("UIVolume", -80 + (80 * audioSettingsData.UIVolume));
+            audioMixer.SetFloat("EffectsVolume", -80 + (80 * audioSettingsData.SFXVolume));
+            audioMixer.SetFloat("ComsVolume", -80 + (80 * audioSettingsData.ComsVolume));
             
             if (save)
                 settingsData.Save($"{Application.persistentDataPath}/{SettingsFileName}");

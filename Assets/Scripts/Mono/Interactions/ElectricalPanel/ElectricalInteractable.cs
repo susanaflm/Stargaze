@@ -15,6 +15,8 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
 
         private bool _isEveryWireConnected = true;
 
+        private AudioSource _source;
+
         [SerializeField] private bool switchable;
         
         [SerializeField] private CinemachineVirtualCamera puzzleCamera;
@@ -40,6 +42,7 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
         private void Start()
         {
             puzzleCamera.gameObject.SetActive(false);
+            _source = GetComponent<AudioSource>();
         }
 
         private void CheckWires()
@@ -75,8 +78,9 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             
             wiresDoorAnimator.SetTrigger("Interacted");
             electricalDoorAnimator.SetTrigger("Interacted");
-            
-            GetComponent<AudioSource>().Play();
+
+            if (_source != null)
+                _source.Play();
 
             selector.SetWires(wires);
             selector.enabled = true;
@@ -94,7 +98,8 @@ namespace Stargaze.Mono.Interactions.ElectricalPanel
             puzzleCamera.gameObject.SetActive(false);
             selector.enabled = false;
 
-            GetComponent<AudioSource>().enabled = false;
+            if (_source != null)
+                _source.enabled = false;
 
             foreach (var wire in wires)
             {

@@ -48,10 +48,10 @@ namespace Stargaze.Mono.Managers
 
             AudioSettingsData audioSettingsData = settingsData.AudioSettings;
 
-            audioMixer.SetFloat("MasterVolume", -20 + (20 * audioSettingsData.MasterVolume));
-            audioMixer.SetFloat("UIVolume", -20 + (20 * audioSettingsData.UIVolume));
-            audioMixer.SetFloat("EffectsVolume", -20 + (20 * audioSettingsData.SFXVolume));
-            audioMixer.SetFloat("ComsVolume", -20 + (20 * audioSettingsData.ComsVolume));
+            audioMixer.SetFloat("MasterVolume", audioSettingsData.MasterVolume > 0 ? -20 + (20 * audioSettingsData.MasterVolume) : -80);
+            audioMixer.SetFloat("UIVolume", audioSettingsData.UIVolume > 0 ? -20 + (20 * audioSettingsData.UIVolume) : -80);
+            audioMixer.SetFloat("EffectsVolume", audioSettingsData.SFXVolume > 0 ? -20 + (20 * audioSettingsData.SFXVolume) : -80);
+            audioMixer.SetFloat("ComsVolume", audioSettingsData.ComsVolume > 0 ? -20 + (20 * audioSettingsData.ComsVolume) : -80);
             
             if (save)
                 settingsData.Save($"{Application.persistentDataPath}/{SettingsFileName}");

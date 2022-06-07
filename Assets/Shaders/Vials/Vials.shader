@@ -1,9 +1,6 @@
 Shader "Custom/Vials"
 {
-   // The _BaseColor variable is visible in the Material's Inspector, as a field
-    // called Base Color. You can use it to select a custom color. This variable
-    // has the default value (1, 1, 1, 1).
-    Properties
+	Properties
     {
         [MainTexture] _BaseMap("Base Map (RGB) Smoothness / Alpha (A)", 2D) = "white" {}
 		[MainColor]   _BaseColor("Base Color", Color) = (1, 1, 1, 1)

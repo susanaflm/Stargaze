@@ -2,7 +2,9 @@ using System;
 using Cinemachine;
 using DG.Tweening;
 using Mirror;
+using Stargaze.ScriptableObjects.Settings;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Stargaze.Mono.Player
 {
@@ -50,6 +52,8 @@ namespace Stargaze.Mono.Player
         [SerializeField] private Vector3 groundCheckCenter;
         [SerializeField] private float groundCheckRadius;
         [SerializeField] private LayerMask groundCheckLayer;
+
+        [Header("Settings")] [SerializeField] private GameSettingsData gameSettings;
 
         public Action OnJump;
         public Action OnLand;
@@ -213,7 +217,7 @@ namespace Stargaze.Mono.Player
         {
             Vector2 lookInput = _input.Look;
 
-            _verticalRotation += -lookInput.y * rotationSpeed * Time.deltaTime;
+            _verticalRotation += -lookInput.y * rotationSpeed * gameSettings.CameraSensitivity * Time.deltaTime;
 
             _verticalRotation = Mathf.Clamp(
                 _verticalRotation, 
@@ -221,7 +225,7 @@ namespace Stargaze.Mono.Player
                 lookDownLimit
             );
             
-            transform.Rotate(transform.up, lookInput.x * rotationSpeed * Time.deltaTime);
+            transform.Rotate(transform.up, lookInput.x * rotationSpeed * gameSettings.CameraSensitivity * Time.deltaTime);
             camera.transform.localRotation = Quaternion.Euler(_verticalRotation, 0f, 0f);
         }
 

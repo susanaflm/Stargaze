@@ -545,6 +545,7 @@ MonoBehaviour:
   groundCheckLayer:
     serializedVersion: 2
     m_Bits: 55
+  gameSettings: {fileID: 11400000, guid: 36c2a90480228ed4eac9651517c68b63, type: 2}
 --- !u!114 &2276302352517836439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -566,6 +567,7 @@ MonoBehaviour:
   dragCoefficient: 0.5
   rotationSpeed: 10
   rollSpeed: 20
+  gameSettings: {fileID: 11400000, guid: 36c2a90480228ed4eac9651517c68b63, type: 2}
 --- !u!114 &-8304033169833888439
 MonoBehaviour:
   m_ObjectHideFlags: 0

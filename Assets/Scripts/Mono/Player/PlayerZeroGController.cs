@@ -2,6 +2,7 @@
 using Cinemachine;
 using DG.Tweening;
 using Mirror;
+using Stargaze.ScriptableObjects.Settings;
 using UnityEngine;
 
 namespace Stargaze.Mono.Player
@@ -34,6 +35,8 @@ namespace Stargaze.Mono.Player
         [SerializeField] private float dragCoefficient = 1f;
         [SerializeField] private float rotationSpeed = 1f;
         [SerializeField] private float rollSpeed = 1f;
+
+        [SerializeField] private GameSettingsData gameSettings;
 
         private void Awake()
         {
@@ -89,8 +92,8 @@ namespace Stargaze.Mono.Player
             _rollVelocity += rollInput * rollSpeed * Time.deltaTime;
             _rollVelocity += -dragCoefficient * _rollVelocity * Time.deltaTime;
             
-            transform.RotateAround(comPos, transform.up, lookInput.x * rotationSpeed * Time.deltaTime);
-            transform.RotateAround(comPos, transform.right, -lookInput.y * rotationSpeed * Time.deltaTime);
+            transform.RotateAround(comPos, transform.up, lookInput.x * rotationSpeed * gameSettings.CameraSensitivity * Time.deltaTime);
+            transform.RotateAround(comPos, transform.right, -lookInput.y * rotationSpeed * gameSettings.CameraSensitivity * Time.deltaTime);
             transform.RotateAround(comPos, transform.forward, _rollVelocity * Time.deltaTime);
         }
 

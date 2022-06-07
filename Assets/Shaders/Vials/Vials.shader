@@ -29,6 +29,7 @@ Shader "Custom/Vials"
     {
         Tags { "RenderType" = "Transparent" "RenderPipeline" = "UniversalPipeline" }
     	
+    	//Show Transparency
     	Blend SrcAlpha OneMinusSrcAlpha 
         
         HLSLINCLUDE
@@ -164,6 +165,7 @@ Shader "Custom/Vials"
 					clip(baseMap.a - _Cutoff);
 				#endif
 
+				//Assign Color to the material
 				half4 diffuse = baseMap * _BaseColor * IN.color;
 				surfaceData.albedo = diffuse.rgb;
 				surfaceData.normalTS = SampleNormal(IN.uv, TEXTURE2D_ARGS(_BumpMap, sampler_BumpMap));
@@ -296,7 +298,9 @@ Shader "Custom/Vials"
 				// See Lighting.hlsl to see how this is implemented.
 				// https://github.com/Unity-Technologies/Graphics/blob/master/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl
 
+				//Mixes Fog color
 				color.rgb = MixFog(color.rgb, inputData.fogCoord);
+            	//Assigns alpha
 				color.a = _BaseColor.a;
 				return color;
                 

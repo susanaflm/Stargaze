@@ -89,8 +89,7 @@ float4 ToonLighting(float4 baseColor, float4 bumpMapSample, float3 emissionColor
 		worldNormal
 	);
 
-	//float3 normal = normalize(mul(normalMap, TBN_Matrix));
-	float3 normal = worldNormal;
+	float3 normal = normalize(mul(normalMap, TBN_Matrix));
                 
 	// Directional Lighting
 	float3 directional = CalculateDirectionLighting(shadowCoord, normal, banding);

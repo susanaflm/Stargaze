@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Mo
   CraftedComponent: 0
+  isFinalProduct: 0
   Sprite: {fileID: 21300000, guid: f72be3525d0d8a0468aa109ba1cf2aa0, type: 3}
+  vialColor: {r: 0.3679245, g: 0.31826517, b: 0.18916874, a: 0.65882355}

@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Caesium
   CraftedComponent: 0
+  isFinalProduct: 0
   Sprite: {fileID: 21300000, guid: 2e66a3025cd09d745977df08610b8301, type: 3}
+  vialColor: {r: 0.8584906, g: 0.631076, b: 0.28751338, a: 0.54509807}

@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Fluor
   CraftedComponent: 0
+  isFinalProduct: 0
   Sprite: {fileID: 21300000, guid: cc3101a59b63ad34984011df593ed7fc, type: 3}
+  vialColor: {r: 1, g: 0, b: 0.46135092, a: 0.5803922}
